@@ -1,0 +1,18 @@
+{
+  "name": "self-help-kiosk",
+  "version": "1.0.0",
+  "description": "Student self-help kiosk for Timeback learners, grades K-8",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "data": "node tools/dump-data.js > tools/_data.json",
+    "validate": "npm run data && python tools/validate.py",
+    "links": "npm run data && python tools/check-links.py",
+    "smoke": "npm run data && node tools/smoke.js",
+    "subpath": "node tools/check-subpath.js",
+    "check": "npm run validate && npm run links && npm run smoke && npm run subpath"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

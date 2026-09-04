@@ -1,0 +1,47 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Mondays at 13:00 UTC. Catches link rot before a student finds it.
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: TEKS codes, app names, schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: node tools/dump-data.js > tools/_data.json
+      - run: python tools/validate.py
+
+  links:
+    name: Outbound links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: node tools/dump-data.js > tools/_data.json
+      - run: python tools/check-links.py
+
+  smoke:
+    name: Headless browser walk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/dump-data.js > tools/_data.json
+      - run: node tools/smoke.js
