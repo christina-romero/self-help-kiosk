@@ -10,11 +10,19 @@ tagged to the Texas Essential Knowledge and Skills and to the Timeback apps that
 
 ---
 
-## Running it
+## Deploying
 
-There is no build step and no server requirement. Open `index.html` in a browser, or
-drop the folder on any static host (GitHub Pages, Netlify, a district web share, a USB
-stick on a kiosk machine).
+The site is hosted on **Vercel**, connected to this repo. There is no deploy step to
+run: **push to `main` and Vercel rebuilds and publishes automatically.** A pull request
+gets its own preview URL, and `vercel.json` tells Vercel there is nothing to install or
+build, so a deploy takes seconds.
+
+To roll back, open the Vercel dashboard, find the previous deployment, and choose
+*Promote to Production*. That is instant and does not touch git.
+
+There is no build step and no server requirement, so it also runs from `index.html`
+opened directly in a browser, from a district web share, or from a USB stick on a kiosk
+machine.
 
 ```
 # optional, for a local server
@@ -247,5 +255,7 @@ check questions, and a worked example, so a thin guide cannot ship quietly.
   Timeback, so the student has to name the skill. The "which app were you in" picker
   exists to narrow that down. If Timeback ever exposes a current-assignment API, that
   is the single highest-value integration.
-* **Link rot is a maintenance cost.** Run `check-links.py` at the start of each
-  semester. All 193 links were live at build time.
+* **Link rot is a maintenance cost.** The Checks workflow runs `check-links.py` on
+  every push and every Monday. It fails only on genuinely broken links (404, 410, DNS);
+  a 403 or 429 is reported separately because CI runs from a datacenter IP that some
+  publishers block. All 193 links were live at build time.
