@@ -19,6 +19,14 @@
   var OK = 'var(--ok)';
   var WARN = 'var(--warn)';
 
+  // Categorical palette. Anything that shows several parallel things (steps,
+  // parts, categories, rows) gets a different hue per item, so students can
+  // say "the orange one" instead of "the third one".
+  var PAL = ['var(--v1)', 'var(--v2)', 'var(--v3)', 'var(--v4)', 'var(--v5)', 'var(--v6)'];
+  var PALB = ['var(--v1b)', 'var(--v2b)', 'var(--v3b)', 'var(--v4b)', 'var(--v5b)', 'var(--v6b)'];
+  function hue(i) { return PAL[((i % PAL.length) + PAL.length) % PAL.length]; }
+  function hueB(i) { return PALB[((i % PALB.length) + PALB.length) % PALB.length]; }
+
   function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -56,16 +64,25 @@
     o = o || {};
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (o.r == null ? 8 : o.r) +
       '" fill="' + (o.fill || PANEL) + '" stroke="' + (o.stroke || LINE) + '" stroke-width="' + (o.sw || 2) + '"' +
-      (o.dash ? ' stroke-dasharray="' + o.dash + '"' : '') + '/>';
+      (o.dash ? ' stroke-dasharray="' + o.dash + '"' : '') +
+      (o.shadow ? ' filter="url(#sh)"' : '') + '/>';
   }
   function line(x1, y1, x2, y2, o) {
     o = o || {};
     return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="' + (o.stroke || LINE) +
       '" stroke-width="' + (o.sw || 2) + '"' + (o.dash ? ' stroke-dasharray="' + o.dash + '"' : '') +
-      (o.cap ? ' stroke-linecap="' + o.cap + '"' : '') + (o.marker ? ' marker-end="url(#arw)"' : '') + '/>';
+      (o.cap ? ' stroke-linecap="' + o.cap + '"' : '') +
+      (o.marker ? ' marker-end="url(#' + (typeof o.marker === 'string' ? o.marker : 'arw') + ')"' : '') + '/>';
   }
-  var ARROW = '<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + AC + '"/></marker>' +
-    '<marker id="arwg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + SUB + '"/></marker></defs>';
+  function marker(id, fill) {
+    return '<marker id="' + id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" ' +
+      'orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + fill + '"/></marker>';
+  }
+  var ARROW = '<defs>' + marker('arw', AC) + marker('arwg', SUB) +
+    PAL.map(function (c, i) { return marker('arw' + i, c); }).join('') +
+    '<filter id="sh" x="-20%" y="-20%" width="140%" height="150%">' +
+    '<feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-opacity=".18"/></filter>' +
+    '</defs>';
 
   var VIZ = {};
 
@@ -79,12 +96,13 @@
     var body = ARROW, y = padTop;
     for (var i = 0; i < steps.length; i++) {
       var h = heights[i];
-      body += rect(46, y, W - 92, h, { fill: i === steps.length - 1 ? ACBG : PANEL, stroke: AC, sw: i === steps.length - 1 ? 2.5 : 2 });
-      body += '<circle cx="46" cy="' + (y + h / 2) + '" r="15" fill="' + AC + '"/>';
-      body += t(46, y + h / 2 + 5, String(i + 1), { fill: PANEL, weight: 800, size: 14 });
+      var c = hue(i), cb = hueB(i);
+      body += rect(46, y, W - 92, h, { fill: cb, stroke: c, sw: 2.5, r: 12, shadow: 1 });
+      body += '<circle cx="46" cy="' + (y + h / 2) + '" r="16" fill="' + c + '" filter="url(#sh)"/>';
+      body += t(46, y + h / 2 + 5, String(i + 1), { fill: PANEL, weight: 800, size: 15 });
       body += tblock(W / 2 + 6, y + h / 2, steps[i], 46, { size: 13.5 });
       y += h;
-      if (i < steps.length - 1) { body += line(W / 2, y + 3, W / 2, y + gap - 3, { stroke: AC, sw: 2.5, marker: 1 }); y += gap; }
+      if (i < steps.length - 1) { body += line(W / 2, y + 3, W / 2, y + gap - 3, { stroke: hue(i + 1), sw: 3, marker: 'arw' + ((i + 1) % 6) }); y += gap; }
     }
     return svg(W, H, body, 'Flow chart of the steps');
   };
@@ -97,10 +115,11 @@
     var H = 150 + (p.note ? 26 : 0), body = '';
     for (var i = 0; i < cols.length; i++) {
       var x = x0 + i * cw;
-      body += rect(x, 34, cw, 34, { fill: ACBG, stroke: AC, r: 0 });
-      body += tblock(x + cw / 2, 51, cols[i], 11, { size: 11.5, weight: 700, fill: AC, lh: 12 });
-      body += rect(x, 68, cw, 62, { fill: PANEL, stroke: LINE, r: 0 });
-      if (digits[i] != null) body += t(x + cw / 2, 112, String(digits[i]), { size: 34, weight: 800 });
+      var c = hue(i), cb = hueB(i);
+      body += rect(x, 34, cw, 34, { fill: c, stroke: c, r: 0 });
+      body += tblock(x + cw / 2, 51, cols[i], 11, { size: 11.5, weight: 800, fill: PANEL, lh: 12 });
+      body += rect(x, 68, cw, 62, { fill: cb, stroke: c, r: 0 });
+      if (digits[i] != null) body += t(x + cw / 2, 112, String(digits[i]), { size: 34, weight: 800, fill: c });
     }
     body += t(W / 2, 22, p.title || 'Place value chart', { size: 13, weight: 700, fill: SUB });
     if (p.note) body += t(W / 2, 148, p.note, { size: 12.5, fill: SUB, style: 'italic' });
@@ -114,12 +133,13 @@
     var body = '';
     for (var b = 0; b < bars.length; b++) {
       var bar = bars[b], y = 18 + b * (bh + gap), bw = W - 190, x0 = 24, pw = bw / bar.parts;
+      var c = hue(b), cb = hueB(b);
       for (var i = 0; i < bar.parts; i++) {
         var on = i < bar.shaded;
-        body += rect(x0 + i * pw, y, pw, bh, { fill: on ? AC : PANEL, stroke: AC, r: 0, sw: 2 });
-        if (bar.tick) body += t(x0 + i * pw + pw / 2, y + bh / 2 + 5, bar.tick[i] || '', { size: 12, fill: on ? PANEL : SUB });
+        body += rect(x0 + i * pw, y, pw, bh, { fill: on ? c : cb, stroke: c, r: 0, sw: 2 });
+        if (bar.tick) body += t(x0 + i * pw + pw / 2, y + bh / 2 + 5, bar.tick[i] || '', { size: 12, fill: on ? PANEL : c });
       }
-      body += t(x0 + bw + 16, y + bh / 2 - 2, bar.label || '', { size: 20, weight: 800, anchor: 'start', fill: AC });
+      body += t(x0 + bw + 16, y + bh / 2 - 2, bar.label || '', { size: 20, weight: 800, anchor: 'start', fill: c });
       if (bar.sub) body += t(x0 + bw + 16, y + bh / 2 + 16, bar.sub, { size: 11.5, anchor: 'start', fill: SUB });
     }
     return svg(W, H, body, 'Fraction bars');
@@ -139,15 +159,17 @@
       body += line(sc(v), y - (big ? 11 : 6), sc(v), y + (big ? 11 : 6), { stroke: INK, sw: 2 });
       if (lab) body += t(sc(v), y + 30, lab, { size: 13, weight: big ? 700 : 400, fill: big ? INK : SUB });
     }
-    (p.points || []).forEach(function (pt) {
-      body += '<circle cx="' + sc(pt.v) + '" cy="' + y + '" r="8" fill="' + AC + '"/>';
-      if (pt.l) body += t(sc(pt.v), y - 20, pt.l, { size: 13, weight: 800, fill: AC });
+    (p.points || []).forEach(function (pt, i) {
+      var c = hue(i);
+      body += '<circle cx="' + sc(pt.v) + '" cy="' + y + '" r="9" fill="' + c + '" stroke="' + PANEL + '" stroke-width="2.5" filter="url(#sh)"/>';
+      if (pt.l) body += t(sc(pt.v), y - 21, pt.l, { size: 13.5, weight: 800, fill: c });
     });
-    (p.jumps || []).forEach(function (j) {
+    (p.jumps || []).forEach(function (j, i) {
+      var c = hue(i + 2);
       var a = sc(j.from), b = sc(j.to), mid = (a + b) / 2, r = Math.abs(b - a) / 2;
       body += '<path d="M' + a + ' ' + y + ' A ' + r + ' ' + Math.min(r, 30) + ' 0 0 1 ' + b + ' ' + y +
-        '" fill="none" stroke="' + AC + '" stroke-width="2.5" marker-end="url(#arw)"/>';
-      if (j.l) body += t(mid, y - Math.min(r, 30) - 8, j.l, { size: 12.5, weight: 700, fill: AC });
+        '" fill="none" stroke="' + c + '" stroke-width="3" marker-end="url(#arw' + ((i + 2) % 6) + ')"/>';
+      if (j.l) body += t(mid, y - Math.min(r, 30) - 8, j.l, { size: 12.5, weight: 800, fill: c });
     });
     if (p.title) body += t(W / 2, 22, p.title, { size: 13, weight: 700, fill: SUB });
     return svg(W, H, body, 'Number line');
@@ -160,16 +182,16 @@
     var x0 = 110, y0 = 62, H = y0 + rows.length * rh + 56;
     var body = t(W / 2, 24, p.title || 'Area model', { size: 13, weight: 700, fill: SUB });
     for (var c = 0; c < cols.length; c++) {
-      body += rect(x0 + c * cw, y0 - 34, cw, 30, { fill: ACBG, stroke: AC, r: 4 });
-      body += t(x0 + c * cw + cw / 2, y0 - 13, String(cols[c]), { size: 15, weight: 800, fill: AC });
+      body += rect(x0 + c * cw, y0 - 34, cw, 30, { fill: hue(c), stroke: hue(c), r: 6 });
+      body += t(x0 + c * cw + cw / 2, y0 - 13, String(cols[c]), { size: 15, weight: 800, fill: PANEL });
     }
     for (var r = 0; r < rows.length; r++) {
-      body += rect(x0 - 92, y0 + r * rh + 12, 86, 38, { fill: ACBG, stroke: AC, r: 4 });
-      body += t(x0 - 49, y0 + r * rh + 37, String(rows[r]), { size: 15, weight: 800, fill: AC });
+      body += rect(x0 - 92, y0 + r * rh + 12, 86, 38, { fill: hue(r + 3), stroke: hue(r + 3), r: 6 });
+      body += t(x0 - 49, y0 + r * rh + 37, String(rows[r]), { size: 15, weight: 800, fill: PANEL });
       for (var c2 = 0; c2 < cols.length; c2++) {
-        body += rect(x0 + c2 * cw, y0 + r * rh, cw, rh, { fill: PANEL, stroke: LINE, r: 0 });
+        body += rect(x0 + c2 * cw, y0 + r * rh, cw, rh, { fill: hueB(c2), stroke: hue(c2), r: 0 });
         var val = (cells[r] || [])[c2];
-        if (val != null) body += t(x0 + c2 * cw + cw / 2, y0 + r * rh + rh / 2 + 6, String(val), { size: 17, weight: 700 });
+        if (val != null) body += t(x0 + c2 * cw + cw / 2, y0 + r * rh + rh / 2 + 6, String(val), { size: 18, weight: 800, fill: hue(c2) });
       }
     }
     if (p.total) body += t(W / 2, y0 + rows.length * rh + 34, p.total, { size: 15, weight: 800, fill: OK });
@@ -185,10 +207,11 @@
     var body = '';
     rows.forEach(function (r, i) {
       var y = 22 + i * (bh + gap);
-      body += t(104, y + bh / 2 + 5, r.label, { size: 13.5, weight: 700, anchor: 'end' });
+      body += t(104, y + bh / 2 + 5, r.label, { size: 13.5, weight: 800, anchor: 'end', fill: hue(i) });
+      var c = hue(i), cb = hueB(i);
       for (var u = 0; u < r.units; u++) {
-        body += rect(116 + u * unitW, y, unitW, bh, { fill: r.fill === false ? PANEL : ACBG, stroke: AC, r: 0 });
-        if (r.each) body += t(116 + u * unitW + unitW / 2, y + bh / 2 + 5, r.each, { size: 12.5, fill: AC, weight: 700 });
+        body += rect(116 + u * unitW, y, unitW, bh, { fill: r.fill === false ? PANEL : cb, stroke: c, r: 0, sw: 2 });
+        if (r.each) body += t(116 + u * unitW + unitW / 2, y + bh / 2 + 5, r.each, { size: 12.5, fill: c, weight: 800 });
       }
       if (r.total) {
         var x = 116 + r.units * unitW;
@@ -219,14 +242,14 @@
         body += t(cx + a[1] * (size / 2 - 22), cy + a[2] * (size / 2 - 16), a[0], { size: 15, weight: 800, fill: SUB });
       });
     }
-    (p.points || []).forEach(function (pt) {
+    (p.points || []).forEach(function (pt, i) {
       var px = cx + pt.x * S, py = cy - pt.y * S;
       if (pt.path) {
-        body += line(cx, cy, px, cy, { stroke: AC, sw: 2.5, dash: '5 4' });
-        body += line(px, cy, px, py, { stroke: AC, sw: 2.5, dash: '5 4' });
+        body += line(cx, cy, px, cy, { stroke: hue(2), sw: 2.5, dash: '5 4' });
+        body += line(px, cy, px, py, { stroke: hue(1), sw: 2.5, dash: '5 4' });
       }
-      body += '<circle cx="' + px + '" cy="' + py + '" r="7" fill="' + AC + '"/>';
-      body += t(px + 4, py - 12, pt.l || ('(' + pt.x + ', ' + pt.y + ')'), { size: 12.5, weight: 800, fill: AC, anchor: 'start' });
+      body += '<circle cx="' + px + '" cy="' + py + '" r="8" fill="' + hue(i) + '" stroke="' + PANEL + '" stroke-width="2.5" filter="url(#sh)"/>';
+      body += t(px + 4, py - 12, pt.l || ('(' + pt.x + ', ' + pt.y + ')'), { size: 12.5, weight: 800, fill: hue(i), anchor: 'start' });
     });
     if (p.title) body += t(W / 2, 20, p.title, { size: 13, weight: 700, fill: SUB });
     return svg(W, H, body, 'Coordinate plane');
@@ -240,8 +263,8 @@
     var body = '';
     for (var i = 0; i < 4; i++) {
       var x = m + (i % 2) * bw, y = m + (i > 1 ? 1 : 0) * bh;
-      body += rect(x, y, bw, bh, { fill: PANEL, stroke: AC, r: 0 });
-      body += t(x + 12, y + 22, q[i], { size: 12, weight: 800, fill: AC, anchor: 'start' });
+      body += rect(x, y, bw, bh, { fill: hueB(i), stroke: hue(i), r: 0, sw: 2.5 });
+      body += t(x + 12, y + 22, q[i], { size: 12, weight: 800, fill: hue(i), anchor: 'start' });
       if (v[i]) body += tblock(x + bw / 2, y + bh / 2 + 8, v[i], 26, { size: 13, lh: 16 });
     }
     body += '<ellipse cx="' + W / 2 + '" cy="' + H / 2 + '" rx="86" ry="34" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="2.5"/>';
@@ -263,8 +286,9 @@
     layers.forEach(function (L, i) {
       var y = 40 + i * 52;
       var isBun = i === 0 || i === layers.length - 1;
-      body += rect(170, y, 320, 42, { fill: isBun ? ACBG : PANEL, stroke: AC, r: isBun ? 12 : 3 });
-      body += t(330, y + 20, L.l, { size: 13.5, weight: 800, fill: AC });
+      var c = hue(i), cb = hueB(i);
+      body += rect(170, y, 320, 42, { fill: cb, stroke: c, r: isBun ? 14 : 4, sw: 2.5, shadow: 1 });
+      body += t(330, y + 20, L.l, { size: 13.5, weight: 800, fill: c });
       if (L.d) body += t(330, y + 35, L.d, { size: 11.5, fill: SUB });
       body += t(500, y + 26, '← ' + (i + 1), { size: 12, fill: SUB, anchor: 'start' });
     });
@@ -275,7 +299,8 @@
   VIZ.plotarc = function (p) {
     var W = 660, H = 260;
     var body = ARROW;
-    body += '<path d="M60 210 L200 210 L330 60 L470 150 L600 210" fill="none" stroke="' + AC + '" stroke-width="3.5" stroke-linejoin="round"/>';
+    body += '<path d="M60 210 L200 210 L330 60 L470 150 L600 210 L600 214 L60 214 Z" fill="' + hueB(0) + '" opacity=".55"/>';
+    body += '<path d="M60 210 L200 210 L330 60 L470 150 L600 210" fill="none" stroke="' + hue(0) + '" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>';
     var pts = [
       { x: 60, y: 210, l: p.l1 || 'Exposition', d: 'Who, where, when' },
       { x: 200, y: 210, l: p.l2 || 'Rising action', d: 'Problem grows' },
@@ -284,9 +309,10 @@
       { x: 600, y: 210, l: p.l5 || 'Resolution', d: 'How it ends' }
     ];
     pts.forEach(function (pt, i) {
-      body += '<circle cx="' + pt.x + '" cy="' + pt.y + '" r="9" fill="' + AC + '" stroke="' + PANEL + '" stroke-width="2.5"/>';
+      var c = hue(i);
+      body += '<circle cx="' + pt.x + '" cy="' + pt.y + '" r="10" fill="' + c + '" stroke="' + PANEL + '" stroke-width="3" filter="url(#sh)"/>';
       var ty = i === 2 ? pt.y - 26 : pt.y + 30;
-      body += t(Math.min(Math.max(pt.x, 60), 600), ty, pt.l, { size: 12.5, weight: 800, fill: AC });
+      body += t(Math.min(Math.max(pt.x, 60), 600), ty, pt.l, { size: 12.5, weight: 800, fill: c });
       body += t(Math.min(Math.max(pt.x, 60), 600), ty + 15, pt.d, { size: 11, fill: SUB });
     });
     body += line(40, 226, 620, 226, { stroke: LINE, sw: 2 });
@@ -298,17 +324,18 @@
   VIZ.sentence = function (p) {
     var W = 660, H = 190, body = '';
     body += t(W / 2, 26, p.title || 'Every sentence needs both halves', { size: 13, weight: 700, fill: SUB });
-    body += rect(50, 44, 260, 70, { fill: ACBG, stroke: AC });
-    body += t(180, 70, p.subjLabel || 'SUBJECT', { size: 12, weight: 800, fill: AC });
-    body += t(180, 94, p.subj || 'The tired dog', { size: 16, weight: 700 });
-    body += rect(350, 44, 260, 70, { fill: PANEL, stroke: AC });
-    body += t(480, 70, p.predLabel || 'PREDICATE', { size: 12, weight: 800, fill: AC });
-    body += t(480, 94, p.pred || 'slept on the porch.', { size: 16, weight: 700 });
+    var cs = hue(0), cp = hue(2);
+    body += rect(50, 44, 260, 70, { fill: hueB(0), stroke: cs, sw: 2.5, shadow: 1 });
+    body += t(180, 70, p.subjLabel || 'SUBJECT', { size: 12, weight: 800, fill: cs });
+    body += t(180, 94, p.subj || 'The tired dog', { size: 16, weight: 800, fill: cs });
+    body += rect(350, 44, 260, 70, { fill: hueB(2), stroke: cp, sw: 2.5, shadow: 1 });
+    body += t(480, 70, p.predLabel || 'PREDICATE', { size: 12, weight: 800, fill: cp });
+    body += t(480, 94, p.pred || 'slept on the porch.', { size: 16, weight: 800, fill: cp });
     body += t(330, 86, '+', { size: 24, weight: 800, fill: SUB });
-    body += t(180, 140, '↑', { size: 16, fill: AC });
-    body += t(480, 140, '↑', { size: 16, fill: AC });
-    body += t(180, 162, p.hint1 || 'Who or what?', { size: 12, weight: 700, fill: AC });
-    body += t(480, 162, p.hint2 || 'What are they doing?', { size: 12, weight: 700, fill: AC });
+    body += t(180, 140, '↑', { size: 16, fill: cs });
+    body += t(480, 140, '↑', { size: 16, fill: cp });
+    body += t(180, 162, p.hint1 || 'Who or what?', { size: 12, weight: 700, fill: cs });
+    body += t(480, 162, p.hint2 || 'What are they doing?', { size: 12, weight: 700, fill: cp });
     return svg(W, H, body, 'Sentence parts');
   };
 
@@ -320,9 +347,10 @@
     body += t(W / 2, 26, p.title || 'Break the word into parts', { size: 13, weight: 700, fill: SUB });
     parts.forEach(function (pt, i) {
       var x = x0 + i * (bw + gap);
-      body += rect(x, 44, bw, 74, { fill: ACBG, stroke: AC });
-      body += t(x + bw / 2, 62, pt.k.toUpperCase(), { size: 10.5, weight: 800, fill: AC });
-      body += t(x + bw / 2, 90, pt.p, { size: 21, weight: 800 });
+      var c = hue(i), cb = hueB(i);
+      body += rect(x, 44, bw, 74, { fill: cb, stroke: c, sw: 2.5, shadow: 1 });
+      body += t(x + bw / 2, 62, pt.k.toUpperCase(), { size: 10.5, weight: 800, fill: c });
+      body += t(x + bw / 2, 90, pt.p, { size: 21, weight: 800, fill: c });
       body += tblock(x + bw / 2, 108, '"' + pt.m + '"', 20, { size: 11, fill: SUB, lh: 12 });
       if (i < parts.length - 1) body += t(x + bw + gap / 2, 90, '+', { size: 22, weight: 800, fill: SUB });
     });
@@ -335,10 +363,10 @@
   /* ---------- 13. Venn diagram ---------- */
   VIZ.venn = function (p) {
     var W = 660, H = 260, cy = 130, r = 96, body = '';
-    body += '<circle cx="248" cy="' + cy + '" r="' + r + '" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="2.5" opacity="0.75"/>';
-    body += '<circle cx="412" cy="' + cy + '" r="' + r + '" fill="' + PANEL + '" stroke="' + AC + '" stroke-width="2.5" opacity="0.75"/>';
-    body += t(200, 26, p.aLabel || 'Text A', { size: 14, weight: 800, fill: AC });
-    body += t(460, 26, p.bLabel || 'Text B', { size: 14, weight: 800, fill: AC });
+    body += '<circle cx="248" cy="' + cy + '" r="' + r + '" fill="' + hue(0) + '" stroke="' + hue(0) + '" stroke-width="3" opacity="0.30"/>';
+    body += '<circle cx="412" cy="' + cy + '" r="' + r + '" fill="' + hue(2) + '" stroke="' + hue(2) + '" stroke-width="3" opacity="0.30"/>';
+    body += t(200, 26, p.aLabel || 'Text A', { size: 14, weight: 800, fill: hue(0) });
+    body += t(460, 26, p.bLabel || 'Text B', { size: 14, weight: 800, fill: hue(2) });
     body += tblock(196, cy, p.a || 'only A', 14, { size: 12, lh: 15 });
     body += tblock(464, cy, p.b || 'only B', 14, { size: 12, lh: 15 });
     body += t(330, cy - 44, 'BOTH', { size: 11, weight: 800, fill: SUB });
@@ -358,8 +386,8 @@
       var fx = x0 + f * (fw + 30), fy = 36;
       for (var r = 0; r < 2; r++) for (var c = 0; c < 5; c++) {
         var idx = r * 5 + c;
-        body += rect(fx + c * cell, fy + r * cell, cell, cell, { r: 0, stroke: INK, sw: 1.8 });
-        if (idx < left) body += '<circle cx="' + (fx + c * cell + cell / 2) + '" cy="' + (fy + r * cell + cell / 2) + '" r="' + (cell / 2 - 7) + '" fill="' + AC + '"/>';
+        body += rect(fx + c * cell, fy + r * cell, cell, cell, { r: 0, stroke: INK, sw: 1.8, fill: idx < left ? hueB(r) : PANEL });
+        if (idx < left) body += '<circle cx="' + (fx + c * cell + cell / 2) + '" cy="' + (fy + r * cell + cell / 2) + '" r="' + (cell / 2 - 7) + '" fill="' + hue(r) + '" filter="url(#sh)"/>';
       }
       left -= 10;
     }
@@ -373,8 +401,8 @@
     var W = 660, bw = 76, H = 150, x0 = (W - boxes.length * bw) / 2, body = '';
     body += t(W / 2, 26, p.title || 'One box for each sound', { size: 13, weight: 700, fill: SUB });
     boxes.forEach(function (b, i) {
-      body += rect(x0 + i * bw, 42, bw, 70, { fill: i % 2 ? PANEL : ACBG, stroke: AC, r: 0 });
-      body += t(x0 + i * bw + bw / 2, 90, b, { size: 30, weight: 800, fill: AC });
+      body += rect(x0 + i * bw, 42, bw, 70, { fill: hueB(i), stroke: hue(i), r: 0, sw: 2.5 });
+      body += t(x0 + i * bw + bw / 2, 90, b, { size: 30, weight: 800, fill: hue(i) });
     });
     if (p.word) body += t(W / 2, 138, p.word, { size: 20, weight: 800 });
     return svg(W, H, body, 'Sound boxes');
@@ -389,8 +417,9 @@
       var bw = Math.min(190, (W - 60) / n - 14), total = n * bw + (n - 1) * 14, x0 = (W - total) / 2;
       items.forEach(function (it, i) {
         var x = x0 + i * (bw + 14), y = 22 + r * rowH;
-        body += rect(x, y, bw, 46, { fill: r === 0 ? AC : ACBG, stroke: AC });
-        body += tblock(x + bw / 2, y + 23, it, Math.floor(bw / 7), { size: 12.5, weight: 700, fill: r === 0 ? PANEL : AC, lh: 14 });
+        var c = hue(r), cb = hueB(r);
+        body += rect(x, y, bw, 46, { fill: r === 0 ? c : cb, stroke: c, sw: 2.5, shadow: 1 });
+        body += tblock(x + bw / 2, y + 23, it, Math.floor(bw / 7), { size: 12.5, weight: 800, fill: r === 0 ? PANEL : c, lh: 14 });
         if (r > 0) body += line(W / 2, y - rowH + 68, x + bw / 2, y - 2, { stroke: SUB, sw: 1.5, marker: 1 });
       });
     });
@@ -405,10 +434,10 @@
     body += line(120, 60, 540, 60, { stroke: INK, sw: 4, cap: 'round' });
     body += '<path d="M320 60 L330 60 L338 150 L312 150 Z" fill="' + SUB + '"/>';
     body += '<rect x="288" y="150" width="84" height="12" rx="5" fill="' + INK + '"/>';
-    body += rect(150, 74, 220, 58, { fill: ACBG, stroke: AC });
-    body += t(260, 110, p.left || '2x + 3', { size: 22, weight: 800, fill: AC });
-    body += rect(430, 74, 160, 58, { fill: PANEL, stroke: AC });
-    body += t(510, 110, p.right || '11', { size: 22, weight: 800, fill: AC });
+    body += rect(150, 74, 220, 58, { fill: hueB(0), stroke: hue(0), sw: 2.5, shadow: 1 });
+    body += t(260, 110, p.left || '2x + 3', { size: 22, weight: 800, fill: hue(0) });
+    body += rect(430, 74, 160, 58, { fill: hueB(2), stroke: hue(2), sw: 2.5, shadow: 1 });
+    body += t(510, 110, p.right || '11', { size: 22, weight: 800, fill: hue(2) });
     body += t(400, 110, '=', { size: 26, weight: 800, fill: SUB });
     body += t(W / 2, 190, p.rule || 'Whatever you do to one side, do to the other side.', { size: 14, weight: 700, fill: OK });
     if (p.sub) body += t(W / 2, 214, p.sub, { size: 12.5, fill: SUB });
@@ -426,15 +455,17 @@
     body += line(cx, cy - n * S - 10, cx, cy + n * S + 10, { stroke: INK, sw: 2.5 });
     var m = p.m == null ? 2 : p.m, b = p.b == null ? -1 : p.b;
     var xA = -n, xB = n;
-    body += line(cx + xA * S, cy - (m * xA + b) * S, cx + xB * S, cy - (m * xB + b) * S, { stroke: AC, sw: 3.5 });
+    body += line(cx + xA * S, cy - (m * xA + b) * S, cx + xB * S, cy - (m * xB + b) * S, { stroke: hue(0), sw: 4 });
     var px = 0, py = b;
-    body += line(cx + px * S, cy - py * S, cx + (px + 1) * S, cy - py * S, { stroke: OK, sw: 3 });
-    body += line(cx + (px + 1) * S, cy - py * S, cx + (px + 1) * S, cy - (py + m) * S, { stroke: OK, sw: 3 });
-    body += t(cx + (px + 0.5) * S, cy - py * S + 18, 'run 1', { size: 11.5, weight: 800, fill: OK });
-    body += t(cx + (px + 1) * S + 34, cy - (py + m / 2) * S + 4, 'rise ' + m, { size: 11.5, weight: 800, fill: OK });
-    body += '<circle cx="' + (cx) + '" cy="' + (cy - b * S) + '" r="7" fill="' + AC + '"/>';
-    body += t(cx - 12, cy - b * S - 12, '(0, ' + b + ')', { size: 11.5, weight: 800, fill: AC, anchor: 'end' });
-    body += t(W / 2, 24, p.title || ('y = ' + m + 'x ' + (b < 0 ? '- ' + Math.abs(b) : '+ ' + b)), { size: 15, weight: 800, fill: AC });
+    body += '<polygon points="' + (cx + px * S) + ',' + (cy - py * S) + ' ' + (cx + (px + 1) * S) + ',' + (cy - py * S) +
+      ' ' + (cx + (px + 1) * S) + ',' + (cy - (py + m) * S) + '" fill="' + hue(2) + '" opacity=".22"/>';
+    body += line(cx + px * S, cy - py * S, cx + (px + 1) * S, cy - py * S, { stroke: hue(2), sw: 3.5 });
+    body += line(cx + (px + 1) * S, cy - py * S, cx + (px + 1) * S, cy - (py + m) * S, { stroke: hue(2), sw: 3.5 });
+    body += t(cx + (px + 0.5) * S, cy - py * S + 18, 'run 1', { size: 11.5, weight: 800, fill: hue(2) });
+    body += t(cx + (px + 1) * S + 34, cy - (py + m / 2) * S + 4, 'rise ' + m, { size: 11.5, weight: 800, fill: hue(2) });
+    body += '<circle cx="' + (cx) + '" cy="' + (cy - b * S) + '" r="8" fill="' + hue(1) + '" stroke="' + PANEL + '" stroke-width="2.5" filter="url(#sh)"/>';
+    body += t(cx - 12, cy - b * S - 12, '(0, ' + b + ')', { size: 11.5, weight: 800, fill: hue(1), anchor: 'end' });
+    body += t(W / 2, 24, p.title || ('y = ' + m + 'x ' + (b < 0 ? '- ' + Math.abs(b) : '+ ' + b)), { size: 15, weight: 800, fill: hue(0) });
     body += t(W / 2, H - 18, 'slope = rise ÷ run = ' + m + ' ÷ 1 = ' + m + '   •   y-intercept = where the line crosses the y-axis', { size: 11.5, fill: SUB });
     return svg(W, H, body, 'Slope and y-intercept');
   };
@@ -442,14 +473,14 @@
   /* ---------- 19. Right triangle with squares (Pythagorean) ---------- */
   VIZ.pythagoras = function (p) {
     var W = 660, H = 300, a = 60, b = 80, ox = 250, oy = 190, body = '';
-    body += '<polygon points="' + ox + ',' + oy + ' ' + (ox + b) + ',' + oy + ' ' + ox + ',' + (oy - a) + '" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="3"/>';
-    body += '<rect x="' + ox + '" y="' + (oy - 12) + '" width="12" height="12" fill="none" stroke="' + AC + '" stroke-width="2"/>';
-    body += rect(ox - a, oy - a, a, a, { fill: PANEL, stroke: AC, r: 0 });
-    body += t(ox - a / 2, oy - a / 2 + 5, 'a²', { size: 17, weight: 800, fill: AC });
-    body += rect(ox, oy, b, b, { fill: PANEL, stroke: AC, r: 0 });
-    body += t(ox + b / 2, oy + b / 2 + 5, 'b²', { size: 17, weight: 800, fill: AC });
-    body += '<polygon points="' + (ox + b) + ',' + oy + ' ' + ox + ',' + (oy - a) + ' ' + (ox - a + b + 20) + ',' + (oy - a - b + 40) + ' ' + (ox + b + a + 20) + ',' + (oy - b + 40) + '" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="2"/>';
-    body += t(ox + b + 34, oy - a - 4, 'c²', { size: 17, weight: 800, fill: AC });
+    body += '<polygon points="' + ox + ',' + oy + ' ' + (ox + b) + ',' + oy + ' ' + ox + ',' + (oy - a) + '" fill="' + hueB(3) + '" stroke="' + hue(3) + '" stroke-width="3"/>';
+    body += '<rect x="' + ox + '" y="' + (oy - 12) + '" width="12" height="12" fill="none" stroke="' + hue(3) + '" stroke-width="2"/>';
+    body += rect(ox - a, oy - a, a, a, { fill: hueB(0), stroke: hue(0), r: 0, sw: 2.5 });
+    body += t(ox - a / 2, oy - a / 2 + 5, 'a²', { size: 17, weight: 800, fill: hue(0) });
+    body += rect(ox, oy, b, b, { fill: hueB(1), stroke: hue(1), r: 0, sw: 2.5 });
+    body += t(ox + b / 2, oy + b / 2 + 5, 'b²', { size: 17, weight: 800, fill: hue(1) });
+    body += '<polygon points="' + (ox + b) + ',' + oy + ' ' + ox + ',' + (oy - a) + ' ' + (ox - a + b + 20) + ',' + (oy - a - b + 40) + ' ' + (ox + b + a + 20) + ',' + (oy - b + 40) + '" fill="' + hueB(2) + '" stroke="' + hue(2) + '" stroke-width="2.5"/>';
+    body += t(ox + b + 34, oy - a - 4, 'c²', { size: 17, weight: 800, fill: hue(2) });
     body += t(ox - 12, oy - a / 2, 'a', { size: 14, weight: 700, anchor: 'end' });
     body += t(ox + b / 2, oy + 18, 'b', { size: 14, weight: 700 });
     body += t(W / 2, 40, 'a² + b² = c²', { size: 22, weight: 800, fill: AC });
@@ -473,9 +504,10 @@
     body += line(x0, y0, x0, 50, { stroke: INK, sw: 2 });
     bars.forEach(function (b, i) {
       var h = (b.v / max) * 150;
-      body += rect(x0 + i * bw + bw * 0.18, y0 - h, bw * 0.64, h, { fill: AC, stroke: AC, r: 4 });
-      body += t(x0 + i * bw + bw / 2, y0 + 20, b.l, { size: 12, weight: 700 });
-      body += t(x0 + i * bw + bw / 2, y0 - h - 7, String(b.v), { size: 12, weight: 800, fill: AC });
+      var c = hue(i);
+      body += rect(x0 + i * bw + bw * 0.18, y0 - h, bw * 0.64, h, { fill: c, stroke: c, r: 6, shadow: 1 });
+      body += t(x0 + i * bw + bw / 2, y0 + 20, b.l, { size: 12, weight: 800, fill: c });
+      body += t(x0 + i * bw + bw / 2, y0 - h - 7, String(b.v), { size: 12.5, weight: 800, fill: c });
     });
     if (p.yLabel) body += '<g transform="rotate(-90 22 130)">' + t(22, 130, p.yLabel, { size: 11.5, fill: SUB }) + '</g>';
     if (p.xLabel) body += t(W / 2, H - 8, p.xLabel, { size: 11.5, fill: SUB });
@@ -489,13 +521,16 @@
     var rh = 40, H = 34 + (rows.length + 1) * rh + (p.note ? 26 : 0), body = '';
     if (p.title) body += t(W / 2, 22, p.title, { size: 13, weight: 700, fill: SUB });
     head.forEach(function (h, i) {
-      body += rect(x0 + i * cw, 32, cw, rh, { fill: AC, stroke: AC, r: 0 });
-      body += t(x0 + i * cw + cw / 2, 32 + rh / 2 + 5, h, { size: 13, weight: 800, fill: PANEL });
+      body += rect(x0 + i * cw, 32, cw, rh, { fill: hue(i), stroke: hue(i), r: 0 });
+      body += tblock(x0 + i * cw + cw / 2, 32 + rh / 2, h, Math.floor(cw / 6.5), { size: 12.5, weight: 800, fill: PANEL, lh: 13 });
     });
     rows.forEach(function (r, ri) {
       r.forEach(function (c, ci) {
-        body += rect(x0 + ci * cw, 32 + (ri + 1) * rh, cw, rh, { fill: ri % 2 ? ACBG : PANEL, stroke: LINE, r: 0 });
-        body += t(x0 + ci * cw + cw / 2, 32 + (ri + 1) * rh + rh / 2 + 5, String(c), { size: 14, weight: 600 });
+        var first = ci === 0;
+        body += rect(x0 + ci * cw, 32 + (ri + 1) * rh, cw, rh, {
+          fill: first ? hueB(0) : (ri % 2 ? 'var(--line-2)' : PANEL), stroke: LINE, r: 0 });
+        body += tblock(x0 + ci * cw + cw / 2, 32 + (ri + 1) * rh + rh / 2, String(c), Math.floor(cw / 6),
+          { size: 12.5, weight: first ? 800 : 600, fill: first ? hue(0) : INK, lh: 13 });
       });
     });
     if (p.note) body += t(W / 2, H - 8, p.note, { size: 12, fill: SUB, style: 'italic' });
@@ -514,12 +549,16 @@
     list.forEach(function (a, i) {
       var cx = cw * i + cw / 2, cy = 96, r = 42;
       var rad = a.deg * Math.PI / 180;
-      body += line(cx, cy, cx + r, cy, { stroke: AC, sw: 3, cap: 'round' });
-      body += line(cx, cy, cx + r * Math.cos(-rad), cy + r * Math.sin(-rad), { stroke: AC, sw: 3, cap: 'round' });
+      var c = hue(i);
+      body += '<path d="M' + cx + ' ' + cy + ' L ' + (cx + r) + ' ' + cy + ' A ' + r + ' ' + r + ' 0 ' +
+        (a.deg > 180 ? 1 : 0) + ' 0 ' + (cx + r * Math.cos(-rad)) + ' ' + (cy + r * Math.sin(-rad)) +
+        ' Z" fill="' + c + '" opacity=".18"/>';
+      body += line(cx, cy, cx + r, cy, { stroke: c, sw: 3.5, cap: 'round' });
+      body += line(cx, cy, cx + r * Math.cos(-rad), cy + r * Math.sin(-rad), { stroke: c, sw: 3.5, cap: 'round' });
       body += '<path d="M' + (cx + 18) + ' ' + cy + ' A 18 18 0 ' + (a.deg > 180 ? 1 : 0) + ' 0 ' +
         (cx + 18 * Math.cos(-rad)) + ' ' + (cy + 18 * Math.sin(-rad)) + '" fill="none" stroke="' + SUB + '" stroke-width="1.8"/>';
-      body += '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="' + AC + '"/>';
-      body += t(cx, 30, a.l, { size: 14, weight: 800, fill: AC });
+      body += '<circle cx="' + cx + '" cy="' + cy + '" r="4.5" fill="' + c + '"/>';
+      body += t(cx, 30, a.l, { size: 14, weight: 800, fill: c });
       body += tblock(cx, 152, a.d, 20, { size: 11, fill: SUB, lh: 13 });
       body += t(cx, 46, a.deg + '°', { size: 11.5, fill: SUB });
     });
@@ -533,8 +572,9 @@
     steps.forEach(function (s, i) {
       var ang = -Math.PI / 2 + (i * 2 * Math.PI / steps.length);
       var x = cx + R * Math.cos(ang) * 1.75, y = cy + R * Math.sin(ang);
-      body += rect(x - 76, y - 26, 152, 52, { fill: ACBG, stroke: AC });
-      body += t(x, y - 2, s.l, { size: 14, weight: 800, fill: AC });
+      var c = hue(i);
+      body += rect(x - 76, y - 26, 152, 52, { fill: hueB(i), stroke: c, sw: 2.5, shadow: 1 });
+      body += t(x, y - 2, s.l, { size: 14, weight: 800, fill: c });
       if (s.d) body += t(x, y + 15, s.d, { size: 10.5, fill: SUB });
       var nAng = -Math.PI / 2 + ((i + 1) * 2 * Math.PI / steps.length);
       var nx = cx + R * Math.cos(nAng) * 1.75, ny = cy + R * Math.sin(nAng);
@@ -551,15 +591,16 @@
   /* ---------- 24. Two-way "which one do I use?" decision fork ---------- */
   VIZ.decide = function (p) {
     var W = 660, H = 40 + (p.branches || []).length * 78 + 60, body = ARROW;
-    body += rect(180, 20, 300, 52, { fill: AC, stroke: AC });
+    body += rect(180, 20, 300, 52, { fill: INK, stroke: INK, shadow: 1 });
     body += tblock(330, 46, p.question || 'Ask yourself:', 40, { size: 13.5, weight: 800, fill: PANEL, lh: 15 });
     (p.branches || []).forEach(function (b, i) {
       var y = 96 + i * 78;
+      var c = hue(i), cb = hueB(i);
       body += line(330, i === 0 ? 72 : y - 26, 330, y - 6, { stroke: SUB, sw: 2, marker: 1 });
-      body += rect(90, y, 160, 56, { fill: ACBG, stroke: AC });
-      body += tblock(170, y + 28, b.if, 22, { size: 12, weight: 700, fill: AC, lh: 14 });
-      body += line(254, y + 28, 292, y + 28, { stroke: AC, sw: 2, marker: 1 });
-      body += rect(298, y, 274, 56, { fill: PANEL, stroke: LINE });
+      body += rect(90, y, 160, 56, { fill: c, stroke: c, shadow: 1 });
+      body += tblock(170, y + 28, b.if, 22, { size: 12, weight: 800, fill: PANEL, lh: 14 });
+      body += line(254, y + 28, 292, y + 28, { stroke: c, sw: 2.5, marker: 'arw' + (i % 6) });
+      body += rect(298, y, 274, 56, { fill: cb, stroke: c, sw: 2 });
       body += tblock(435, y + 28, b.then, 36, { size: 12, lh: 14 });
     });
     return svg(W, H, body, 'Decision chart');
@@ -572,19 +613,54 @@
     list.slice(0, 4).forEach(function (s, i) {
       var cx = cw * i + cw / 2, cy = 82, r = 40;
       var pts = [];
-      if (s.sides === 0) { body += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="3"/>'; }
+      var c = hue(i), cb = hueB(i);
+      if (s.sides === 0) { body += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + cb + '" stroke="' + c + '" stroke-width="3.5" filter="url(#sh)"/>'; }
       else {
         var k = s.sides, rot = (k % 2 ? -Math.PI / 2 : -Math.PI / 2 + Math.PI / k);
         for (var j = 0; j < k; j++) {
           var a = rot + j * 2 * Math.PI / k;
           pts.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1));
         }
-        body += '<polygon points="' + pts.join(' ') + '" fill="' + ACBG + '" stroke="' + AC + '" stroke-width="3"/>';
+        body += '<polygon points="' + pts.join(' ') + '" fill="' + cb + '" stroke="' + c + '" stroke-width="3.5" filter="url(#sh)"/>';
       }
-      body += t(cx, 30, s.l, { size: 14, weight: 800, fill: AC });
+      body += t(cx, 30, s.l, { size: 14, weight: 800, fill: c });
       body += tblock(cx, 150, s.d, 22, { size: 11, fill: SUB, lh: 13 });
     });
     return svg(W, H, body, 'Shapes');
+  };
+
+  /* ---------- 27. Vocabulary cards ----------
+     Rendered automatically for any concept that introduces new words, so a
+     term is never just a line of text a student can skim past. One hue per
+     card gives the class a shared handle: "the purple word". */
+  VIZ.vocab = function (p) {
+    var words = p.words || [];
+    if (!words.length) return '';
+    var W = 660, perRow = words.length > 4 ? 3 : Math.min(words.length, 3);
+    var rows = Math.ceil(words.length / perRow);
+    var gap = 14, cw = (W - 24 - gap * (perRow - 1)) / perRow;
+    var heights = words.map(function (w) {
+      return Math.max(96, 62 + wrap(w.d, Math.floor(cw / 6)).length * 14);
+    });
+    var rowH = [];
+    for (var r = 0; r < rows; r++) {
+      rowH.push(Math.max.apply(null, heights.slice(r * perRow, (r + 1) * perRow).concat([96])));
+    }
+    var H = 34 + rowH.reduce(function (a, b) { return a + b + gap; }, 0);
+    var body = t(W / 2, 22, p.title || 'The words in this guide', { size: 13, weight: 700, fill: SUB });
+    var yTop = 34;
+    words.forEach(function (w, i) {
+      var r = Math.floor(i / perRow), c = i % perRow;
+      var y = yTop + rowH.slice(0, r).reduce(function (a, b) { return a + b + gap; }, 0);
+      var x = 12 + c * (cw + gap);
+      var col = hue(i), colb = hueB(i), h = rowH[r];
+      body += rect(x, y, cw, h, { fill: colb, stroke: col, sw: 2.5, r: 12, shadow: 1 });
+      body += rect(x, y, cw, 30, { fill: col, stroke: col, sw: 0, r: 12 });
+      body += rect(x, y + 18, cw, 12, { fill: col, stroke: col, sw: 0, r: 0 });
+      body += tblock(x + cw / 2, y + 15, w.w, Math.floor(cw / 7.5), { size: 13.5, weight: 800, fill: PANEL, lh: 14 });
+      body += tblock(x + cw / 2, y + 30 + (h - 30) / 2, w.d, Math.floor(cw / 6), { size: 11.8, lh: 14, fill: INK });
+    });
+    return svg(W, H, body, 'Vocabulary cards');
   };
 
   /* ---------- 26. Text-structure signal map ---------- */
@@ -593,9 +669,10 @@
     var W = 660, rh = 62, H = 30 + list.length * rh, body = '';
     list.forEach(function (s, i) {
       var y = 16 + i * rh;
-      body += rect(24, y, 176, 50, { fill: ACBG, stroke: AC });
-      body += tblock(112, y + 25, s.l, 22, { size: 12.5, weight: 800, fill: AC, lh: 14 });
-      body += rect(212, y, W - 236, 50, { fill: PANEL, stroke: LINE });
+      var c = hue(i), cb = hueB(i);
+      body += rect(24, y, 176, 50, { fill: c, stroke: c, shadow: 1 });
+      body += tblock(112, y + 25, s.l, 22, { size: 12.5, weight: 800, fill: PANEL, lh: 14 });
+      body += rect(212, y, W - 236, 50, { fill: cb, stroke: c, sw: 2 });
       body += tblock((212 + W - 24) / 2, y + 25, s.d, 58, { size: 11.5, lh: 14 });
     });
     return svg(W, H, body, 'Text structures');

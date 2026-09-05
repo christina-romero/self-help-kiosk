@@ -28,6 +28,14 @@
   --s-writing:#b4530a;   --s-writing-bg:#fdefe2;
   --s-vocabulary:#a8266f;--s-vocabulary-bg:#fceaf3;
 
+  /* categorical palette for diagrams: distinct in color, distinct in value */
+  --v1:#2f5fd0; --v1b:#e3ecfd;
+  --v2:#0f8a6d; --v2b:#dff3ed;
+  --v3:#c2410c; --v3b:#fdeae0;
+  --v4:#7c3aed; --v4b:#eee7fd;
+  --v5:#b8006b; --v5b:#fce4f0;
+  --v6:#0e7490; --v6b:#dcf0f6;
+
   --ok:#17703f;   --ok-bg:#e6f4ec;
   --warn:#9a5b00; --warn-bg:#fdf1de;
   --stop:#a32020; --stop-bg:#fbeaea;
@@ -42,6 +50,12 @@ html[data-theme="dark"]{
   --s-language:#b39cf5;  --s-language-bg:#251d3d;
   --s-writing:#f0a05a;   --s-writing-bg:#332012;
   --s-vocabulary:#f18cc0;--s-vocabulary-bg:#33162a;
+  --v1:#7ea6ff; --v1b:#1c2a45;
+  --v2:#4fd1ac; --v2b:#0f2f28;
+  --v3:#fb923c; --v3b:#38220f;
+  --v4:#c4a5fb; --v4b:#2a2145;
+  --v5:#f78fc2; --v5b:#3a1630;
+  --v6:#5ec5e0; --v6b:#0e2c37;
   --ok:#6ede9e; --ok-bg:#12301f; --warn:#f3c07a; --warn-bg:#33260f; --stop:#f79191; --stop-bg:#361818;
 }
 html[data-theme="hc"]{
@@ -50,6 +64,8 @@ html[data-theme="hc"]{
   --s-math:#ffe600; --s-math-bg:#000; --s-reading:#5cffe0; --s-reading-bg:#000;
   --s-language:#d8b4ff; --s-language-bg:#000; --s-writing:#ffb35c; --s-writing-bg:#000;
   --s-vocabulary:#ff9ecb; --s-vocabulary-bg:#000;
+  --v1:#ffe600; --v1b:#000; --v2:#5cffe0; --v2b:#000; --v3:#ffb35c; --v3b:#000;
+  --v4:#d8b4ff; --v4b:#000; --v5:#ff9ecb; --v5b:#000; --v6:#7fd4ff; --v6b:#000;
   --ok:#7dff9e; --ok-bg:#000; --warn:#ffd166; --warn-bg:#000; --stop:#ff8a8a; --stop-bg:#000;
 }
 html[data-theme="hc"] .card,html[data-theme="hc"] .panel,html[data-theme="hc"] .tile{border-width:2px}
@@ -289,25 +305,31 @@ html[data-theme="hc"] .qa summary::before{color:#000}
 .viz svg{display:block;margin:0 auto;height:auto;max-width:100%}
 .viz text{font-family:var(--font)}
 
-/* ---------- notes ---------- */
-.notebox{background:var(--scbg,var(--line-2));border:1px solid var(--line);border-radius:var(--radius-s);padding:.9rem}
-.nfield{margin-bottom:.7rem}
-.nfield label{display:block;font-weight:700;font-size:.86rem;margin-bottom:.25em}
-.nfield .hint{font-weight:400;color:var(--ink-2);font-size:.8rem}
-.nfield textarea{
-  width:100%;min-height:4.2em;padding:.6em .75em;font:inherit;font-size:.95rem;color:var(--ink);
-  background:var(--panel);border:2px solid var(--line);border-radius:var(--radius-s);resize:vertical;
+/* ---------- "write this on your paper" ---------- */
+.paper{
+  background:
+    repeating-linear-gradient(var(--panel) 0 30px, var(--line-2) 30px 31px);
+  border:1px solid var(--line);border-left:6px solid var(--sc,var(--brand));
+  border-radius:var(--radius-s);padding:1rem 1.1rem;
 }
-.nfield textarea:focus{border-color:var(--sc,var(--brand))}
-.savebar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.3rem}
-.saved{font-size:.82rem;color:var(--ok);font-weight:700}
+html[data-theme="hc"] .paper{background:var(--panel)}
+.paper-head{
+  font-weight:800;font-size:1.02rem;margin:0 0 .7em;color:var(--sc,var(--brand));
+  border-bottom:2px solid var(--sc,var(--brand));padding-bottom:.3em;
+}
+ol.paper-list{margin:0;padding-left:1.4em;display:grid;gap:.55rem}
+ol.paper-list li{padding-left:.2em}
+ol.paper-list li b{display:block;font-size:1rem}
+ol.paper-list li span{display:block;font-size:.85rem;color:var(--ink-2)}
 
-.nb-entry{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--sc,var(--brand));border-radius:var(--radius-s);padding:.9rem 1rem;margin-bottom:.7rem}
-.nb-entry h3{margin-bottom:.1em}
-.nb-entry .when{font-size:.76rem;color:var(--ink-2)}
-.nb-entry dl{margin:.6em 0 0}
-.nb-entry dt{font-weight:700;font-size:.82rem;color:var(--ink-2);margin-top:.5em}
-.nb-entry dd{margin:.1em 0 0;white-space:pre-wrap}
+.habits{
+  margin-top:1rem;border:1px solid var(--line);border-radius:var(--radius-s);
+  background:var(--line-2);padding:.9rem 1.1rem;
+}
+.habits h3{font-size:.9rem;margin:0 0 .5em;color:var(--ink-2);text-transform:uppercase;letter-spacing:.05em}
+.habits ul{margin:0 0 .7em;padding-left:1.2em;display:grid;gap:.3rem}
+.habits li{font-size:.92rem}
+.habit-test{margin:0;font-size:.92rem;border-top:1px dashed var(--line);padding-top:.6em}
 
 /* ---------- unstuck protocol ---------- */
 .proto{counter-reset:pr;display:grid;gap:.7rem}
@@ -357,10 +379,10 @@ html[data-theme="hc"] .proto li::before{color:#000}
 
 /* ---------- print (notes) ---------- */
 @media print{
-  .topbar,.foot,.steps-nav,.toast,.savebar,.noprint{display:none !important}
+  .topbar,.foot,.steps-nav,.toast,.noprint{display:none !important}
   body{background:#fff;color:#000}
   main{max-width:none;padding:0}
-  .step,.panel,.card,.nb-entry{box-shadow:none;border:1px solid #999;break-inside:avoid;page-break-inside:avoid}
+  .step,.panel,.card,.paper{box-shadow:none;border:1px solid #999;break-inside:avoid;page-break-inside:avoid}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75em;word-break:break-all}
 }
 

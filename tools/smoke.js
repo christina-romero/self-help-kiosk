@@ -1,5 +1,5 @@
 /* Headless smoke test: loads the kiosk, walks the main routes, exercises the
-   notebook, and fails on any console error or missing content.
+   paper prompt, and fails on any console error or missing content.
    Run: node tools/smoke.js            (add --shots to save screenshots) */
 const { chromium } = require('playwright');
 const path = require('path');
@@ -28,7 +28,6 @@ const ROUTES = [
   ['search', '#/search/equivalent%20fractions'],
   ['library', '#/library'],
   ['safesearch', '#/safesearch'],
-  ['notebook', '#/notebook'],
   ['notfound', '#/nope/nope']
 ];
 
@@ -65,8 +64,8 @@ const ROUTES = [
         overflow: document.documentElement.scrollWidth > window.innerWidth + 2
       };
     });
-    // notfound and the empty notebook are deliberately short
-    const minText = (name === 'notfound' || name === 'notebook') ? 60 : 300;
+    // the not-found page is deliberately short
+    const minText = name === 'notfound' ? 60 : 300;
     if (info.text < minText) problems.push(`${name}: page has almost no content (${info.text} chars)`);
     if (!info.h1) problems.push(`${name}: no <h1>`);
     if (info.overflow) problems.push(`${name}: page scrolls horizontally`);
@@ -79,23 +78,30 @@ const ROUTES = [
     }
   }
 
-  // exercise the notebook end to end
+  // the paper prompt replaces the old notebook: nothing may be stored
   await page.goto(BASE + '#/c/m-long-division');
-  await page.waitForTimeout(140);
-  await page.fill('#nf-own', 'Divide, multiply, subtract, bring down. Repeat for every digit.');
-  await page.fill('#nf-watch', 'My remainder must be smaller than the divisor.');
-  await page.click('#saveNote');
-  await page.waitForTimeout(140);
-  const badge = await page.textContent('#noteCount');
-  if (badge !== '1') problems.push(`notebook badge shows "${badge}", expected "1"`);
+  await page.waitForTimeout(150);
+  const paper = await page.evaluate(() => {
+    const s = document.getElementById('sec-note');
+    return {
+      heading: s ? s.querySelector('h2').innerText.trim() : '',
+      prompts: s ? s.querySelectorAll('ol.paper-list li').length : 0,
+      inputs: document.querySelectorAll('#main textarea, #main input').length,
+      keys: Object.keys(localStorage).filter(k => /note/i.test(k))
+    };
+  });
+  if (!/Write this on your paper/i.test(paper.heading)) problems.push(`step 6 heading is "${paper.heading}"`);
+  if (paper.prompts < 4) problems.push(`expected 4 paper prompts, found ${paper.prompts}`);
+  if (paper.inputs > 0) problems.push(`concept page still has ${paper.inputs} text input(s); nothing should be typeable`);
+  if (paper.keys.length) problems.push(`localStorage still holds note keys: ${paper.keys.join(', ')}`);
+  console.log(`  paper prompt         ${paper.prompts} prompts, no inputs, no stored notes`);
 
+  // the notebook route must be gone
   await page.goto(BASE + '#/notebook');
-  await page.waitForTimeout(140);
-  const nb = await page.evaluate(() => document.getElementById('main').innerText);
-  if (!nb.includes('bring down')) problems.push('saved note did not appear in the notebook');
-  if (!nb.includes('Long division')) problems.push('note title missing from the notebook');
-  console.log('  notebook            save + reload OK');
-  if (SHOTS) await page.screenshot({ path: path.join(shotDir, 'notebook-filled.png'), fullPage: true });
+  await page.waitForTimeout(150);
+  const gone = await page.evaluate(() => (document.querySelector('#main h1') || {}).textContent || '');
+  if (!/not here/i.test(gone)) problems.push(`#/notebook still renders "${gone}"`);
+  console.log('  notebook route       removed');
 
   // search from the header
   await page.goto(BASE);

@@ -2,8 +2,8 @@
 
 A static web app for Timeback learners in grades K&ndash;8. It is for the moment a
 student's app marks something wrong and they do not know why: find the skill, look at
-the diagram, follow the steps, check the traps list, and write a note in their own
-words before going back to the app.
+the diagram, follow the steps, check the traps list, then write it on paper in their
+own words before going back to the app.
 
 **145 skill guides** across Reading, Language, Writing, Vocabulary, and Math, every one
 tagged to the Texas Essential Knowledge and Skills and to the Timeback apps that teach it.
@@ -22,8 +22,10 @@ npx serve .
 ```
 
 Everything runs from the file system on purpose, so the kiosk keeps working when the
-Wi-Fi does not. Notes are stored in `localStorage`, which means **notes stay on the
-device** &mdash; a student must use the same kiosk to see them again, or export them.
+Wi-Fi does not. **Nothing a student types is stored, because there is nothing to type.**
+The kiosk has no text inputs beyond the search box and no notebook; students write on
+paper. The only `localStorage` keys are display preferences, chosen grade, and recently
+viewed guides.
 
 ---
 
@@ -39,7 +41,6 @@ device** &mdash; a student must use the same kiosk to see them again, or export 
 | `#/search/<query>` | Kiosk results first, then kid-safe web search options |
 | `#/library` | Resource Shelf: dictionaries, manipulatives, organizers, passages |
 | `#/safesearch` | Where searches go and how to search well |
-| `#/notebook` | Every saved note. Print or export as a text file |
 
 ### The Unstuck Path
 
@@ -51,8 +52,24 @@ once:
 3. **Do it** &mdash; numbered steps, the same steps as an auto-generated flow chart, and a worked example
 4. **Watch out** &mdash; the specific errors students actually make on that skill
 5. **Check yourself** &mdash; questions with hidden answers
-6. **Take a note** &mdash; a structured template that saves to the notebook
+6. **Write this on your paper** &mdash; note-taking coaching, not a form
 7. **More help** &mdash; vetted external links, plus the official TEKS text and related skills
+
+Every guide that introduces new vocabulary renders those words as **colored word cards**
+rather than a list, so a term cannot be skimmed past.
+
+### Step 6 teaches note-taking, it does not collect notes
+
+There is no notebook and nothing is saved. Step 6 exists to build the habit, so each
+prompt names the move *and* the reason a strong note-taker does it that way: write in
+your own words, cut to the shortest version that still works, show the line you usually
+do in your head, record *your* error rather than a general warning, and leave a margin
+question you can self-quiz from later. A standing "what makes a note worth keeping" panel
+covers heading the page, the margin, and drawing the diagram, and closes with a
+self-test: cover the page and say the skill from memory.
+
+The prompt set varies by the guide's `note` type (`steps`, `frayer`, `strategy`, `word`)
+so a vocabulary guide coaches word study and a procedure guide coaches worked examples.
 
 ---
 
@@ -91,12 +108,28 @@ a guide is checked against this index by `tools/validate.py`, so a citation cann
 **Visual guides are drawn, not borrowed.** Every diagram is generated as inline SVG at
 run time by `assets/visuals.js`. Nothing is hot-linked. That means the visuals always
 load, always print, follow the student's theme and text size, and carry no third-party
-image licensing. There are 26 diagram types: place-value charts, fraction bars, number
-lines, area models, tape diagrams, coordinate planes, Frayer models, paragraph
-hamburgers, plot arcs, sentence anatomy, word-part maps, Venn diagrams, ten frames,
-sound boxes, classification hierarchies, balance scales, slope triangles, Pythagorean
-squares, bar graphs, tables, angle sets, cycles, decision forks, shape cards, text
-structure maps, and a generic step flow chart that every guide gets for free.
+image licensing. There are 27 diagram types: vocabulary cards, place-value charts,
+fraction bars, number lines, area models, tape diagrams, coordinate planes, Frayer
+models, paragraph hamburgers, plot arcs, sentence anatomy, word-part maps, Venn
+diagrams, ten frames, sound boxes, classification hierarchies, balance scales, slope
+triangles, Pythagorean squares, bar graphs, tables, angle sets, cycles, decision forks,
+shape cards, text structure maps, and a generic step flow chart every guide gets free.
+
+Diagrams use a **six-hue categorical palette** (`--v1`..`--v6`, redefined per theme),
+so anything showing several parallel things gives each one its own color. That lets a
+class say "the orange step" instead of "the third step". The palette is redefined for
+dark mode and again for high contrast, where every hue becomes a saturated color on
+pure black.
+
+**Why we do not source photographs or third-party diagrams.** This was tested, not
+assumed. Wikimedia Commons is the only pool large enough to matter that is also safe to
+redistribute, and its K-8 coverage is thin and stylistically wrong: the best CC0
+candidates for fractions, angles, and place value turned out to be unlabeled, monochrome
+encyclopedia line art or charts pitched years above grade. Number lines, ten frames,
+protractors, bar graphs, clocks, money, slope, and box plots returned nothing usable at
+all. Adopting them would make the kiosk less colorful and less targeted, so the visuals
+are purpose-built instead. Colorful third-party material is reachable through the
+Resource Shelf and the per-guide links, where licensing stays with the publisher.
 
 ---
 
@@ -129,7 +162,7 @@ network-level filtering the district already runs.** It is not a replacement for
 * Keyboard navigable throughout, with a skip link and visible focus rings
 * Every diagram has an `aria-label`; no information is carried by color alone
 * Touch targets sized for shared kiosk hardware; no hover-only affordances
-* Print stylesheet for the Unstuck Steps poster and the notebook
+* Print stylesheet for the Unstuck Steps poster and any guide
 * `prefers-reduced-motion` respected
 
 ---
@@ -208,8 +241,8 @@ check questions, and a worked example, so a thin guide cannot ship quietly.
   pre-K row of the continuum. The kiosk starts at Kindergarten.
 * **English only.** Nothing in the architecture blocks a Spanish version; the concept
   objects would need a `lang` field and the strings would need translating.
-* **Notes are per-device.** There is no account system, by design. Students should
-  export or print notes they want to keep.
+* **Nothing a student writes is captured.** By design: notes go on paper. A Guide who
+  wants to see a student's thinking looks at the paper, not at a screen.
 * **The kiosk does not know what a student is working on.** It cannot read from
   Timeback, so the student has to name the skill. The "which app were you in" picker
   exists to narrow that down. If Timeback ever exposes a current-assignment API, that

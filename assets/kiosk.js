@@ -1,6 +1,7 @@
 /* ============================================================
    Self-Help Kiosk: application shell
-   Hash router, concept renderer, notebook, and safe search.
+   Hash router, concept renderer, and safe search.
+   Nothing a student types is stored: they write on paper instead.
    No build step and no network calls: the whole kiosk runs from
    the file system so it keeps working if the Wi-Fi drops.
    ============================================================ */
@@ -37,30 +38,43 @@
       'Looking words up', 'Academic words', 'Making words stick']
   };
 
-  var NOTE_TEMPLATES = {
+  // Prompts a student copies onto paper. These exist to build note-taking
+  // SKILL, not to collect answers, so every prompt names the habit and the
+  // reason a strong note-taker does it that way. Nothing is stored anywhere.
+  var PAPER_HABITS = [
+    'Head the page with the skill name and today’s date, so you can find it again.',
+    'Write in your own words. A copied note teaches you nothing.',
+    'Leave a wide margin down the left. Questions go there later.',
+    'Draw the picture. A note with no diagram is half a note.'
+  ];
+  var PAPER_PROMPTS = {
     steps: [
-      { k: 'own', l: 'In my own words, this is…', h: 'Do not copy the page. Say it how you would say it to a friend.' },
-      { k: 'steps', l: 'My steps', h: 'Number them. Write the step you always forget in CAPITALS.' },
-      { k: 'example', l: 'One example I worked out', h: 'Copy the problem, then show every step you did.' },
-      { k: 'watch', l: 'What I have to watch out for', h: 'The mistake you already made once.' }
+      { l: 'Say it in your own words', h: 'One or two sentences, the way you would explain it to a friend. If you cannot, reread step 3.' },
+      { l: 'Number your steps, shortest version that still works', h: 'Cut every word you do not need. Put the step you always forget in CAPITALS.' },
+      { l: 'Work one example all the way through', h: 'Copy the problem, then show every line. Do not skip the line you usually do in your head.' },
+      { l: 'Write the mistake YOU made, not a general warning', h: '"I forgot to bring down the 0" beats "be careful".' },
+      { l: 'In the margin, write one question this note answers', h: 'Cover the note later and answer it from memory. That is how you find out if it stuck.' }
     ],
     frayer: [
-      { k: 'own', l: 'My own definition', h: 'Not the dictionary words. Yours.' },
-      { k: 'looks', l: 'What it looks like / facts about it', h: '' },
-      { k: 'examples', l: 'Examples', h: 'At least two.' },
-      { k: 'non', l: 'Non-examples', h: 'Things people mix this up with.' }
+      { l: 'Your own definition', h: 'Not the words on this screen. If you cannot say it yours, you do not have it yet.' },
+      { l: 'Draw it or list what is always true about it', h: 'Pictures and properties are what you will actually recall.' },
+      { l: 'Two examples', h: 'Two, not one. One example is a memory; two is a pattern.' },
+      { l: 'One non-example, and why it does not count', h: 'The "why not" is where the understanding lives.' },
+      { l: 'In the margin, write the question this answers', h: 'Something like "what makes a shape a polygon?"' }
     ],
     strategy: [
-      { k: 'when', l: 'When I should use this', h: 'What does the question look like when this is the right move?' },
-      { k: 'how', l: 'How I do it', h: 'Your steps, in order.' },
-      { k: 'proof', l: 'Proof it worked', h: 'A question you got right using it.' },
-      { k: 'watch', l: 'What tripped me up', h: '' }
+      { l: 'Name the signal that tells you to use this', h: 'What does the question look like when this is the right move? That is the trigger.' },
+      { l: 'Your steps, in order, in your own words', h: 'Short lines. This is a recipe you will reread under time pressure.' },
+      { l: 'One place it worked', h: 'A real question you got right using it. Proof beats theory.' },
+      { l: 'Where you slipped, and the fix', h: 'Name your own error precisely so you can catch it next time.' },
+      { l: 'In the margin, write the trigger as a question', h: '"When do I use context clues?" Then quiz yourself from it.' }
     ],
     word: [
-      { k: 'own', l: 'What this word means, in my words', h: '' },
-      { k: 'parts', l: 'Word parts I can see', h: 'Prefix? Root? Suffix? What do they mean?' },
-      { k: 'sentence', l: 'My own sentence using it', h: 'Make it about your real life.' },
-      { k: 'watch', l: 'Words I mix it up with', h: '' }
+      { l: 'The word, then your own definition', h: 'Dictionary wording will not stick. Yours will.' },
+      { l: 'Break it into parts and label them', h: 'Prefix, root, suffix, and what each part means.' },
+      { l: 'A sentence about your real life', h: 'Not a generic example. Your sentence, about you.' },
+      { l: 'Words you might mix it up with', h: 'Write the near-misses next to it so you can tell them apart later.' },
+      { l: 'In the margin, write the word alone', h: 'Cover the page, read just the word, and say the meaning out loud.' }
     ]
   };
 
@@ -88,7 +102,7 @@
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } },
     del: function (k) { try { localStorage.removeItem(k); } catch (e) { } }
   };
-  var K_NOTES = 'shk.notes.v2', K_PREFS = 'shk.prefs.v1', K_GRADE = 'shk.grade.v1', K_RECENT = 'shk.recent.v1';
+  var K_PREFS = 'shk.prefs.v1', K_GRADE = 'shk.grade.v1', K_RECENT = 'shk.recent.v1';
 
   /* ---------------- helpers ---------------- */
   function esc(s) {
@@ -185,16 +199,12 @@
   V.home = function () {
     var g = LS.get(K_GRADE, null);
     var recent = (LS.get(K_RECENT, []) || []).map(function (id) { return BY_ID[id]; }).filter(Boolean).slice(0, 4);
-    var notes = LS.get(K_NOTES, {});
-    var noteIds = Object.keys(notes);
 
+    // No search box here on purpose: the one in the header is on every page.
     var h = '<section class="hero">' +
       '<h1>What are you stuck on?</h1>' +
-      '<p>This kiosk is for the moment your app says you got it wrong and you are not sure why. Find your skill, look at the picture, follow the steps, then take a note so you own it next time.</p>' +
-      '<form class="bigsearch" id="heroForm">' +
-      '<label class="sr-only" for="heroQ">Search the kiosk</label>' +
-      '<input id="heroQ" type="search" autocomplete="off" placeholder="Type the words from your app: like “equivalent fractions” or “author’s purpose”">' +
-      '<button class="btn btn-brand" type="submit">Find help</button></form>' +
+      '<p>This kiosk is for the moment your app says you got it wrong and you are not sure why. Find your skill, look at the pictures, follow the steps, then write it on your paper so you own it next time.</p>' +
+      '<p class="muted" style="margin-bottom:0">Use the search box at the top of the screen, or start with one of these:</p>' +
       '<div class="chips">' +
       ['equivalent fractions', 'main idea', 'long division', 'commas', 'context clues', 'inference', 'unit rate', 'topic sentence']
         .map(function (q) { return '<a class="chip" href="#/search/' + encodeURIComponent(q) + '">' + esc(q) + '</a>'; }).join('') +
@@ -223,11 +233,8 @@
         recent.map(function (c) { return conceptCard(c, { showSubject: true }); }).join('') + '</div></section>';
     }
 
-    h += '<section class="grid g-3">' +
+    h += '<section class="grid g-2">' +
       '<a class="tile s-math" href="#/how"><h3>🧭 The Unstuck Steps</h3><p>The six moves to try, in order, before you ask anyone for help. Print it and keep it at your desk.</p></a>' +
-      '<a class="tile s-writing" href="#/notebook"><h3>📝 My Notebook</h3><p>' +
-      (noteIds.length ? 'You have notes on ' + noteIds.length + ' skill' + (noteIds.length === 1 ? '' : 's') + '. Review them before your next assessment.' : 'Empty so far. Take a note on any skill page and it lands here.') +
-      '</p></a>' +
       '<a class="tile s-vocabulary" href="#/library"><h3>📚 Resource Shelf</h3><p>Dictionaries, virtual manipulatives, printable organizers, and reading passages your school already trusts.</p></a></section>';
     return h;
   };
@@ -239,7 +246,7 @@
       { h: 'Look at the picture first', p: 'Every guide in this kiosk starts with a diagram or a flow chart. Look at that before you read anything. Pictures load into your head faster than sentences.', s: 'In the picture I notice ______.' },
       { h: 'Follow the steps on one problem', p: 'Do not read all the steps and nod. Take one real problem from your app and do it with the steps in front of you, one line at a time.', s: 'Step 1 says ______, so I will ______.' },
       { h: 'Check the traps list', p: 'Each guide has a "Watch out" list of the exact mistakes students make on that skill. Find yours. That is usually the whole problem.', s: 'My mistake was ______.' },
-      { h: 'Write the note, then go back', p: 'Write it in your own words before you leave the page. If you cannot write it, you do not have it yet: reread the steps. Then go back to your app and try again.', s: 'Next time I will remember to ______.' }
+      { h: 'Write it on your paper, then go back', p: 'Write it in your own words on paper before you leave the page. If you cannot write it, you do not have it yet: reread the steps. Then go back to your app and try again.', s: 'Next time I will remember to ______.' }
     ];
     return '<h1>The Unstuck Steps</h1>' +
       '<p class="muted" style="max-width:64ch">Try these in order. Most of the time you will be moving again by step 4. If you get all the way through step 6 and you are still stuck, that is exactly when you should go get your Guide. And now you can tell them precisely where it broke down.</p>' +
@@ -341,15 +348,19 @@
 
     h += '<nav class="steps-nav" aria-label="Sections of this guide">' +
       '<a href="#sec-what">What it means</a><a href="#sec-see">See it</a><a href="#sec-do">Do it</a>' +
-      '<a href="#sec-watch">Watch out</a><a href="#sec-check">Check yourself</a><a href="#sec-note">Take a note</a>' +
+      '<a href="#sec-watch">Watch out</a><a href="#sec-check">Check yourself</a><a href="#sec-note">Write it down</a>' +
       (c.links && c.links.length ? '<a href="#sec-more">More help</a>' : '') + '</nav>';
 
     /* 1: what it means */
     h += '<section class="step" id="sec-what"><h2><span class="num">1</span> What it means</h2>' +
       '<p style="font-size:1.06rem">' + esc(c.plain) + '</p>' +
       (c.why ? '<p class="muted"><b>Why it matters:</b> ' + esc(c.why) + '</p>' : '') +
-      (c.words && c.words.length ? '<h3 style="font-size:.95rem;margin-top:1rem">Words you need</h3><ul class="words">' +
-        c.words.map(function (w) { return '<li><b>' + esc(w.w) + '</b>: ' + esc(w.d) + '</li>'; }).join('') + '</ul>' : '') +
+      // New vocabulary always gets a picture, never a bare list of definitions.
+      (c.words && c.words.length
+        ? '<h3 style="font-size:.95rem;margin-top:1rem">Words you need</h3>' +
+          window.Viz.render({ type: 'vocab', words: c.words, title: null,
+            caption: 'Say each word out loud before you go on. If a word is new, it goes on your paper.' })
+        : '') +
       '</section>';
 
     /* 2: see it */
@@ -383,22 +394,19 @@
         return '<details class="qa"><summary>' + esc(q.q) + '</summary><div class="ans"><b>Answer:</b> ' + esc(q.a) + '</div></details>';
       }).join('') + '</section>';
 
-    /* 6: note */
-    var tmpl = NOTE_TEMPLATES[c.note || 'steps'] || NOTE_TEMPLATES.steps;
-    var saved = (LS.get(K_NOTES, {}) || {})[c.id];
-    h += '<section class="step" id="sec-note"><h2><span class="num">6</span> Take a note</h2>' +
-      '<p class="muted">Write it in your own words. If you cannot write it, go back to step 3. That is the signal, not a failure.</p>' +
-      '<div class="notebox" data-concept="' + esc(c.id) + '">' +
-      tmpl.map(function (f) {
-        return '<div class="nfield"><label for="nf-' + esc(f.k) + '">' + esc(f.l) +
-          (f.h ? ' <span class="hint">' + esc(f.h) + '</span>' : '') + '</label>' +
-          '<textarea id="nf-' + esc(f.k) + '" data-field="' + esc(f.k) + '">' +
-          esc(saved && saved.fields ? (saved.fields[f.k] || '') : '') + '</textarea></div>';
-      }).join('') +
-      '<div class="savebar"><button class="btn btn-brand" id="saveNote">💾 Save to my notebook</button>' +
-      '<a class="btn btn-sm" href="#/notebook">Open my notebook</a>' +
-      '<span class="saved" id="saveMsg">' + (saved ? 'Saved ' + esc(new Date(saved.at).toLocaleString()) : '') + '</span></div>' +
-      '</div></section>';
+    /* 6: write it on paper. Nothing is stored on the device by design. */
+    var prompts = PAPER_PROMPTS[c.note || 'steps'] || PAPER_PROMPTS.steps;
+    h += '<section class="step" id="sec-note"><h2><span class="num">6</span> Write this on your paper</h2>' +
+      '<p class="muted">This is where you practise taking a note worth keeping. Writing it by hand in your own words is what moves it into your memory. If you cannot write it, go back to step 3. That is the signal, not a failure.</p>' +
+      '<div class="paper"><p class="paper-head">' + esc(c.title) + '</p><ol class="paper-list">' +
+      prompts.map(function (f) {
+        return '<li><b>' + esc(f.l) + '</b>' + (f.h ? '<span>' + esc(f.h) + '</span>' : '') + '</li>';
+      }).join('') + '</ol></div>' +
+      '<div class="habits"><h3>What makes a note worth keeping</h3><ul>' +
+      PAPER_HABITS.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      '<p class="habit-test"><b>Test it before you move on:</b> cover the page and say the skill out loud from memory. ' +
+      'If you can, the note works. If you cannot, add what was missing now, while you still remember what confused you.</p></div>' +
+      '</section>';
 
     /* 7: more help */
     if (c.links && c.links.length) {
@@ -502,36 +510,6 @@
       '<div class="notice"><p>If a page looks scary, mean, or wrong for school, close the tab and tell your Guide. You will never be in trouble for reporting it.</p></div>';
   };
 
-  V.notebook = function () {
-    var notes = LS.get(K_NOTES, {}) || {};
-    var ids = Object.keys(notes).sort(function (a, b) { return (notes[b].at || 0) - (notes[a].at || 0); });
-    var h = '<div class="spread"><h1>My Notebook</h1><div class="row noprint">' +
-      (ids.length ? '<button class="btn btn-sm" onclick="window.print()">🖨️ Print</button>' +
-        '<button class="btn btn-sm" id="exportNotes">⬇️ Save as a file</button>' +
-        '<button class="btn btn-sm btn-danger" id="clearNotes">Clear all</button>' : '') + '</div></div>';
-    h += '<p class="muted">Your notes live on this computer only, so use the same kiosk each time. Print them or save them as a file to keep them.</p>';
-    if (!ids.length) {
-      return h + '<div class="empty"><div class="big">📝</div><p>No notes yet.</p>' +
-        '<p>Open any skill guide, work through it, and fill in the “Take a note” section at the bottom.</p>' +
-        '<p><a class="btn btn-brand" href="#/">Find a skill</a></p></div>';
-    }
-    h += ids.map(function (id) {
-      var n = notes[id], c = BY_ID[id];
-      var s = c ? SUBJ_BY_ID[c.subject] : SUBJECTS[0];
-      var tmpl = NOTE_TEMPLATES[(c && c.note) || 'steps'] || NOTE_TEMPLATES.steps;
-      var rows = tmpl.filter(function (f) { return (n.fields || {})[f.k]; }).map(function (f) {
-        return '<dt>' + esc(f.l) + '</dt><dd>' + esc(n.fields[f.k]) + '</dd>';
-      }).join('');
-      return '<article class="nb-entry ' + s.cls + '">' +
-        '<h3>' + (c ? '<a href="#/c/' + esc(id) + '">' + esc(n.title) + '</a>' : esc(n.title)) + '</h3>' +
-        '<p class="when">' + esc(s.name) + ' · saved ' + esc(new Date(n.at).toLocaleString()) + '</p>' +
-        (rows ? '<dl>' + rows + '</dl>' : '<p class="muted">(empty)</p>') +
-        '<p class="noprint" style="margin:.7em 0 0"><button class="btn btn-sm btn-danger" data-del="' + esc(id) + '">Delete this note</button></p>' +
-        '</article>';
-    }).join('');
-    return h;
-  };
-
   V.library = function () {
     var h = '<h1>Resource Shelf</h1>' +
       '<p class="muted" style="max-width:66ch">Every site here is one your school already trusts. Use the shelf when you want to poke around a topic; use a skill guide when you need to fix one thing right now.</p>';
@@ -564,7 +542,6 @@
     else if (parts[0] === 'c') html = V.concept(decodeURIComponent(parts[1] || ''));
     else if (parts[0] === 'app') html = V.app(decodeURIComponent(parts[1] || ''));
     else if (parts[0] === 'search') html = V.search(decodeURIComponent(parts.slice(1).join('/')));
-    else if (parts[0] === 'notebook') html = V.notebook();
     else if (parts[0] === 'safesearch') html = V.safesearch();
     else if (parts[0] === 'library') html = V.library();
     else if (parts[0] === 'how') html = V.how();
@@ -582,7 +559,6 @@
     });
     window.scrollTo(0, 0);
     main.focus();
-    updateNoteCount();
     bindView();
   }
 
@@ -615,66 +591,6 @@
     var hero = $('#heroForm');
     if (hero) hero.addEventListener('submit', function (e) { e.preventDefault(); doSearch($('#heroQ').value); });
 
-    var save = $('#saveNote');
-    if (save) save.addEventListener('click', function () {
-      var box = $('.notebox'), id = box.getAttribute('data-concept'), c = BY_ID[id];
-      var fields = {};
-      $$('textarea[data-field]', box).forEach(function (ta) {
-        var v = ta.value.trim(); if (v) fields[ta.getAttribute('data-field')] = v;
-      });
-      var notes = LS.get(K_NOTES, {}) || {};
-      if (!Object.keys(fields).length) {
-        delete notes[id]; LS.set(K_NOTES, notes);
-        $('#saveMsg').textContent = ''; updateNoteCount(); toast('Note cleared'); return;
-      }
-      notes[id] = { title: c.title, subject: c.subject, at: Date.now(), fields: fields };
-      if (LS.set(K_NOTES, notes)) {
-        $('#saveMsg').textContent = 'Saved ' + new Date().toLocaleString();
-        updateNoteCount(); toast('Saved to your notebook');
-      } else toast('This device would not let the note save. Tell your Guide.');
-    });
-
-    var exp = $('#exportNotes');
-    if (exp) exp.addEventListener('click', function () {
-      var notes = LS.get(K_NOTES, {}) || {};
-      var out = ['MY SELF-HELP KIOSK NOTES', 'Saved ' + new Date().toLocaleString(), ''];
-      Object.keys(notes).sort(function (a, b) { return notes[b].at - notes[a].at; }).forEach(function (id) {
-        var n = notes[id], c = BY_ID[id];
-        var tmpl = NOTE_TEMPLATES[(c && c.note) || 'steps'] || NOTE_TEMPLATES.steps;
-        out.push('=== ' + n.title + ' (' + (SUBJ_BY_ID[n.subject] || { name: '' }).name + ') ===');
-        out.push('saved ' + new Date(n.at).toLocaleString(), '');
-        tmpl.forEach(function (f) { if ((n.fields || {})[f.k]) out.push(f.l + ':', n.fields[f.k], ''); });
-        out.push('');
-      });
-      var blob = new Blob([out.join('\n')], { type: 'text/plain;charset=utf-8' });
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'my-kiosk-notes.txt';
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
-      toast('Notes downloaded');
-    });
-
-    var clr = $('#clearNotes');
-    if (clr) clr.addEventListener('click', function () {
-      if (!window.confirm('Delete every note in your notebook? This cannot be undone.')) return;
-      LS.del(K_NOTES); route(); toast('Notebook cleared');
-    });
-
-    $$('[data-del]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var id = b.getAttribute('data-del');
-        if (!window.confirm('Delete this note?')) return;
-        var notes = LS.get(K_NOTES, {}) || {}; delete notes[id]; LS.set(K_NOTES, notes);
-        route(); toast('Note deleted');
-      });
-    });
-  }
-
-  function updateNoteCount() {
-    var n = Object.keys(LS.get(K_NOTES, {}) || {}).length;
-    var el = $('#noteCount');
-    if (el) { el.textContent = n; el.style.display = n ? '' : 'none'; }
   }
 
   /* ---------------- preferences ---------------- */

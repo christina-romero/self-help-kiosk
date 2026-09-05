@@ -31,7 +31,7 @@ server.listen(0, async () => {
   page.on('requestfailed', r => problems.push('failed request: ' + r.url()));
   page.on('response', r => { if (r.status() >= 400 && r.url().startsWith('http://127.0.0.1')) problems.push(`${r.status()} ${r.url()}`); });
 
-  for (const hash of ['', '#/g/5/math', '#/c/m-long-division', '#/app/alphamath', '#/notebook', '#/library']) {
+  for (const hash of ['', '#/g/5/math', '#/c/m-long-division', '#/app/alphamath', '#/safesearch', '#/library']) {
     await page.goto(base + hash);
     await page.waitForTimeout(200);
     const ok = await page.evaluate(() => ({
