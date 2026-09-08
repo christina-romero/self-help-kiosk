@@ -8,7 +8,7 @@ dead link never ships to a student. A 403 or 429 is reported but does not fail
 the build: that usually means the host blocks datacenter IPs, not that the link
 is broken for a student.
 """
-import json, os, re, ssl, sys, time, urllib.request
+import json, os, re, ssl, sys, threading, time, urllib.parse, urllib.request
 import concurrent.futures as cf
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,8 +40,29 @@ UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/120.0 Safari/537.36')
 
 
+# Politeness: never hit the same host twice within MIN_GAP seconds. Hammering
+# one host is how you get a 403 that has nothing to do with the link.
+MIN_GAP = 1.2
+_host_lock = threading.Lock()
+_last_hit = {}
+
+
+def _wait_turn(url):
+    host = urllib.parse.urlparse(url).netloc
+    while True:
+        with _host_lock:
+            now = time.monotonic()
+            gap = now - _last_hit.get(host, 0.0)
+            if gap >= MIN_GAP:
+                _last_hit[host] = now
+                return
+            sleep_for = MIN_GAP - gap
+        time.sleep(sleep_for)
+
+
 def check(url):
     """Try twice. A transient timeout or a rate limit should not fail a build."""
+    _wait_turn(url)
     last = None
     for attempt in range(2):
         req = urllib.request.Request(url, headers={'User-Agent': UA})
@@ -53,7 +74,8 @@ def check(url):
             # only a retryable condition is worth a second attempt
             if last not in (429, 503, 'timeout', 'URLError', 'TimeoutError'):
                 break
-            time.sleep(1.5 * (attempt + 1))
+            time.sleep(2.0 * (attempt + 1))
+            _wait_turn(url)
     return url, last, ''
 
 

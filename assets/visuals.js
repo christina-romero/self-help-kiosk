@@ -84,6 +84,131 @@
     '<feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-opacity=".18"/></filter>' +
     '</defs>';
 
+
+  /* ---------- icon library ----------
+     Small symbols that carry meaning on their own, so a term is readable
+     before the definition is. Drawn, not emoji: emoji render differently on
+     every device and several are unrecognisable at small sizes. Each icon is
+     a 24x24 path set, recoloured to whatever hue its card uses. */
+  var ICON = {
+    half:      'M4 6h16v12H4z M4 6h8v12H4z',
+    parts:     'M3 4h8v7H3z M13 4h8v7h-8z M3 13h8v7H3z M13 13h8v7h-8z',
+    equal:     'M4 9h16 M4 15h16',
+    compare:   'M6 5l-4 7 4 7 M18 5l4 7-4 7',
+    plus:      'M12 4v16 M4 12h16',
+    minus:     'M4 12h16',
+    times:     'M5 5l14 14 M19 5L5 19',
+    divide:    'M4 12h16 M12 6v.5 M12 17.5v.5',
+    angle:     'M4 20h16 M4 20L18 6',
+    triangle:  'M12 4l9 16H3z',
+    square:    'M4 4h16v16H4z',
+    circle:    'M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0',
+    cube:      'M4 8l8-4 8 4v8l-8 4-8-4z M4 8l8 4 8-4 M12 12v8',
+    line:      'M3 12h18 M3 10v4 M21 10v4',
+    ruler:     'M2 8h20v8H2z M6 8v4 M10 8v4 M14 8v4 M18 8v4',
+    clock:     'M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M12 7v5l3 2',
+    coin:      'M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0 -16 0 M12 8v8 M10 10h4 M10 14h4',
+    graph:     'M4 20V10 M10 20V4 M16 20v-8 M4 20h16',
+    point:     'M4 20h16 M4 20V4 M8 15l4-5 5 3',
+    grid:      'M3 3h18v18H3z M3 9h18 M3 15h18 M9 3v18 M15 3v18',
+    up:        'M12 20V4 M6 10l6-6 6 6',
+    down:      'M12 4v16 M6 14l6 6 6-6',
+    balance:   'M12 3v18 M5 21h14 M3 9h18 M3 9l-2 5h4z M21 9l2 5h-4z',
+    book:      'M4 5h7v15H4z M13 5h7v15h-7z M11 5v15 M13 5v15',
+    pencil:    'M4 20l3-1 11-11-2-2L5 17z M15 6l3 3',
+    speech:    'M4 5h16v10H9l-5 4z',
+    question:  'M9 9a3 3 0 1 1 4 3c-1 .7-1 1.3-1 2 M12 18v.5',
+    warn:      'M12 3l10 18H2z M12 10v4 M12 17v.5',
+    check:     'M4 13l5 5L20 6',
+    search:    'M11 11m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0 M16 16l5 5',
+    idea:      'M9 18h6 M10 21h4 M12 3a6 6 0 0 0-4 10.5V16h8v-2.5A6 6 0 0 0 12 3z',
+    steps:     'M3 20h5v-5H3z M9 15h5v-5H9z M15 10h6V5h-6z',
+    link:      'M9 15l6-6 M8 12l-2 2a3 3 0 0 0 4 4l2-2 M16 12l2-2a3 3 0 0 0-4-4l-2 2',
+    person:    'M12 8m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M4 21c0-4 4-6 8-6s8 2 8 6',
+    place:     'M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11z M12 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0',
+    group:     'M4 6h16 M4 12h16 M4 18h16 M8 3v18',
+    split:     'M12 3v8 M12 11L6 21 M12 11l6 10',
+    eye:       'M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z M12 12m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0',
+    ear:       'M8 20c0-4-4-4-4-9a7 7 0 1 1 14 0c0 3-3 4-4 6',
+    sound:     'M4 9h4l5-4v14l-5-4H4z M17 9c1.5 1.5 1.5 4.5 0 6',
+    letters:   'M4 18L8 6l4 12 M5 14h6 M15 6h5 M17.5 6v12',
+    order:     'M4 6h12 M4 12h9 M4 18h6 M20 4v16 M17 17l3 3 3-3',
+    swap:      'M4 8h13l-3-3 M20 16H7l3 3',
+    dot:       'M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0'
+  };
+
+  // term keyword -> icon. First match wins, so specific rules come first.
+  var ICON_RULES = [
+    [/numerator|denominator|fraction|half|fourth|eighth|equivalent/i, 'half'],
+    [/equal parts|fair share|partition|part|whole/i, 'parts'],
+    [/equal sign|equation|balance|both sides|inverse/i, 'balance'],
+    [/compare|comparative|superlative|contrast|greater|less than/i, 'compare'],
+    [/sum|addend|add\b|plus/i, 'plus'],
+    [/difference|subtract|minus|take away/i, 'minus'],
+    [/product|factor|multiply|array|times/i, 'times'],
+    [/quotient|divisor|dividend|divide|remainder/i, 'divide'],
+    [/angle|vertex|degree|acute|obtuse|perpendicular/i, 'angle'],
+    [/triangle|hypotenuse|leg\b/i, 'triangle'],
+    [/rectangle|square|quadrilateral|polygon|area|perimeter/i, 'square'],
+    [/circle|circumference|radius|diameter/i, 'circle'],
+    [/prism|cube|cylinder|cone|sphere|volume|solid|face\b|net\b/i, 'cube'],
+    [/number line|integer|absolute value|opposite|interval|tick/i, 'line'],
+    [/measure|length|unit|inch|centimeter|ruler|scale/i, 'ruler'],
+    [/time|hour|minute|clock|elapsed/i, 'clock'],
+    [/money|coin|cent|dollar|income|budget|interest|saving|credit|debit/i, 'coin'],
+    [/graph|histogram|pictograph|data|plot|chart/i, 'graph'],
+    [/coordinate|quadrant|ordered pair|origin|slope|rise|run|intercept/i, 'point'],
+    [/place value|digit|column|expanded form|decimal|round|estimat/i, 'grid'],
+    [/increase|growth|rate of change|positive/i, 'up'],
+    [/decrease|decline|negative/i, 'down'],
+    [/read|text|book|passage|genre|chapter|paragraph|title page|author/i, 'book'],
+    [/writ|draft|revis|edit|compose|essay|thesis|topic sentence|note/i, 'pencil'],
+    [/dialogue|quotation|speaker|narrator|point of view|voice|tone/i, 'speech'],
+    [/question|ask|wonder|inquiry|predict/i, 'question'],
+    [/error|mistake|warning|misplaced|fragment|run-on|splice/i, 'warn'],
+    [/check|confirm|proof|evidence|cite|justify|verify/i, 'check'],
+    [/find|locate|search|context|clue|infer|source/i, 'search'],
+    [/idea|theme|message|purpose|central|claim|meaning/i, 'idea'],
+    [/step|process|procedure|strategy|order of operations/i, 'steps'],
+    [/connect|relationship|transition|conjunction|proportion|ratio|rate|percent/i, 'link'],
+    [/character|subject|pronoun|antecedent|person|audience/i, 'person'],
+    [/setting|place|position|preposition|location/i, 'place'],
+    [/category|classify|sort|group|set\b|collective/i, 'group'],
+    [/syllable|split|decompose|break|prefix|suffix|root|affix|base word/i, 'split'],
+    [/notice|observe|visual|image|picture|monitor/i, 'eye'],
+    [/listen|hear|rhyme|phoneme|phonolog/i, 'ear'],
+    [/sound|phonic|blend|vowel|consonant|fluency|aloud|pronunciation/i, 'sound'],
+    [/letter|alphabet|spelling|capital|homophone|vocabulary|synonym|antonym|idiom/i, 'letters'],
+    [/sequence|chronological|plot|rising action|climax/i, 'order'],
+    [/reverse|flip|reflect|rotate|translate|transform/i, 'swap']
+  ];
+
+  function pickIcon(term, def) {
+    // Match the TERM first. Matching the definition too early picks up stray
+    // words: "infer", "evidence" and "schema" are all defined using the word
+    // "text", which made all three come out as a book.
+    var i;
+    for (i = 0; i < ICON_RULES.length; i++) {
+      if (ICON_RULES[i][0].test(String(term || ''))) return ICON_RULES[i][1];
+    }
+    for (i = 0; i < ICON_RULES.length; i++) {
+      if (ICON_RULES[i][0].test(String(def || ''))) return ICON_RULES[i][1];
+    }
+    return 'dot';
+  }
+
+  // An <svg> group placed at x,y and scaled to `size` px.
+  function icon(name, x, y, size, color) {
+    var d = ICON[name] || ICON.dot;
+    var s = (size || 24) / 24;
+    return '<g transform="translate(' + x + ',' + y + ') scale(' + s.toFixed(3) + ')" ' +
+      'fill="none" stroke="' + (color || INK) + '" stroke-width="2" ' +
+      'stroke-linecap="round" stroke-linejoin="round">' +
+      d.split(' M').map(function (seg, i) {
+        return '<path d="' + (i ? 'M' + seg : seg) + '"/>';
+      }).join('') + '</g>';
+  }
+
   var VIZ = {};
 
   /* ---------- 1. Generic step flowchart (auto-built from any concept's steps) ---------- */
@@ -518,20 +643,38 @@
   VIZ.table = function (p) {
     var head = p.head || [], rows = p.rows || [];
     var W = 660, cw = Math.min(150, (W - 80) / head.length), x0 = (W - cw * head.length) / 2;
-    var rh = 40, H = 34 + (rows.length + 1) * rh + (p.note ? 26 : 0), body = '';
+    // Bold text is wider, so the first column wraps sooner than the rest.
+    // Getting this wrong shows up as text running out past the cell edge.
+    var perBody = Math.max(8, Math.floor(cw / 6.6));
+    var perFirst = Math.max(7, Math.floor(cw / 7.4));
+    var perLine = perBody;
+    // Row height follows the tallest wrapped cell, so long text cannot clip.
+    var headH = Math.max(40, 16 + Math.max.apply(null, head.map(function (hd) {
+      return wrap(String(hd), Math.max(7, Math.floor(cw / 7.4))).length;
+    })) * 15);
+    var rowHs = rows.map(function (r) {
+      return Math.max(38, 14 + Math.max.apply(null, r.map(function (c, ci) {
+        return wrap(String(c), ci === 0 ? perFirst : perBody).length;
+      })) * 15);
+    });
+    var H = 34 + headH + rowHs.reduce(function (a, b) { return a + b; }, 0) + (p.note ? 26 : 0), body = '';
     if (p.title) body += t(W / 2, 22, p.title, { size: 13, weight: 700, fill: SUB });
     head.forEach(function (h, i) {
-      body += rect(x0 + i * cw, 32, cw, rh, { fill: hue(i), stroke: hue(i), r: 0 });
-      body += tblock(x0 + i * cw + cw / 2, 32 + rh / 2, h, Math.floor(cw / 6.5), { size: 12.5, weight: 800, fill: PANEL, lh: 13 });
+      body += rect(x0 + i * cw, 32, cw, headH, { fill: hue(i), stroke: hue(i), r: 0 });
+      body += tblock(x0 + i * cw + cw / 2, 32 + headH / 2, h, Math.max(7, Math.floor(cw / 7.4)),
+        { size: 12.5, weight: 800, fill: PANEL, lh: 13 });
     });
+    var yy = 32 + headH;
     rows.forEach(function (r, ri) {
+      var rh = rowHs[ri];
       r.forEach(function (c, ci) {
         var first = ci === 0;
-        body += rect(x0 + ci * cw, 32 + (ri + 1) * rh, cw, rh, {
+        body += rect(x0 + ci * cw, yy, cw, rh, {
           fill: first ? hueB(0) : (ri % 2 ? 'var(--line-2)' : PANEL), stroke: LINE, r: 0 });
-        body += tblock(x0 + ci * cw + cw / 2, 32 + (ri + 1) * rh + rh / 2, String(c), Math.floor(cw / 6),
+        body += tblock(x0 + ci * cw + cw / 2, yy + rh / 2, String(c), first ? perFirst : perBody,
           { size: 12.5, weight: first ? 800 : 600, fill: first ? hue(0) : INK, lh: 13 });
       });
+      yy += rh;
     });
     if (p.note) body += t(W / 2, H - 8, p.note, { size: 12, fill: SUB, style: 'italic' });
     return svg(W, H, body, 'Table');
@@ -640,11 +783,11 @@
     var rows = Math.ceil(words.length / perRow);
     var gap = 14, cw = (W - 24 - gap * (perRow - 1)) / perRow;
     var heights = words.map(function (w) {
-      return Math.max(96, 62 + wrap(w.d, Math.floor(cw / 6)).length * 14);
+      return Math.max(148, 112 + wrap(w.d, Math.floor(cw / 6)).length * 14);
     });
     var rowH = [];
     for (var r = 0; r < rows; r++) {
-      rowH.push(Math.max.apply(null, heights.slice(r * perRow, (r + 1) * perRow).concat([96])));
+      rowH.push(Math.max.apply(null, heights.slice(r * perRow, (r + 1) * perRow).concat([148])));
     }
     var H = 34 + rowH.reduce(function (a, b) { return a + b + gap; }, 0);
     var body = t(W / 2, 22, p.title || 'The words in this guide', { size: 13, weight: 700, fill: SUB });
@@ -658,7 +801,12 @@
       body += rect(x, y, cw, 30, { fill: col, stroke: col, sw: 0, r: 12 });
       body += rect(x, y + 18, cw, 12, { fill: col, stroke: col, sw: 0, r: 0 });
       body += tblock(x + cw / 2, y + 15, w.w, Math.floor(cw / 7.5), { size: 13.5, weight: 800, fill: PANEL, lh: 14 });
-      body += tblock(x + cw / 2, y + 30 + (h - 30) / 2, w.d, Math.floor(cw / 6), { size: 11.8, lh: 14, fill: INK });
+      // a symbol for the term, so the meaning starts before the words do
+      var ic = w.icon || pickIcon(w.w, w.d);
+      body += '<circle cx="' + (x + cw / 2) + '" cy="' + (y + 54) + '" r="19" fill="' + PANEL +
+        '" stroke="' + col + '" stroke-width="2"/>';
+      body += icon(ic, x + cw / 2 - 12, y + 42, 24, col);
+      body += tblock(x + cw / 2, y + 82 + (h - 82) / 2, w.d, Math.floor(cw / 6), { size: 11.8, lh: 14, fill: INK });
     });
     return svg(W, H, body, 'Vocabulary cards');
   };
@@ -681,6 +829,13 @@
   /* ---------- render ---------- */
   window.Viz = {
     has: function (type) { return typeof VIZ[type] === 'function'; },
+    // A standalone symbol the app shell can drop into a heading or a list.
+    icon: function (name, size, color) {
+      var s = size || 22;
+      return '<svg class="ic" viewBox="0 0 ' + s + ' ' + s + '" width="' + s + '" height="' + s +
+        '" aria-hidden="true" focusable="false">' + icon(name, 0, 0, s, color || 'currentColor') + '</svg>';
+    },
+    iconFor: function (term, def) { return pickIcon(term, def); },
     render: function (spec) {
       if (!spec) return '';
       var list = Array.isArray(spec) ? spec : [spec], out = '';

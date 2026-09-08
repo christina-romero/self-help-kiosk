@@ -83,6 +83,53 @@ for c in CONCEPTS:
     if ' — ' in json.dumps(c, ensure_ascii=False):
         warnings.append(f'{cid}: contains an em dash in prose')
 
+# ---- reading level -------------------------------------------------------
+# Students use this on their own, so a guide must not read harder than the
+# youngest grade it is offered to. Flesch-Kincaid is rough, but it reliably
+# catches the two things that lock a young reader out: long sentences and
+# long words.
+def _syllables(w):
+    w = re.sub(r'[^a-z]', '', w.lower())
+    if not w:
+        return 0
+    vowels, n, prev = 'aeiouy', 0, False
+    for ch in w:
+        cur = ch in vowels
+        if cur and not prev:
+            n += 1
+        prev = cur
+    if w.endswith('e') and n > 1:
+        n -= 1
+    return max(1, n)
+
+
+def reading_grade(text):
+    sentences = [s for s in re.split(r'[.!?]+', text) if s.strip()]
+    words = re.findall(r"[A-Za-z']+", text)
+    if not sentences or not words:
+        return None
+    syl = sum(_syllables(w) for w in words)
+    return 0.39 * (len(words) / len(sentences)) + 11.8 * (syl / len(words)) - 15.59
+
+
+def student_prose(c):
+    """Only what a student actually reads. Titles and metadata do not count."""
+    bits = [c.get('plain', ''), c.get('why', '')]
+    bits += c.get('steps', []) + c.get('traps', [])
+    bits += [w.get('d', '') for w in c.get('words', [])]
+    bits += [q.get('a', '') for q in c.get('check', [])]
+    return ' '.join(bits)
+
+
+too_hard = []
+for c in CONCEPTS:
+    fk = reading_grade(student_prose(c))
+    if fk is None:
+        continue
+    lowest = min(0 if g == 'K' else int(g) for g in c['grades'])
+    if fk - lowest > 2:
+        too_hard.append((round(fk, 1), lowest, c['id']))
+
 print(f'{len(CONCEPTS)} concepts checked against {len(TEKS)} TEKS codes.\n')
 
 if errors:
@@ -96,6 +143,21 @@ if warnings:
     print('\nWARNINGS (' + str(len(warnings)) + ')')
     for w in warnings:
         print('  ' + w)
+
+if too_hard:
+    print(f'\nREADING LEVEL ({len(too_hard)}) - reads more than 2 grades above the')
+    print('youngest grade the guide is offered to. Shorten sentences and swap long')
+    print('words; these are the ones a struggling reader will bounce off.')
+    for fk, lowest, cid in sorted(too_hard, reverse=True)[:15]:
+        print(f'  grade {fk:>4} text, offered from grade {lowest}   {cid}')
+    if len(too_hard) > 15:
+        print(f'  ... and {len(too_hard) - 15} more (use --reading to list every guide)')
+
+if '--reading' in sys.argv:
+    print('\n--- reading level, every guide ---')
+    for c in sorted(CONCEPTS, key=lambda x: -(reading_grade(student_prose(x)) or 0)):
+        fk = reading_grade(student_prose(c))
+        print(f'  {round(fk, 1) if fk else "?":>5}  {",".join(c["grades"]):<18}{c["id"]}')
 
 if '--teks' in sys.argv:
     print('\n--- TEKS citations with official text ---')

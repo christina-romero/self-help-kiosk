@@ -78,6 +78,24 @@ const ROUTES = [
     }
   }
 
+  // every in-page jump link on a guide must scroll, not route away
+  await page.goto(BASE + '#/c/m-equivalent-fractions');
+  await page.waitForTimeout(200);
+  const jumpLinks = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('.steps-nav a')).map(a => a.getAttribute('href')));
+  if (jumpLinks.length < 5) problems.push(`expected the guide jump nav, found ${jumpLinks.length} links`);
+  for (const href of jumpLinks) {
+    await page.click(`.steps-nav a[href="${href}"]`);
+    await page.waitForTimeout(120);
+    const after = await page.evaluate(() => ({
+      h1: (document.querySelector('#main h1') || {}).textContent || '',
+      hasTarget: !!document.querySelector(location.hash.startsWith('#sec') ? location.hash : 'body')
+    }));
+    if (/not here/i.test(after.h1)) problems.push(`jump link ${href} routed away to the not-found page`);
+    if (!after.hasTarget) problems.push(`jump link ${href} has no target section`);
+  }
+  console.log(`  guide jump links     ${jumpLinks.length} anchors scroll, none route away`);
+
   // the paper prompt replaces the old notebook: nothing may be stored
   await page.goto(BASE + '#/c/m-long-division');
   await page.waitForTimeout(150);

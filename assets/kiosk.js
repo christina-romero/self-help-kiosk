@@ -118,12 +118,6 @@
   var BY_ID = {};
   CONCEPTS.forEach(function (c) { BY_ID[c.id] = c; });
 
-  function teksKey(c, code) { return (c.subject === 'math' ? 'MATH|' : 'ELAR|') + code; }
-  function teksText(c, code) {
-    var e = window.TEKS && window.TEKS[teksKey(c, code)];
-    return e ? e.t : null;
-  }
-
   function conceptsFor(grade, subject) {
     return CONCEPTS.filter(function (c) {
       return (!subject || c.subject === subject) && (!grade || c.grades.indexOf(grade) > -1);
@@ -169,14 +163,8 @@
     meta += '<span class="tag tag-grade">' + (c.grades.length > 3
       ? 'Gr ' + gradeShort(c.grades[0]) + '–' + gradeShort(c.grades[c.grades.length - 1])
       : c.grades.map(gradeShort).join(', ')) + '</span>';
-    // Show the TEKS code for the grade being browsed, not just the first one
-    // in the list, so a grade 7 card never advertises a grade 3 standard.
-    var codes = c.teks || [];
-    if (opts.grade) {
-      var forGrade = codes.filter(function (tk) { return tk.indexOf(opts.grade + '.') === 0; });
-      if (forGrade.length) codes = forGrade;
-    }
-    codes.slice(0, 2).forEach(function (tk) { meta += '<span class="tag tag-teks">TEKS ' + esc(tk) + '</span>'; });
+    // No TEKS codes on cards: students are picking a skill, not auditing a
+    // standards map. The codes stay in the data for library maintenance.
     (c.apps || []).slice(0, 2).forEach(function (a) { meta += '<span class="tag tag-app">' + esc(a) + '</span>'; });
     return '<a class="citem ' + s.cls + '" href="#/c/' + esc(c.id) + '">' +
       '<b>' + esc(c.title) + '</b>' +
@@ -340,10 +328,6 @@
               '>' + esc(a) + (app && app.role === 'hole-filling' ? ' (hole-filling)' : '') + '</span>';
           }).join('')
         : '<span class="tag">No Timeback app at this grade yet</span>') +
-      (c.teks || []).map(function (tk) {
-        var txt = teksText(c, tk);
-        return '<span class="tag tag-teks"' + (txt ? ' title="' + esc(txt) + '"' : '') + '>TEKS ' + esc(tk) + '</span>';
-      }).join('') +
       '</div></header>';
 
     h += '<nav class="steps-nav" aria-label="Sections of this guide">' +
@@ -352,7 +336,7 @@
       (c.links && c.links.length ? '<a href="#sec-more">More help</a>' : '') + '</nav>';
 
     /* 1: what it means */
-    h += '<section class="step" id="sec-what"><h2><span class="num">1</span> What it means</h2>' +
+    h += '<section class="step" id="sec-what"><h2><span class="num">1</span>' + window.Viz.icon('idea', 20) + 'What it means</h2>' +
       '<p style="font-size:1.06rem">' + esc(c.plain) + '</p>' +
       (c.why ? '<p class="muted"><b>Why it matters:</b> ' + esc(c.why) + '</p>' : '') +
       // New vocabulary always gets a picture, never a bare list of definitions.
@@ -366,12 +350,12 @@
     /* 2: see it */
     var vizHtml = window.Viz.render(c.visual);
     var flowHtml = window.Viz.render({ type: 'flow', steps: c.steps || [], caption: 'The same steps as a flow chart. Follow the arrows.' });
-    h += '<section class="step" id="sec-see"><h2><span class="num">2</span> See it</h2>' +
+    h += '<section class="step" id="sec-see"><h2><span class="num">2</span>' + window.Viz.icon('eye', 20) + 'See it</h2>' +
       '<p class="muted">Look at the picture before you read anything else.</p>' +
       (vizHtml || '') + (vizHtml ? '' : flowHtml) + '</section>';
 
     /* 3: do it */
-    h += '<section class="step" id="sec-do"><h2><span class="num">3</span> Do it: step by step</h2>' +
+    h += '<section class="step" id="sec-do"><h2><span class="num">3</span>' + window.Viz.icon('steps', 20) + 'Do it: step by step</h2>' +
       '<ol class="howto">' + (c.steps || []).map(function (st) { return '<li>' + esc(st) + '</li>'; }).join('') + '</ol>';
     if (vizHtml) h += '<h3 style="font-size:.95rem;margin-top:1.1rem">The same steps as a flow chart</h3>' + flowHtml;
     if (c.example) {
@@ -383,12 +367,12 @@
     h += '</section>';
 
     /* 4: watch out */
-    h += '<section class="step" id="sec-watch"><h2><span class="num">4</span> Watch out for these</h2>' +
+    h += '<section class="step" id="sec-watch"><h2><span class="num">4</span>' + window.Viz.icon('warn', 20) + 'Watch out for these</h2>' +
       '<p class="muted">These are the mistakes people actually make on this skill. Find yours.</p>' +
       '<ul class="traps">' + (c.traps || []).map(function (tr) { return '<li>' + esc(tr) + '</li>'; }).join('') + '</ul></section>';
 
     /* 5: check yourself */
-    h += '<section class="step" id="sec-check"><h2><span class="num">5</span> Check yourself</h2>' +
+    h += '<section class="step" id="sec-check"><h2><span class="num">5</span>' + window.Viz.icon('check', 20) + 'Check yourself</h2>' +
       '<p class="muted">Answer in your head or on scrap paper first. Then open the answer.</p>' +
       (c.check || []).map(function (q, i) {
         return '<details class="qa"><summary>' + esc(q.q) + '</summary><div class="ans"><b>Answer:</b> ' + esc(q.a) + '</div></details>';
@@ -396,7 +380,7 @@
 
     /* 6: write it on paper. Nothing is stored on the device by design. */
     var prompts = PAPER_PROMPTS[c.note || 'steps'] || PAPER_PROMPTS.steps;
-    h += '<section class="step" id="sec-note"><h2><span class="num">6</span> Write this on your paper</h2>' +
+    h += '<section class="step" id="sec-note"><h2><span class="num">6</span>' + window.Viz.icon('pencil', 20) + 'Write this on your paper</h2>' +
       '<p class="muted">This is where you practise taking a note worth keeping. Writing it by hand in your own words is what moves it into your memory. If you cannot write it, go back to step 3. That is the signal, not a failure.</p>' +
       '<div class="paper"><p class="paper-head">' + esc(c.title) + '</p><ol class="paper-list">' +
       prompts.map(function (f) {
@@ -419,15 +403,9 @@
         }).join('') + '</ul></section>';
     }
 
-    /* TEKS + related */
-    var teksRows = (c.teks || []).map(function (tk) {
-      var txt = teksText(c, tk);
-      return '<li><b>' + esc(tk) + '</b>: ' + esc(txt || 'see the TEKS for this grade') + '</li>';
-    }).join('');
-    h += '<section class="panel"><h2 style="font-size:1rem">What this is called in the TEKS</h2>' +
-      '<p class="muted" style="font-size:.85rem">This is the official Texas standard behind this skill. Useful when you talk to your Guide.</p>' +
-      '<ul class="words">' + teksRows + '</ul></section>';
-
+    /* Related skills. TEKS codes stay in the data for the people who build
+       the library, but students never see them: a standard code explains
+       nothing to a 9-year-old and pushes the useful stuff off the screen. */
     var related = CONCEPTS.filter(function (x) {
       return x.id !== c.id && x.subject === c.subject &&
         (x.unit === c.unit || x.grades.some(function (g) { return c.grades.indexOf(g) > -1; }));
@@ -533,11 +511,26 @@
 
   /* ---------------- router ---------------- */
   function route() {
-    var hash = location.hash.replace(/^#\/?/, '');
+    var raw = location.hash || '';
+
+    // An in-page jump like #sec-do is NOT a route. Scroll to it and stop.
+    // Without this, every jump link on a guide lands on "That page is not here".
+    if (raw && raw.indexOf('#/') !== 0) {
+      var target = document.getElementById(raw.slice(1));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        return;
+      }
+      // Nothing to jump to (someone opened the anchor cold): show the home page.
+    }
+
+    var hash = raw.replace(/^#\/?/, '');
     var parts = hash.split('/').filter(function (x) { return x !== ''; });
     var main = $('#main'), html;
 
-    if (!parts.length) html = V.home();
+    if (!parts.length || raw.indexOf('#/') !== 0) html = V.home();
     else if (parts[0] === 'g') html = V.grade(decodeURIComponent(parts[1] || ''), parts[2]);
     else if (parts[0] === 'c') html = V.concept(decodeURIComponent(parts[1] || ''));
     else if (parts[0] === 'app') html = V.app(decodeURIComponent(parts[1] || ''));

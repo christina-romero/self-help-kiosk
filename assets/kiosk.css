@@ -305,6 +305,14 @@ html[data-theme="hc"] .qa summary::before{color:#000}
 .viz svg{display:block;margin:0 auto;height:auto;max-width:100%}
 .viz text{font-family:var(--font)}
 
+/* inline symbols in headings and lists */
+.ic{
+  vertical-align:-.18em;margin:0 .45em 0 .1em;
+  stroke:currentColor;fill:none;flex:0 0 auto;
+}
+.step h2 .ic{color:var(--sc,var(--brand))}
+html[data-theme="hc"] .step h2 .ic{color:var(--brand)}
+
 /* ---------- "write this on your paper" ---------- */
 .paper{
   background:
