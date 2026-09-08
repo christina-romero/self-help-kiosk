@@ -269,13 +269,6 @@ html[data-theme="hc"] ol.howto li::before{color:#000}
 .worked li{margin-bottom:.25em}
 .worked .wa{font-weight:800;color:var(--ok);background:var(--ok-bg);display:inline-block;padding:.25em .7em;border-radius:8px}
 
-ul.traps{list-style:none;margin:0;padding:0}
-ul.traps li{
-  position:relative;padding:.55em .7em .55em 2.4em;margin-bottom:.4em;
-  background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:var(--radius-s);font-size:.94rem;
-}
-ul.traps li::before{content:"\26A0";position:absolute;left:.75em;top:.5em;color:var(--warn);font-size:1.05em}
-
 .qa{border:1px solid var(--line);border-radius:var(--radius-s);margin-bottom:.5rem;overflow:hidden;background:var(--panel)}
 .qa summary{cursor:pointer;padding:.7em .9em;font-weight:600;list-style:none;display:flex;gap:.5em;align-items:flex-start}
 .qa summary::-webkit-details-marker{display:none}
@@ -312,6 +305,80 @@ html[data-theme="hc"] .qa summary::before{color:#000}
 }
 .step h2 .ic{color:var(--sc,var(--brand))}
 html[data-theme="hc"] .step h2 .ic{color:var(--brand)}
+
+/* ---------- anchor-chart guide ---------- */
+.chart .chead{margin-bottom:.9rem}
+.chart .chead h1{font-size:2rem;line-height:1.15;margin-bottom:.15em}
+.oneline{
+  font-size:1.22rem;line-height:1.4;font-weight:600;color:var(--ink);
+  max-width:52ch;margin:.1em 0 .7em;
+}
+.chart .step{padding:1rem 1.15rem}
+.chart .step > h2{
+  display:flex;align-items:center;font-size:1.06rem;margin:0 0 .7em;
+  color:var(--sc,var(--brand));
+}
+.step.hero{background:var(--scbg,var(--line-2));border-color:var(--sc,var(--brand))}
+html[data-theme="hc"] .step.hero{background:#000}
+
+/* steps and traps: headline visible, detail on tap */
+ol.moves{list-style:none;counter-reset:mv;margin:0;padding:0;display:grid;gap:.5rem}
+ol.moves > li{counter-increment:mv;display:flex;gap:.7rem;align-items:flex-start}
+ol.moves > li::before{
+  content:counter(mv);flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;
+  background:var(--sc,var(--brand));color:var(--panel);font-weight:800;font-size:.92rem;
+  display:flex;align-items:center;justify-content:center;margin-top:.1em;
+}
+html[data-theme="hc"] ol.moves > li::before{color:#000}
+ul.traps{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+ul.traps > li{
+  display:flex;gap:.7rem;align-items:flex-start;
+  background:var(--warn-bg);border-left:4px solid var(--warn);
+  border-radius:var(--radius-s);padding:.55em .8em;
+}
+ul.traps > li::before{
+  content:"!";flex:0 0 auto;width:1.9em;height:1.9em;border-radius:50%;
+  background:var(--warn-bg);color:var(--warn);border:2px solid var(--warn);
+  font-weight:800;font-size:.92rem;display:flex;align-items:center;justify-content:center;margin-top:.1em;
+}
+.move-line,.trap-line{flex:1;min-width:0}
+.mtext{font-size:1.02rem;line-height:1.45}
+details.more{cursor:pointer}
+details.more > summary{
+  list-style:none;display:flex;gap:.5rem;align-items:baseline;
+  border-radius:8px;padding:.05em .1em;
+}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary:hover .mtext,details.more[open] > summary .mtext{color:var(--sc,var(--brand))}
+.moretag{
+  flex:0 0 auto;width:1.35em;height:1.35em;border-radius:50%;
+  border:2px solid var(--line);color:var(--ink-2);font-weight:800;font-size:.8rem;
+  display:inline-flex;align-items:center;justify-content:center;align-self:center;
+}
+details.more[open] .moretag{transform:rotate(45deg);border-color:var(--sc,var(--brand));color:var(--sc,var(--brand))}
+.detail{
+  margin:.35em 0 .1em;font-size:.94rem;color:var(--ink-2);
+  border-left:3px solid var(--line);padding-left:.7em;
+}
+.flowwrap{margin-top:.9rem}
+
+/* folded sections */
+details.fold{cursor:pointer}
+details.fold > summary{list-style:none;display:flex;align-items:center;gap:.4rem}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary h2{margin:0}
+details.fold > summary::after{
+  content:"show";margin-left:auto;font-size:.8rem;font-weight:700;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:999px;padding:.15em .7em;
+}
+details.fold[open] > summary::after{content:"hide"}
+details.habits{margin-top:.8rem;background:var(--line-2);border:1px solid var(--line);
+  border-radius:var(--radius-s);padding:.7rem .9rem}
+details.habits > summary{font-weight:700;font-size:.9rem;color:var(--ink-2)}
+details.habits ul{margin:.6em 0 .5em;padding-left:1.2em;display:grid;gap:.3rem;font-size:.92rem}
+ul.howwell{list-style:none;padding-left:0;gap:.5rem}
+ul.howwell b{display:block}
+ul.howwell span{display:block;color:var(--ink-2);font-size:.88rem}
 
 /* ---------- "write this on your paper" ---------- */
 .paper{

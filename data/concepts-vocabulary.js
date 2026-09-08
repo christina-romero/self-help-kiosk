@@ -89,7 +89,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
              ['mis-', 'wrongly', '-ize, -ify', 'a verb (to make)']] }
   ],
   steps: [
-    'Cover the front of the word and see whether a known prefix is hiding there.',
+    'Cover the front of the word. See whether a prefix you know is hiding there.',
     'Cover the end and look for a known suffix.',
     'What is left is the base word. Do you know it?',
     'Put the meanings together: prefix meaning + base meaning.',
@@ -101,7 +101,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: 'Cannot be replaced.' },
   traps: [
     'Seeing a prefix that is not there. The "in" in "invite" is not the prefix meaning "not."',
-    'Forgetting that some prefixes change spelling: in- becomes im- before p, b, and m (impossible), and ir- before r.',
+    'Forgetting that some prefixes change spelling. In- becomes im- before p, b and m, and ir- before r.',
     'Ignoring the suffix, which tells you how the word functions in the sentence.',
     'Trusting the parts over the sentence. Always sanity-check against the context.'
   ],
@@ -208,7 +208,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Identify the topic of the passage. That narrows the possible meanings fast.',
     'Determine the word\'s part of speech in that sentence.',
     'Choose the definition that matches both.',
-    'If you are using a dictionary, read all the definitions before choosing: do not take the first.',
+    'Using a dictionary? Read all the definitions before choosing. Do not take the first.',
     'Substitute your chosen meaning into the sentence to confirm.'
   ],
   example: { prompt: 'What does "current" mean in: "The swimmers were pulled sideways by a strong current"?',
@@ -218,7 +218,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Assuming you misread the word. Usually you read it correctly and it just has another meaning.',
     'Taking the first dictionary definition without reading the rest.',
     'Ignoring the part of speech, which usually eliminates half the options.',
-    'Forcing the familiar meaning to work when the sentence is telling you it does not.'
+    'Forcing the familiar meaning to work. The sentence is telling you it does not fit.'
   ],
   check: [
     { q: '"She had to scale the wall." What does scale mean?', a: 'To climb.' },
@@ -266,7 +266,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Identify what is wrong with the word you have.',
     'Generate a few synonyms.',
-    'Look each one up to check its real meaning: not just that a thesaurus listed it.',
+    'Look each one up to check its real meaning. A thesaurus listing it is not enough.',
     'Consider strength: is it stronger or weaker than what you mean?',
     'Consider feeling: does it carry approval or disapproval?',
     'Substitute and read aloud. Trust your ear.'
@@ -358,7 +358,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['The dictionary definition uses words I do not know either', 'Which definition do I pick?'],
   teks: ['3.3.A', '4.3.A', '5.3.A', '6.2.A', '7.2.A', '8.2.A'],
   apps: ['VocabLoco', 'Membean'],
-  plain: 'A dictionary entry gives you more than a definition: it tells you how to say the word, how to break it into syllables, what part of speech it is, and all its different meanings. Most people use about a quarter of what is there.',
+  plain: 'A dictionary entry gives you far more than a definition. It shows how to say the word, how to break it into syllables, what part of speech it is, and all its meanings. Most people use about a quarter of what is there.',
   why: 'Using print or digital resources to determine meaning, syllabication, and pronunciation is a named TEKS expectation from grade 3 through grade 8.',
   words: [
     { w: 'entry word', d: 'The word being defined, usually shown with syllable dots.' },
@@ -419,7 +419,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I understand the passage but not the question', 'What does "evaluate" want me to do?'],
   teks: ['4.3.C', '5.3.C', '6.2.C', '7.2.C', '8.2.C'],
   apps: ['VocabLoco', 'Membean'],
-  plain: 'Academic vocabulary is the set of words that show up in questions and instructions across every subject: analyze, evaluate, infer, justify, compare. Not knowing them costs you points even when you know the content.',
+  plain: 'Academic vocabulary is the words that show up in questions across every subject. Analyze, evaluate, infer, justify, compare. Not knowing them costs you points even when you know the content.',
   why: 'You can understand a passage completely and still lose the question because you did not know what "evaluate" was asking you to do.',
   words: [
     { w: 'academic vocabulary', d: 'Words used across all subjects in questions and instructions.' },
@@ -512,15 +512,15 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Decide whether the author\'s choice is positive, negative, or neutral.',
     'Ask what effect the choice has on how you see the subject.',
     'In your own writing, check whether your word choices match the tone you want.',
-    'In persuasive text, loaded language is a signal that the author is trying to steer you.'
+    'In persuasive text, loaded language is a signal. The author is trying to steer you.'
   ],
   example: { prompt: 'An article describes a politician as "relentless" in one paragraph and "obsessive" in another. What is happening?',
     work: ['Both mean not giving up.', '"Relentless" leans admiring: persistence toward a goal.', '"Obsessive" leans critical: unhealthy fixation.', 'The shift signals the author\'s attitude changing, or an attempt to shape yours.'],
     answer: 'The denotation is nearly identical but the connotation flips from admiring to critical, which reveals the author\'s attitude.' },
   traps: [
     'Treating synonyms as interchangeable when their connotations differ sharply.',
-    'Missing loaded language in persuasive writing, which is exactly where it does the most work.',
-    'Using a negatively loaded word in your own writing when you meant to be neutral.',
+    'Missing loaded language in persuasive writing. That is exactly where it does the most work.',
+    'Using a negatively loaded word by accident. You meant to be neutral.',
     'Confusing connotation with denotation. The dictionary gives you denotation; the feeling is connotation.'
   ],
   check: [
@@ -563,11 +563,11 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Write the definition in your own words. Copying the dictionary does almost nothing.',
-    'Break the word into parts and note the root: meaning plus structure is stronger than meaning alone.',
+    'Break the word into parts and note the root. Meaning plus structure is stronger than meaning alone.',
     'Write a sentence about YOUR life, not a generic one.',
     'Note the words you might confuse it with.',
     'Review by covering your notes and recalling, not by rereading.',
-    'Space the reviews out over days, and use the word out loud at least once.'
+    'Space the reviews out over days. Use the word out loud at least once.'
   ],
   example: { prompt: 'You just learned "tenacious."',
     work: ['My definition: refusing to let go of something, even when it is hard.', 'Parts: from Latin tenere, to hold. Related: tenant, tenure, retain.', 'My sentence: I was tenacious about finishing the level even after I died eleven times.', 'Confused with: stubborn, but tenacious is a compliment and stubborn usually is not.'],
@@ -622,7 +622,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Look only at the first pair to start.',
     'Build a bridge sentence stating the exact relationship.',
-    'Make it specific: not "they are related" but "a petal is one part of a flower."',
+    'Make the bridge specific. Not "they are related" but "a petal is one part of a flower".',
     'Plug each answer pair into your bridge sentence.',
     'Eliminate the ones that do not fit.',
     'If more than one fits, tighten the bridge and repeat.',

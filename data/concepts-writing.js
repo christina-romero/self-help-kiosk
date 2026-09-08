@@ -92,7 +92,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read the prompt twice and underline exactly what it asks for.',
     'Note the genre, audience, and purpose. Those three decide everything else.',
     'If you have no ideas, freewrite for three minutes without stopping.',
-    'If you have too many, list them all and then group the ones that belong together.',
+    'Too many ideas? List them all, then group the ones that belong together.',
     'Choose an order. Usually strongest point last, or chronological for narrative.',
     'Write your plan as a short outline. Then and only then start drafting.'
   ],
@@ -149,7 +149,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Do not announce ("I will explain…"). Just state the point.',
     'Make it specific enough to guide the rest of the paragraph.',
     'After drafting the paragraph, reread your topic sentence. Does every other sentence support it?',
-    'If a sentence does not support it, move it to another paragraph or cut it.'
+    'A sentence that does not support it does not belong. Move it or cut it.'
   ],
   example: { prompt: 'Improve: "This paragraph is about why school should start later."',
     work: ['It announces rather than claims.', 'What is the actual point? That teenagers need more sleep than early starts allow.', 'State it directly as a claim.'],
@@ -263,7 +263,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   traps: [
     'Announcing the topic instead of taking a position.',
     'Writing a thesis nobody could disagree with.',
-    'Making it so broad you cannot cover it in the essay you have time for.',
+    'Making it too broad. You cannot cover it in the essay you have time for.',
     'Never revising the thesis after the essay evolved.'
   ],
   check: [
@@ -306,11 +306,11 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'State your claim first, in your own words.',
-    'Choose the evidence that most directly supports it: not just the one you found first.',
+    'Choose the evidence that most directly supports it. Not just the one you found first.',
     'Introduce it. Never drop a quote in on its own line.',
     'Quote it exactly, inside quotation marks, or paraphrase it accurately.',
     'Explain what it means, then explain why it supports your claim.',
-    'Check the ratio: for every line of evidence, aim for two lines of your own thinking.'
+    'Check the ratio. For every line of evidence, aim for two lines of your own thinking.'
   ],
   example: { prompt: 'Improve: "School should start later. "Teens who start after 8:30 report better focus." So school should start later."',
     work: ['The quote is dropped in with no lead-in.', 'The explanation just repeats the claim.', 'Add a lead-in and real elaboration.'],
@@ -369,7 +369,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     work: ['Restate the thesis in new words.', 'Gather the points: sleep science, focus, and fairness.', 'So what: this is a change schools can actually make.'],
     answer: '"Moving the first bell back is not about giving teenagers a lie-in. It is about matching the school day to the way teenage brains actually work, so that the hours students spend in class are hours they can use. Districts cannot change how adolescents sleep. They can change when the day begins."' },
   traps: [
-    'Starting with "Have you ever wondered" or "Since the beginning of time." Both are empty.',
+    'Opening with "Have you ever wondered" or "Since the beginning of time". Both are empty.',
     'Opening with a dictionary definition.',
     'Writing a conclusion that copies the introduction word for word.',
     'Introducing brand new evidence in the conclusion. That belongs in a body paragraph.',
@@ -421,14 +421,14 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Name the relationship between them.',
     'Choose a transition from that category.',
     'Vary them. Using "however" five times in a paragraph is as bad as using none.',
-    'Check punctuation: most transitions at the start of a sentence take a comma after them.'
+    'Check the punctuation. Most transitions at the start of a sentence take a comma.'
   ],
   example: { prompt: 'Add transitions: "Homework builds practice. It takes time away from sleep. Schools should limit how much they assign."',
     work: ['Sentence 2 contrasts with sentence 1 → however.', 'Sentence 3 is the result of sentences 1 and 2 → therefore.'],
     answer: '"Homework builds practice. However, it takes time away from sleep. Therefore, schools should limit how much they assign."' },
   traps: [
     'Using "and then" for every relationship. It only shows sequence.',
-    'Choosing a transition that contradicts the real relationship, like using "however" between two sentences that agree.',
+    'Picking a transition that contradicts the real relationship. Like "however" between two sentences that agree.',
     'Starting every sentence with a transition. Use them where the connection is not obvious.',
     'Forgetting the comma after an introductory transition.'
   ],
@@ -486,7 +486,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Listing facts with no organizing idea. The reader cannot tell what matters.',
     'Copying from sources. Paraphrase and cite.',
     'Slipping into argument. Informational writing explains; it does not take sides.',
-    'Choosing a structure that fights the topic, like forcing a process into a compare-contrast shape.'
+    'Choosing a structure that fights the topic. Like forcing a process into a compare-contrast shape.'
   ],
   check: [
     { q: 'What is the difference between informational and argumentative writing?', a: 'Informational explains something; argumentative takes a position and defends it.' },
@@ -530,7 +530,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Write your claim as a single arguable sentence.',
     'List two or three reasons and find evidence for each.',
     'Write one body paragraph per reason: claim, evidence, explanation.',
-    'Write a counterargument paragraph: state the other side fairly, concede what is true, then explain why your position still holds.',
+    'Write a counterargument paragraph. State the other side fairly, concede what is true, then explain why your position still holds.',
     'Order your reasons with the strongest last.',
     'Conclude with why this matters.'
   ],
@@ -595,7 +595,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Covering too much time. Narrow to one moment.',
     'Starting with "I woke up" or "One day."',
     'Naming feelings instead of showing them.',
-    'Ending with an explicit moral: "And that is why you should always try your best."',
+    'Ending with a stated moral. "And that is why you should always try your best."',
     'Writing dialogue with no quotation marks or with every line in one paragraph.'
   ],
   check: [
@@ -652,7 +652,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: 'Revise paragraph 2 by adding evidence and elaboration: not by proofreading it.' },
   traps: [
     'Calling proofreading "revising" and wondering why the score does not move.',
-    'Refusing to cut a sentence you worked hard on that does not serve the piece.',
+    'Refusing to cut a sentence you worked hard on. If it does not serve the piece, it goes.',
     'Doing both passes at once so neither gets done properly.',
     'Editing on screen only. Reading aloud catches things silent reading does not.'
   ],
@@ -824,7 +824,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Thinking that changing a few words counts as paraphrasing. The structure must change too.',
     'Copying into your notes and later forgetting which parts were copied.',
     'Believing that only quotes need credit. Ideas need credit as well.',
-    'Leaving the bibliography until the end and not being able to find your sources again.'
+    'Leaving the bibliography until the end. By then you cannot find your sources again.'
   ],
   check: [
     { q: 'Does a paraphrase need a citation?', a: 'Yes. The idea still came from someone else.' },

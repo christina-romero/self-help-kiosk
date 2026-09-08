@@ -108,7 +108,7 @@ const ROUTES = [
       keys: Object.keys(localStorage).filter(k => /note/i.test(k))
     };
   });
-  if (!/Write this on your paper/i.test(paper.heading)) problems.push(`step 6 heading is "${paper.heading}"`);
+  if (!/on your paper/i.test(paper.heading)) problems.push(`paper heading is "${paper.heading}"`);
   if (paper.prompts < 4) problems.push(`expected 4 paper prompts, found ${paper.prompts}`);
   if (paper.inputs > 0) problems.push(`concept page still has ${paper.inputs} text input(s); nothing should be typeable`);
   if (paper.keys.length) problems.push(`localStorage still holds note keys: ${paper.keys.join(', ')}`);
@@ -120,6 +120,43 @@ const ROUTES = [
   const gone = await page.evaluate(() => (document.querySelector('#main h1') || {}).textContent || '');
   if (!/not here/i.test(gone)) problems.push(`#/notebook still renders "${gone}"`);
   console.log('  notebook route       removed');
+
+  // an anchor chart must be scannable: check how much text is visible before
+  // the reader opens anything, and that the picture comes before the prose.
+  for (const cid of ['m-long-division', 'r-inference', 'l-commas', 'm-slope']) {
+    await page.goto(BASE + '#/c/' + cid);
+    await page.waitForTimeout(180);
+    const m = await page.evaluate(() => {
+      const main = document.getElementById('main');
+      // Prose only: labels inside a diagram are the picture, not text to read.
+      const clone = main.cloneNode(true);
+      clone.querySelectorAll('svg').forEach(el => el.remove());
+      // A closed <details> is not on screen, so its body does not count.
+      clone.querySelectorAll('details:not([open])').forEach(d => {
+        const s = d.querySelector('summary');
+        d.replaceChildren(...(s ? [s] : []));
+      });
+      document.body.appendChild(clone);
+      clone.style.position = 'absolute'; clone.style.left = '-9999px';
+      const words = (clone.innerText || '').split(/\s+/).filter(Boolean).length;
+      clone.remove();
+      const secs = Array.from(main.querySelectorAll('section.step, details.step')).map(s => s.id);
+      const firstSvg = main.querySelector('svg');
+      const firstPara = main.querySelector('.oneline');
+      return {
+        visible: words,
+        firstSection: secs[0] || '',
+        pictureBeforeMoves: !!firstSvg && !!firstPara &&
+          (firstPara.compareDocumentPosition(firstSvg) & Node.DOCUMENT_POSITION_FOLLOWING) > 0
+      };
+    });
+    // Roughly: ~60 words of structure (headings, nav, tags, fold labels),
+    // ~13 one-liner, ~20 paper labels, and ~100 of actual chart content
+    // (the moves and the traps). Above this the page stops being a chart.
+    if (m.visible > 210) problems.push(`${cid}: ${m.visible} words visible before opening anything (target <=210)`);
+    if (m.firstSection !== 'sec-see') problems.push(`${cid}: first section is ${m.firstSection}, expected the picture`);
+    console.log(`  ${cid.padEnd(20)} ${String(m.visible).padStart(3)} words visible, picture first`);
+  }
 
   // search from the header
   await page.goto(BASE);

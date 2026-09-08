@@ -49,32 +49,32 @@
   ];
   var PAPER_PROMPTS = {
     steps: [
-      { l: 'Say it in your own words', h: 'One or two sentences, the way you would explain it to a friend. If you cannot, reread step 3.' },
-      { l: 'Number your steps, shortest version that still works', h: 'Cut every word you do not need. Put the step you always forget in CAPITALS.' },
-      { l: 'Work one example all the way through', h: 'Copy the problem, then show every line. Do not skip the line you usually do in your head.' },
-      { l: 'Write the mistake YOU made, not a general warning', h: '"I forgot to bring down the 0" beats "be careful".' },
-      { l: 'In the margin, write one question this note answers', h: 'Cover the note later and answer it from memory. That is how you find out if it stuck.' }
+      { s: 'In my own words', l: 'Say it in your own words', h: 'One or two sentences, the way you would explain it to a friend. If you cannot, reread step 3.' },
+      { s: 'My steps, numbered', l: 'Number your steps, shortest version that still works', h: 'Cut every word you do not need. Put the step you always forget in CAPITALS.' },
+      { s: 'One example, every line', l: 'Work one example all the way through', h: 'Copy the problem, then show every line. Do not skip the line you usually do in your head.' },
+      { s: 'The mistake I made', l: 'Write the mistake YOU made, not a general warning', h: '"I forgot to bring down the 0" beats "be careful".' },
+      { s: 'A question in the margin', l: 'In the margin, write one question this note answers', h: 'Cover the note later and answer it from memory. That is how you find out if it stuck.' }
     ],
     frayer: [
-      { l: 'Your own definition', h: 'Not the words on this screen. If you cannot say it yours, you do not have it yet.' },
-      { l: 'Draw it or list what is always true about it', h: 'Pictures and properties are what you will actually recall.' },
-      { l: 'Two examples', h: 'Two, not one. One example is a memory; two is a pattern.' },
-      { l: 'One non-example, and why it does not count', h: 'The "why not" is where the understanding lives.' },
-      { l: 'In the margin, write the question this answers', h: 'Something like "what makes a shape a polygon?"' }
+      { s: 'My own definition', l: 'Your own definition', h: 'Not the words on this screen. If you cannot say it yours, you do not have it yet.' },
+      { s: 'Draw it', l: 'Draw it or list what is always true about it', h: 'Pictures and properties are what you will actually recall.' },
+      { s: 'Two examples', l: 'Two examples', h: 'Two, not one. One example is a memory; two is a pattern.' },
+      { s: 'One non-example', l: 'One non-example, and why it does not count', h: 'The "why not" is where the understanding lives.' },
+      { s: 'A question in the margin', l: 'In the margin, write the question this answers', h: 'Something like "what makes a shape a polygon?"' }
     ],
     strategy: [
-      { l: 'Name the signal that tells you to use this', h: 'What does the question look like when this is the right move? That is the trigger.' },
-      { l: 'Your steps, in order, in your own words', h: 'Short lines. This is a recipe you will reread under time pressure.' },
-      { l: 'One place it worked', h: 'A real question you got right using it. Proof beats theory.' },
-      { l: 'Where you slipped, and the fix', h: 'Name your own error precisely so you can catch it next time.' },
-      { l: 'In the margin, write the trigger as a question', h: '"When do I use context clues?" Then quiz yourself from it.' }
+      { s: 'When to use it', l: 'Name the signal that tells you to use this', h: 'What does the question look like when this is the right move? That is the trigger.' },
+      { s: 'My steps, in order', l: 'Your steps, in order, in your own words', h: 'Short lines. This is a recipe you will reread under time pressure.' },
+      { s: 'Where it worked', l: 'One place it worked', h: 'A real question you got right using it. Proof beats theory.' },
+      { s: 'Where I slipped', l: 'Where you slipped, and the fix', h: 'Name your own error precisely so you can catch it next time.' },
+      { s: 'A question in the margin', l: 'In the margin, write the trigger as a question', h: '"When do I use context clues?" Then quiz yourself from it.' }
     ],
     word: [
-      { l: 'The word, then your own definition', h: 'Dictionary wording will not stick. Yours will.' },
-      { l: 'Break it into parts and label them', h: 'Prefix, root, suffix, and what each part means.' },
-      { l: 'A sentence about your real life', h: 'Not a generic example. Your sentence, about you.' },
-      { l: 'Words you might mix it up with', h: 'Write the near-misses next to it so you can tell them apart later.' },
-      { l: 'In the margin, write the word alone', h: 'Cover the page, read just the word, and say the meaning out loud.' }
+      { s: 'The word, my definition', l: 'The word, then your own definition', h: 'Dictionary wording will not stick. Yours will.' },
+      { s: 'Its parts, labelled', l: 'Break it into parts and label them', h: 'Prefix, root, suffix, and what each part means.' },
+      { s: 'My own sentence', l: 'A sentence about your real life', h: 'Not a generic example. Your sentence, about you.' },
+      { s: 'Words I mix it up with', l: 'Words you might mix it up with', h: 'Write the near-misses next to it so you can tell them apart later.' },
+      { s: 'The word in the margin', l: 'In the margin, write the word alone', h: 'Cover the page, read just the word, and say the meaning out loud.' }
     ]
   };
 
@@ -303,120 +303,136 @@
     return h;
   };
 
+  // Split "Do this. Here is why." into a headline and an optional detail.
+  // The chart shows headlines only; detail sits behind a tap. This keeps the
+  // page readable for an 8-year-old without throwing any content away.
+  function headline(s) {
+    var str = String(s || '').trim();
+    var m = /^([\s\S]{0,150}?[.!?])\s+([\s\S]+)$/.exec(str);
+    if (!m) return { head: str, rest: '' };
+    // A two-word opener like "Trusting keywords." is a fine chart line.
+    if (m[1].split(/\s+/).length >= 2) return { head: m[1].trim(), rest: m[2].trim() };
+    // A one-word opener is not, so take through the next sentence.
+    var m2 = /^([\s\S]{0,200}?[.!?]\s+[\s\S]{0,150}?[.!?])\s+([\s\S]+)$/.exec(str);
+    if (m2) return { head: m2[1].trim(), rest: m2[2].trim() };
+    return { head: str, rest: '' };
+  }
+  function firstLine(s) { return headline(s).head; }
+
+  // A line that can open to show more. Used for every step and every trap.
+  function openable(headHtml, rest, cls) {
+    if (!rest) return '<div class="' + cls + '-line">' + headHtml + '</div>';
+    return '<details class="' + cls + '-line more"><summary>' + headHtml +
+      '<span class="moretag" aria-hidden="true">+</span></summary>' +
+      '<p class="detail">' + esc(rest) + '</p></details>';
+  }
+
   V.concept = function (id) {
     var c = BY_ID[id];
     if (!c) return V.notfound();
     var s = SUBJ_BY_ID[c.subject];
 
-    // remember
     var rec = LS.get(K_RECENT, []) || [];
     rec = [id].concat(rec.filter(function (x) { return x !== id; })).slice(0, 8);
     LS.set(K_RECENT, rec);
 
-    var h = '<div class="' + s.cls + '">';
-    h += '<p class="crumbs"><a href="#/">Home</a> › <a href="#/g/' + c.grades[0] + '">' + esc(gradeLabel(c.grades[0])) +
-      '</a> › <a href="#/g/' + c.grades[0] + '/' + c.subject + '">' + esc(s.name) + '</a> › ' + esc(c.title) + '</p>';
+    var vizHtml = window.Viz.render(c.visual);
+    var flowHtml = window.Viz.render({ type: 'flow', steps: (c.steps || []).map(firstLine) });
 
+    var h = '<div class="' + s.cls + ' chart">';
+    h += '<p class="crumbs"><a href="#/g/' + c.grades[0] + '/' + c.subject + '">‹ ' + esc(s.name) + '</a></p>';
+
+    /* ---- masthead: title, one line, nothing else ---- */
     h += '<header class="chead"><h1>' + esc(c.title) + '</h1>' +
-      (c.stuck && c.stuck.length ? '<p class="say">Sounds like you if you are thinking: “' + c.stuck.map(esc).join('” or “') + '”</p>' : '') +
+      '<p class="oneline">' + esc(firstLine(c.plain)) + '</p>' +
       '<div class="row">' +
       '<span class="tag tag-grade">' + c.grades.map(function (g) { return gradeShort(g); }).join(' · ') + '</span>' +
       ((c.apps && c.apps.length)
-        ? c.apps.map(function (a) {
-            var app = APP_BY_NAME[a];
-            return '<span class="tag tag-app"' + (app ? ' title="' + esc(app.subject + ' · ' + app.grades) + '"' : '') +
-              '>' + esc(a) + (app && app.role === 'hole-filling' ? ' (hole-filling)' : '') + '</span>';
-          }).join('')
-        : '<span class="tag">No Timeback app at this grade yet</span>') +
+        ? c.apps.map(function (a) { return '<span class="tag tag-app">' + esc(a) + '</span>'; }).join('')
+        : '') +
       '</div></header>';
 
-    h += '<nav class="steps-nav" aria-label="Sections of this guide">' +
-      '<a href="#sec-what">What it means</a><a href="#sec-see">See it</a><a href="#sec-do">Do it</a>' +
-      '<a href="#sec-watch">Watch out</a><a href="#sec-check">Check yourself</a><a href="#sec-note">Write it down</a>' +
+    h += '<nav class="steps-nav" aria-label="Parts of this chart">' +
+      '<a href="#sec-see">Look</a>' +
+      (c.words && c.words.length ? '<a href="#sec-what">Words</a>' : '') +
+      '<a href="#sec-do">The moves</a><a href="#sec-watch">Careful</a>' +
+      '<a href="#sec-note">Your paper</a>' +
       (c.links && c.links.length ? '<a href="#sec-more">More help</a>' : '') + '</nav>';
 
-    /* 1: what it means */
-    h += '<section class="step" id="sec-what"><h2><span class="num">1</span>' + window.Viz.icon('idea', 20) + 'What it means</h2>' +
-      '<p style="font-size:1.06rem">' + esc(c.plain) + '</p>' +
-      (c.why ? '<p class="muted"><b>Why it matters:</b> ' + esc(c.why) + '</p>' : '') +
-      // New vocabulary always gets a picture, never a bare list of definitions.
-      (c.words && c.words.length
-        ? '<h3 style="font-size:.95rem;margin-top:1rem">Words you need</h3>' +
-          window.Viz.render({ type: 'vocab', words: c.words, title: null,
-            caption: 'Say each word out loud before you go on. If a word is new, it goes on your paper.' })
-        : '') +
-      '</section>';
+    /* ---- the chart itself: picture first, before any prose ---- */
+    h += '<section class="step hero" id="sec-see"><h2>' + window.Viz.icon('eye', 20) + 'Look at this</h2>' +
+      (vizHtml || flowHtml) + '</section>';
 
-    /* 2: see it */
-    var vizHtml = window.Viz.render(c.visual);
-    var flowHtml = window.Viz.render({ type: 'flow', steps: c.steps || [], caption: 'The same steps as a flow chart. Follow the arrows.' });
-    h += '<section class="step" id="sec-see"><h2><span class="num">2</span>' + window.Viz.icon('eye', 20) + 'See it</h2>' +
-      '<p class="muted">Look at the picture before you read anything else.</p>' +
-      (vizHtml || '') + (vizHtml ? '' : flowHtml) + '</section>';
-
-    /* 3: do it */
-    h += '<section class="step" id="sec-do"><h2><span class="num">3</span>' + window.Viz.icon('steps', 20) + 'Do it: step by step</h2>' +
-      '<ol class="howto">' + (c.steps || []).map(function (st) { return '<li>' + esc(st) + '</li>'; }).join('') + '</ol>';
-    if (vizHtml) h += '<h3 style="font-size:.95rem;margin-top:1.1rem">The same steps as a flow chart</h3>' + flowHtml;
-    if (c.example) {
-      h += '<h3 style="font-size:.95rem;margin-top:1.1rem">Worked example</h3><div class="worked">' +
-        '<p class="wq">' + esc(c.example.prompt) + '</p>' +
-        '<ol>' + (c.example.work || []).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ol>' +
-        '<p style="margin:0"><span class="wa">Answer: ' + esc(c.example.answer) + '</span></p></div>';
+    /* ---- words, as icon cards ---- */
+    if (c.words && c.words.length) {
+      h += '<section class="step" id="sec-what"><h2>' + window.Viz.icon('letters', 20) + 'Words to know</h2>' +
+        window.Viz.render({ type: 'vocab', words: c.words, title: null }) + '</section>';
     }
+
+    /* ---- the moves: headline per step, detail on tap ---- */
+    h += '<section class="step" id="sec-do"><h2>' + window.Viz.icon('steps', 20) + 'The moves</h2>' +
+      '<ol class="moves">' + (c.steps || []).map(function (st) {
+        var p = headline(st);
+        return '<li>' + openable('<span class="mtext">' + esc(p.head) + '</span>', p.rest, 'move') + '</li>';
+      }).join('') + '</ol>';
     h += '</section>';
 
-    /* 4: watch out */
-    h += '<section class="step" id="sec-watch"><h2><span class="num">4</span>' + window.Viz.icon('warn', 20) + 'Watch out for these</h2>' +
-      '<p class="muted">These are the mistakes people actually make on this skill. Find yours.</p>' +
-      '<ul class="traps">' + (c.traps || []).map(function (tr) { return '<li>' + esc(tr) + '</li>'; }).join('') + '</ul></section>';
+    /* ---- careful: headline per trap, detail on tap ---- */
+    h += '<section class="step" id="sec-watch"><h2>' + window.Viz.icon('warn', 20) + 'Careful</h2>' +
+      '<ul class="traps">' + (c.traps || []).map(function (tr) {
+        var p = headline(tr);
+        return '<li>' + openable('<span class="mtext">' + esc(p.head) + '</span>', p.rest, 'trap') + '</li>';
+      }).join('') + '</ul></section>';
 
-    /* 5: check yourself */
-    h += '<section class="step" id="sec-check"><h2><span class="num">5</span>' + window.Viz.icon('check', 20) + 'Check yourself</h2>' +
-      '<p class="muted">Answer in your head or on scrap paper first. Then open the answer.</p>' +
-      (c.check || []).map(function (q, i) {
-        return '<details class="qa"><summary>' + esc(q.q) + '</summary><div class="ans"><b>Answer:</b> ' + esc(q.a) + '</div></details>';
-      }).join('') + '</section>';
-
-    /* 6: write it on paper. Nothing is stored on the device by design. */
-    var prompts = PAPER_PROMPTS[c.note || 'steps'] || PAPER_PROMPTS.steps;
-    h += '<section class="step" id="sec-note"><h2><span class="num">6</span>' + window.Viz.icon('pencil', 20) + 'Write this on your paper</h2>' +
-      '<p class="muted">This is where you practise taking a note worth keeping. Writing it by hand in your own words is what moves it into your memory. If you cannot write it, go back to step 3. That is the signal, not a failure.</p>' +
-      '<div class="paper"><p class="paper-head">' + esc(c.title) + '</p><ol class="paper-list">' +
-      prompts.map(function (f) {
-        return '<li><b>' + esc(f.l) + '</b>' + (f.h ? '<span>' + esc(f.h) + '</span>' : '') + '</li>';
-      }).join('') + '</ol></div>' +
-      '<div class="habits"><h3>What makes a note worth keeping</h3><ul>' +
-      PAPER_HABITS.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-      '<p class="habit-test"><b>Test it before you move on:</b> cover the page and say the skill out loud from memory. ' +
-      'If you can, the note works. If you cannot, add what was missing now, while you still remember what confused you.</p></div>' +
-      '</section>';
-
-    /* 7: more help */
-    if (c.links && c.links.length) {
-      h += '<section class="step" id="sec-more"><h2><span class="num">+</span> More help on the web</h2>' +
-        '<p class="muted">These open in a new tab. They are teaching sites your school already uses.</p>' +
-        '<ul class="links">' + c.links.map(function (l) {
-          return '<li><a href="' + esc(l.u) + '" target="_blank" rel="noopener noreferrer">' +
-            '<span><span class="lt">' + esc(l.t) + '</span>' + (l.d ? '<span class="ld">' + esc(l.d) + '</span>' : '') + '</span>' +
-            '<span class="ext">opens in new tab ↗</span></a></li>';
-        }).join('') + '</ul></section>';
+    /* ---- everything below is on demand ---- */
+    if (c.example) {
+      h += '<details class="step fold" id="sec-example"><summary><h2>' + window.Viz.icon('pencil', 20) +
+        'See one worked out</h2></summary><div class="worked">' +
+        '<p class="wq">' + esc(c.example.prompt) + '</p>' +
+        '<ol>' + (c.example.work || []).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ol>' +
+        '<p style="margin:0"><span class="wa">Answer: ' + esc(c.example.answer) + '</span></p></div></details>';
     }
 
-    /* Related skills. TEKS codes stay in the data for the people who build
-       the library, but students never see them: a standard code explains
-       nothing to a 9-year-old and pushes the useful stuff off the screen. */
+    h += '<details class="step fold" id="sec-check"><summary><h2>' + window.Viz.icon('check', 20) +
+      'Test yourself</h2></summary>' +
+      (c.check || []).map(function (q) {
+        return '<details class="qa"><summary>' + esc(q.q) + '</summary><div class="ans"><b>Answer:</b> ' + esc(q.a) + '</div></details>';
+      }).join('') + '</details>';
+
+    /* ---- take it to paper ---- */
+    var prompts = PAPER_PROMPTS[c.note || 'steps'] || PAPER_PROMPTS.steps;
+    h += '<section class="step" id="sec-note"><h2>' + window.Viz.icon('pencil', 20) + 'Put this on your paper</h2>' +
+      '<div class="paper"><ol class="paper-list">' +
+      prompts.map(function (f) { return '<li><b>' + esc(f.s || f.l) + '</b></li>'; }).join('') + '</ol></div>' +
+      '<details class="habits fold"><summary>How to write each one well</summary><ul class="howwell">' +
+      prompts.map(function (f) {
+        return '<li><b>' + esc(f.l) + '</b>' + (f.h ? '<span>' + esc(f.h) + '</span>' : '') + '</li>';
+      }).join('') + '</ul><ul>' +
+      PAPER_HABITS.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      '<p class="habit-test">Cover the page and say the skill from memory. If you cannot, add what was missing now.</p>' +
+      '</details></section>';
+
+    if (c.links && c.links.length) {
+      h += '<details class="step fold" id="sec-more"><summary><h2>' + window.Viz.icon('search', 20) +
+        'More help on the web</h2></summary>' +
+        '<ul class="links">' + c.links.map(function (l) {
+          return '<li><a href="' + esc(l.u) + '" target="_blank" rel="noopener noreferrer">' +
+            '<span><span class="lt">' + esc(l.t) + '</span></span>' +
+            '<span class="ext">new tab ↗</span></a></li>';
+        }).join('') + '</ul></details>';
+    }
+
     var related = CONCEPTS.filter(function (x) {
       return x.id !== c.id && x.subject === c.subject &&
         (x.unit === c.unit || x.grades.some(function (g) { return c.grades.indexOf(g) > -1; }));
-    }).slice(0, 6);
+    }).slice(0, 4);
     if (related.length) {
-      h += '<section class="panel"><h2 style="font-size:1rem">Next, you might need…</h2><div class="clist">' +
-        related.map(function (x) { return conceptCard(x, { grade: c.grades[0] }); }).join('') + '</div></section>';
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('link', 20) + 'Next, you might need…</h2></summary>' +
+        '<div class="clist">' + related.map(function (x) { return conceptCard(x, { grade: c.grades[0] }); }).join('') +
+        '</div></details>';
     }
 
-    h += '<div class="notice"><p><b>Still stuck after all six steps?</b> That is the right time to ask. Go to your Guide and say: “I am on <i>' +
-      esc(c.title) + '</i> in ' + esc((c.apps || ['my app'])[0]) + '. I tried the steps. The part I do not get is ___.”</p></div>';
+    h += '<div class="notice"><p><b>Still stuck?</b> Tell your Guide which move you got stuck on.</p></div>';
 
     return h + '</div>';
   };

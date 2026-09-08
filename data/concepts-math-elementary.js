@@ -13,7 +13,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I skip a number when I count', 'I lose track of what I already counted'],
   teks: ['K.2.A', 'K.2.C', 'K.2.F'],
   apps: ['Zearn', 'AlphaMath', 'Math Raiders'],
-  plain: 'Counting means saying the number names in order AND touching one thing for each name you say. The last number you say is how many there are altogether.',
+  plain: 'Counting means saying the number names in order and touching one thing for each name. The last number you say is how many there are altogether.',
   why: 'Every single thing you do in math later sits on top of this. Adding is just counting on. Subtracting is counting back.',
   words: [
     { w: 'count on', d: 'Start at a number and keep going up: 6, 7, 8…' },
@@ -26,7 +26,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Point to one object each time you say a number. One touch, one number.',
-    'Move each object you have counted to a different pile so you cannot count it twice.',
+    'Move each object you have counted into a different pile. Then you cannot count it twice.',
     'Say the numbers out loud, even quietly. Your ears catch skips your eyes miss.',
     'The last number you say is the answer. You do not have to recount.',
     'To find one more, say the next number. To find one less, say the number before.'
@@ -36,7 +36,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '12 counters. The last number I said was twelve.' },
   traps: [
     'Counting the same object twice because you never moved it out of the pile.',
-    'Saying the numbers fast but pointing slow, so your words get ahead of your finger.',
+    'Saying the numbers faster than you point. Your words get ahead of your finger.',
     'Forgetting the teen numbers: it goes 12, 13, 14: not 12, 14, 15.',
     'Thinking you must start over at 1. If the screen shows 14 and asks for 3 more, count on from 14.'
   ],
@@ -163,7 +163,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Write the two numbers one above the other so the place-value columns line up.',
+    'Write the two numbers one above the other. Line the place-value columns up.',
     'Start at the far LEFT column, not the right.',
     'Compare those two digits. If one is bigger, that number is bigger: stop immediately.',
     'If the digits are the same, move one column right and compare again.',
@@ -174,9 +174,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '4,507 < 4,570' },
   traps: [
     'Comparing from the right. The ones place almost never decides it.',
-    'Thinking a longer number is always bigger: true for whole numbers, false for decimals (0.9 is bigger than 0.15).',
+    'Thinking a longer number is always bigger. True for whole numbers, false for decimals: 0.9 is bigger than 0.15.',
     'Writing the sign backwards. Say it out loud: "four thousand five hundred seven is LESS THAN four thousand five hundred seventy."',
-    'Forgetting to line up the columns, so you compare a hundreds digit against a tens digit.'
+    'Forgetting to line up the columns. Then you compare a hundreds digit against a tens digit.'
   ],
   check: [
     { q: 'Which sign goes between 6,204 and 6,240?', a: '< . Thousands and hundreds tie, then 0 tens is less than 4 tens.' },
@@ -215,8 +215,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Line the numbers up by place value, not by the left edge. Ones under ones.',
     'Work right to left. Always start in the ones column.',
-    'Adding: if a column totals 10 or more, write only the ones digit and carry the extra ten on top of the next column.',
-    'Subtracting: if the top digit is smaller than the bottom digit, go one column left, take 1, and add 10 to the top digit.',
+    'Adding: if a column makes 10 or more, carry. Write only the ones digit and put the extra ten on top of the next column.',
+    'Subtracting: if the top digit is too small, borrow. Go one column left, take 1, and add 10 to the top digit.',
     'Do not forget the carried digit when you add the next column.',
     'Estimate to check: round both numbers and see if your answer is close.'
   ],
@@ -225,7 +225,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '154' },
   traps: [
     'Carrying but then forgetting to add the carried 1 into the next column. Circle it so you see it.',
-    'Subtracting the smaller digit from the bigger one in each column no matter which is on top. 2 − 8 is not 6.',
+    'Always taking the smaller digit from the bigger one. 2 - 8 is not 6. Check which digit is on top.',
     'Borrowing across a zero and stopping halfway. When there is a 0, you have to go further left.',
     'Lining numbers up by the left edge when they have different lengths. 502 and 48 must line up at the ones.'
   ],
@@ -268,13 +268,13 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Look at the one digit immediately to its right. That is the only digit that decides.',
     'If that digit is 5 or more, add 1 to your underlined digit. If it is 4 or less, leave the underlined digit alone.',
     'Change every digit to the right of the underlined one into a zero.',
-    'Do not touch anything to the LEFT of the underlined digit unless carrying forced you to.'
+    'Do not touch anything left of the underlined digit. Unless carrying forced you to.'
   ],
   example: { prompt: 'Round 2,486 to the nearest hundred.',
     work: ['Hundreds digit is 4. Underline it: 2,4̲86.', 'The digit to its right is 8.', '8 is 5 or more, so round up: 4 becomes 5.', 'Zero out the rest: 2,500.'],
     answer: '2,500' },
   traps: [
-    'Looking at the last digit of the number instead of the digit right after the rounding place. For hundreds, you look at the tens digit, not the ones.',
+    'Looking at the last digit of the number. Look at the digit right after the rounding place: for hundreds, that is the tens digit.',
     'Rounding twice in a row. 2,449 to the nearest hundred is 2,400: do not first round to 2,450 and then to 2,500.',
     'Forgetting to zero out. Rounding 347 to the nearest ten gives 350, not 357.',
     'Panicking on 9s. Rounding 396 to the nearest ten makes 39 tens become 40 tens, which is 400. That is correct.'
@@ -320,7 +320,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Find how many are in each group. That is the other factor.',
     'Check that every group really is the same size. If not, you cannot multiply.',
     'Multiply the two factors. Write a unit on your answer: 24 what?',
-    'Sanity check: the product should be bigger than either factor (unless you multiplied by 0 or 1).'
+    'Sanity check: the product should be bigger than either factor. Unless you multiplied by 0 or 1.'
   ],
   example: { prompt: 'There are 7 tables. Each table has 4 chairs. How many chairs?',
     work: ['Number of groups: 7 tables.', 'Size of each group: 4 chairs.', 'Every table has the same number, so multiply.', '7 × 4 = 28.'],
@@ -329,7 +329,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Multiplying when the groups are not equal. Read carefully for "each," "every," and "per."',
     'Answering with a bare number. 28 what? Chairs. The unit is part of the answer.',
     'Thinking 4 × 6 and 6 × 4 are different problems. They give the same product, though they describe different pictures.',
-    'Forgetting that anything times 0 is 0, no matter how big the other factor is.'
+    'Forgetting that anything times 0 is 0. However big the other factor is.'
   ],
   check: [
     { q: 'Which word in a problem usually signals equal groups?', a: '"Each," "every," or "per." Example: 6 boxes with 9 pencils each.' },
@@ -369,7 +369,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Take a fact test and mark only the ones that were slow or wrong. That is your real list: usually 10 to 15 facts.',
-    'For each hard fact, pick a strategy: double a known fact, or start from a × 10 and subtract.',
+    'For each hard fact, pick a strategy. Double a fact you know, or start from a x 10 and subtract.',
     'Say the fact as a complete sentence when you practice, not just the answer.',
     'Practice in short bursts, several times a day. Ten minutes now beats an hour on Friday.',
     'Test yourself cold the next day. If you had to think, it is not fluent yet.'
@@ -400,7 +400,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['My answer for 23 × 47 is way too small', 'I do not know where to put the second row'],
   teks: ['4.4.C', '4.4.D', '5.3.B'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'Break both numbers into their place-value parts, multiply every part by every part, then add up all the pieces. It looks longer than the standard algorithm but it is far harder to get wrong, and it shows you exactly what the algorithm is doing.',
+  plain: 'Break both numbers into place-value parts, multiply every part, then add the pieces up. It looks longer than the standard algorithm but it is far harder to get wrong, and it shows you exactly what the algorithm is doing.',
   why: 'The most common two-digit multiplication error is forgetting a partial product. A box makes forgetting one impossible. There is a visibly empty square.',
   words: [
     { w: 'partial product', d: 'One piece of the multiplication before you add them all together.' },
@@ -477,10 +477,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Set it up: dividend inside the box, divisor outside on the left.',
-    'DIVIDE: how many whole times does the divisor go into the digits you are looking at? Write that number on top, directly above the last digit you used.',
+    'DIVIDE: how many whole times does the divisor fit? Write that number on top, directly above the last digit you used.',
     'MULTIPLY: that quotient digit times the divisor. Write the product underneath.',
     'SUBTRACT: take it away. The result must be less than the divisor.',
-    'BRING DOWN: pull the next digit of the dividend straight down next to your result.',
+    'BRING DOWN: pull the next digit straight down. It goes next to your result.',
     'Repeat until there are no digits left to bring down. Whatever remains is the remainder.'
   ],
   example: { prompt: '738 ÷ 6',
@@ -510,7 +510,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I got a different answer than the app for the same problem', 'Do I really always do multiplication before addition?'],
   teks: ['5.4.E', '5.4.F', '6.7.A'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'When one expression has several operations, everyone in the world has agreed on one order to do them in. Without that agreement, the same expression would have several different answers.',
+  plain: 'When one expression has several operations, everyone agrees on one order to do them in. Without that agreement, the same expression would have several different answers.',
   why: 'Once variables show up in algebra, an order-of-operations slip does not just cost one question: it silently breaks the whole problem.',
   words: [
     { w: 'expression', d: 'Numbers and operations with no equals sign: 3 + 4 × 2.' },
@@ -531,7 +531,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Scan the whole expression before you write anything.',
     'Do everything inside grouping symbols first, from the innermost outward.',
     'Handle exponents.',
-    'Sweep left to right doing multiplication and division as you meet them: do not do all multiplication first.',
+    'Sweep left to right for x and division. Do them as you meet them, not all multiplication first.',
     'Sweep left to right doing addition and subtraction as you meet them.',
     'Rewrite the whole expression after each step so you never lose a term.'
   ],
@@ -581,11 +581,11 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'To list factors, work in pairs from 1 upward: 1 × 12, 2 × 6, 3 × 4. Stop when the pairs start repeating.',
+    'List factors in pairs from 1 upward. 1 x 12, 2 x 6, 3 x 4. Stop when the pairs start repeating.',
     'To list multiples, skip count: 12, 24, 36, 48.',
-    'For GCF: list the factors of both numbers and take the biggest one that appears in both lists.',
-    'For LCM: list the multiples of the larger number and stop at the first one the smaller number divides into.',
-    'Sanity check: the GCF is never bigger than the smaller number; the LCM is never smaller than the larger number.'
+    'For GCF: write both factor lists and take the biggest shared one.',
+    'For LCM: count up in the larger number. Stop at the first one the smaller number divides into.',
+    'Sanity check the size. The GCF is never bigger than the smaller number; the LCM is never smaller than the larger one.'
   ],
   example: { prompt: 'Find the GCF and LCM of 8 and 12.',
     work: ['Factors of 8: 1, 2, 4, 8. Factors of 12: 1, 2, 3, 4, 6, 12.', 'Shared factors: 1, 2, 4. Biggest is 4 → GCF = 4.', 'Multiples of 12: 12, 24. Does 8 divide 12? No. Does 8 divide 24? Yes.', 'LCM = 24.'],
@@ -693,7 +693,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Find the whole first. One pizza? One number line from 0 to 1? One set of 12 marbles?',
     'Count how many EQUAL pieces the whole is cut into. That number goes on the bottom.',
     'Count how many of those pieces are shaded, eaten, or taken. That number goes on top.',
-    'Read it out loud: "three fourths" means three pieces, each one fourth of the whole.',
+    'Read it out loud. "Three fourths" means three pieces, each one fourth of the whole.',
     'Check the pieces really are equal. Unequal pieces are not fractions.'
   ],
   example: { prompt: 'A chocolate bar is split into 6 equal pieces. You eat 2. What fraction did you eat, and what fraction is left?',
@@ -723,7 +723,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Why does 1/2 equal 3/6?', 'My answer is right but the app says simplify'],
   teks: ['3.3.F', '3.3.G', '4.3.C', '5.3.H'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'Two fractions are equivalent when they cover the same amount even though they are written with different numbers. You get one from the other by multiplying or dividing BOTH the top and the bottom by the same number.',
+  plain: 'Two fractions are equivalent when they cover the same amount. You get one from the other by multiplying or dividing BOTH the top and the bottom by the same number.',
   why: 'You cannot add unlike fractions, compare them reliably, or finish most fraction answers without this.',
   words: [
     { w: 'equivalent', d: 'Different numbers, same value.' },
@@ -746,7 +746,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Decide whether you are scaling up (making bigger numbers) or simplifying (making smaller ones).',
     'Scaling up: choose a number and multiply the top and the bottom by it.',
-    'Simplifying: find the biggest number that divides both the top and the bottom, then divide both by it.',
+    'To simplify, find the biggest number that divides both. Then divide the top and the bottom by it.',
     'Whatever you do to the top, do exactly the same to the bottom. That is the only rule.',
     'Check your result: is there still a common factor other than 1? If yes, simplify again.'
   ],
@@ -798,7 +798,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'First check the easy cases: same denominators, or same numerators.',
     'Next try the 1/2 benchmark. Is the numerator more than half the denominator?',
-    'If both are on the same side of 1/2, find a common denominator (the LCM of the two denominators works).',
+    'Both on the same side of 1/2? Find a common denominator. The LCM of the two denominators works.',
     'Rewrite both fractions with that denominator by multiplying top and bottom.',
     'Now compare the numerators.',
     'Write the comparison with the original fractions, not the rewritten ones.'
@@ -853,10 +853,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Check whether the denominators match.',
     'If they do not, find the least common multiple of the denominators. That is your common denominator.',
-    'Rewrite each fraction: multiply the top and the bottom by whatever turns its denominator into the common one.',
+    'Rewrite each fraction. Multiply its top and bottom by whatever turns its denominator into the common one.',
     'Add or subtract ONLY the numerators.',
     'Keep the denominator the same. It is the piece size, and the piece size does not change.',
-    'Simplify, and turn any improper fraction into a mixed number if the question asks for one.'
+    'Simplify at the end. Turn an improper fraction into a mixed number if the question asks.'
   ],
   example: { prompt: '1/4 + 1/6',
     work: ['Denominators 4 and 6 do not match.', 'Multiples of 6: 6, 12. Does 4 divide 12? Yes. LCM = 12.', '1/4 = 3/12 (multiply top and bottom by 3).', '1/6 = 2/12 (multiply top and bottom by 2).', '3/12 + 2/12 = 5/12.', '5/12 cannot be simplified.'],
@@ -913,7 +913,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Turn any mixed number into an improper fraction before you start.',
     'To divide: keep the first fraction, change ÷ to ×, and flip the second fraction.',
     'Multiply as normal.',
-    'Simplify the answer, and convert back to a mixed number if the question wants one.'
+    'Simplify the answer. Convert back to a mixed number if the question wants one.'
   ],
   example: { prompt: '3/4 ÷ 2/3',
     work: ['Keep 3/4.', 'Change ÷ to ×.', 'Flip 2/3 to 3/2.', '3/4 × 3/2 = 9/8.', '9/8 = 1 1/8.'],
@@ -1016,9 +1016,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Find the decimal point. Everything left of it is whole; everything right is part of a whole.',
     'Name the places going right: tenths, hundredths, thousandths.',
-    'To compare decimals, line up the decimal points and compare left to right, exactly like whole numbers.',
-    'If one number has fewer decimal places, add zeros on the end so both have the same number of digits. Adding zeros on the RIGHT of a decimal changes nothing.',
-    'Read the number the way it is meant to be read: 3.407 is "three and four hundred seven thousandths."'
+    'To compare, line up the decimal points. Then compare left to right, exactly like whole numbers.',
+    'Add zeros on the end so both have the same number of digits. Zeros on the RIGHT of a decimal change nothing.',
+    'Read it the way it is meant to be read. 3.407 is "three and four hundred seven thousandths".'
   ],
   example: { prompt: 'Order from least to greatest: 0.5, 0.45, 0.405',
     work: ['Give them all three decimal places: 0.500, 0.450, 0.405.', 'Compare tenths: 5, 4, 4. So 0.500 is largest.', 'Between 0.450 and 0.405, compare hundredths: 5 vs 0.', '0.405 is smallest.'],
@@ -1066,7 +1066,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Identify the operation first. The rule depends entirely on which one it is.',
     'ADD / SUBTRACT: stack the numbers so the decimal points line up. Add zeros to fill ragged ends. Bring the point straight down into the answer.',
     'MULTIPLY: ignore the decimal points entirely and multiply the digits. Then count the decimal places in both factors, add them up, and place that many in your answer counting from the right.',
-    'DIVIDE: slide the divisor\'s decimal point to the right until it is a whole number. Slide the dividend\'s point exactly the same number of places. Then do long division and bring the point straight up.',
+    'DIVIDE: slide both points right until the divisor is whole. Move the dividend point exactly the same number of places, then divide and bring the point straight up.',
     'Estimate to check. 0.4 × 0.7 should be small: smaller than either factor.'
   ],
   example: { prompt: '7.2 ÷ 0.8',
@@ -1186,7 +1186,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Multiplying when the question asks for perimeter, or adding when it asks for area.',
     'Forgetting the "squared" on an area answer. 40 m and 40 m² are different things.',
     'Only adding two sides for the perimeter of a rectangle. There are four sides.',
-    'Using the diagonal or a slanted line as a side length when it is not one.'
+    'Using a diagonal or slanted line as a side. It is not one.'
   ],
   check: [
     { q: 'You are buying baseboard trim for a room. Perimeter or area?', a: 'Perimeter. It goes around the edge.' },
@@ -1206,7 +1206,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Is a square a rectangle?', 'How do I tell a rhombus from a parallelogram?'],
   teks: ['K.6.A', '2.8.A', '3.6.A', '4.6.D', '5.5'],
   apps: ['Zearn', 'Math Cakes', 'Math Academy', 'AlphaMath'],
-  plain: 'Shapes are sorted by their attributes: how many sides, whether the sides are equal, and whether the angles are right angles. A shape can belong to several categories at once. A square really is a rectangle.',
+  plain: 'Shapes are sorted by their attributes: number of sides, equal sides, and right angles. A shape can belong to several categories at once. A square really is a rectangle.',
   why: 'Grade 5 asks you to place shapes in a hierarchy of sets and subsets, and that only makes sense if you sort by attributes rather than by what a shape looks like.',
   words: [
     { w: 'polygon', d: 'A closed shape made only of straight sides.' },
@@ -1233,7 +1233,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Check whether opposite sides are parallel.',
     'Check whether the sides are equal in length.',
     'Check whether the corners are right angles.',
-    'Give the most specific name that fits, but remember all the broader names still apply.'
+    'Give the most specific name that fits. All the broader names still apply too.'
   ],
   example: { prompt: 'A shape has 4 sides, both pairs of opposite sides parallel, all four sides equal, and four right angles. Name every category it belongs to.',
     work: ['4 sides → quadrilateral.', 'Both pairs parallel → parallelogram.', '4 right angles → rectangle.', '4 equal sides → rhombus.', 'Both right angles and equal sides → square.'],
@@ -1280,12 +1280,12 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Estimate first. Acute or obtuse? This is what saves you from the two-scale problem.',
+    'Estimate first: acute or obtuse? That is what saves you from the two-scale problem.',
     'Place the center point of the protractor on the vertex of the angle.',
     'Rotate the protractor so one ray runs along the 0° line.',
     'Follow the other ray out to the curved scale and read the number.',
     'Choose the reading that matches your estimate. An acute angle can never measure 150°.',
-    'Classify it: under 90° is acute, exactly 90° is right, 90° to 180° is obtuse, exactly 180° is straight.'
+    'Classify it. Under 90 is acute, exactly 90 is right, 90 to 180 is obtuse, exactly 180 is straight.'
   ],
   example: { prompt: 'You measure an angle that clearly looks smaller than a corner. The protractor shows both 40 and 140. Which is it?',
     work: ['It looks smaller than a right angle, so it is acute.', 'Acute means less than 90°.', '140 is more than 90, so it cannot be right.'],
@@ -1336,9 +1336,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Identify length, width, and height. Any face can be the base as long as the height is measured perpendicular to it.',
     'Multiply length × width to get the base area: one layer of cubes.',
-    'Multiply by the height to stack the layers: V = l × w × h, or V = base area × height.',
+    'Multiply by the height to stack the layers. V = l x w x h, or base area x height.',
     'Write the unit as cubic units (cm³, m³, in³).',
-    'To go backwards (given the volume, find a missing side), divide instead: h = V ÷ (l × w).'
+    'Going backwards from the volume? Divide instead: h = V divided by (l x w).'
   ],
   example: { prompt: 'A box is 6 cm long, 4 cm wide and 3 cm tall. Find the volume.',
     work: ['Base area = 6 × 4 = 24 cm².', 'That is 24 cubes in one layer.', 'There are 3 layers.', '24 × 3 = 72.'],
@@ -1367,7 +1367,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I plot (3, 5) at the wrong spot', 'Which number comes first?'],
   teks: ['5.8.A', '5.8.B', '5.8.C', '6.11'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'An ordered pair tells you how far to move sideways and then how far to move up or down, always starting from the origin at (0, 0). The x-coordinate always comes first.',
+  plain: 'An ordered pair tells you how far to move sideways, then how far up or down. You always start at the origin, (0, 0), and the x-coordinate always comes first.',
   why: 'Graphs of linear relationships in grades 7 and 8 are impossible if plotting is still shaky.',
   words: [
     { w: 'origin', d: 'The point (0, 0) where the two axes cross.' },
@@ -1385,7 +1385,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read the FIRST number. Move that far along the x-axis: right if positive, left if negative.',
     'Read the SECOND number. From where you stopped, move that far up if positive, down if negative.',
     'Mark the point and label it with the ordered pair.',
-    'To read a point off a graph, reverse the process: count across to the axis first, then up or down.'
+    'Reading a point off a graph reverses it. Count across to the axis first, then up or down.'
   ],
   example: { prompt: 'Plot (−2, 3) and name its quadrant.',
     work: ['Start at the origin.', 'First number is −2: move 2 to the LEFT.', 'Second number is 3: move 3 UP.', 'Left and up is the upper-left region.'],
@@ -1436,7 +1436,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Smaller unit → multiply. Bigger unit → divide.',
     'Find the conversion factor (12, 16, 100, 1000…).',
     'Do the arithmetic, then write the new unit on your answer.',
-    'Sanity check: converting 5 feet to inches should give a bigger number, not a smaller one.'
+    'Sanity check the direction. Converting 5 feet to inches should give a bigger number.'
   ],
   example: { prompt: 'Convert 4.5 feet to inches.',
     work: ['Have: feet. Want: inches.', 'An inch is smaller than a foot, so multiply.', '1 ft = 12 in.', '4.5 × 12 = 54.'],
@@ -1486,8 +1486,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Reading a clock: the SHORT hand gives the hour: read the number it has already passed, not the one it is closest to.',
-    'The LONG hand gives minutes: count by 5 for each number, then by 1 for each small tick.',
+    'The SHORT hand gives the hour. Read the number it has already passed, not the one it is closest to.',
+    'The LONG hand gives minutes. Count by 5 for each number, then by 1 for each small tick.',
     'For elapsed time, draw an open number line and mark the start.',
     'Hop up to the next whole hour and record the minutes.',
     'Jump whole hours toward the end time.',
@@ -1539,7 +1539,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Start with the quarters and count by 25.',
     'Keep going with the dimes, counting on by 10 from wherever you are.',
     'Then the nickels by 5, then the pennies by 1.',
-    'Write the total with a cent sign, or as dollars if it is 100 or more.',
+    'Write the total with a cent sign. Use dollars if it is 100 or more.',
     'For change, count UP from the price to the amount paid.'
   ],
   example: { prompt: 'You have 3 quarters, 2 dimes, and 4 pennies. How much?',
@@ -1604,7 +1604,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Assuming each gridline is worth 1. Check the scale every single time.',
     'Counting bars instead of reading their heights.',
     'Answering "how many altogether" when the question asked "how many more."',
-    'Ignoring a pictograph key, or forgetting that half a symbol counts as half the key value.'
+    'Ignoring the pictograph key. Half a symbol counts as half the key value.'
   ],
   check: [
     { q: 'A pictograph key says one book = 4 books. A row has 3 and a half books. How many?', a: '3.5 × 4 = 14 books.' },

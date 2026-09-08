@@ -33,8 +33,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Point to the letter and say its SOUND, not its name.',
     'Vowels have a short sound and a long sound. Try the short one first.',
-    'If the word does not sound real, flip to the long vowel sound and try again.',
-    'For letters you mix up, use the trick every single time until you stop needing it.',
+    'Not a real word? Flip to the long vowel sound and try again.',
+    'Use your trick every single time. Keep using it until you stop needing it.',
     'Practice the letters you get wrong, not the ones you already know.'
   ],
   example: { prompt: 'Read the word "pet."',
@@ -151,7 +151,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Sounding out left to right without looking ahead. The silent e is at the END but it changes the MIDDLE.',
     'Saying the silent e out loud.',
     'Sounding out both letters of a vowel team separately.',
-    'Forgetting that the r changes the vowel: "car" is not "c-a-r" with a short a.'
+    'Forgetting that the r changes the vowel. "Car" is not "c-a-r" with a short a.'
   ],
   check: [
     { q: 'What does the e do in "bike"?', a: 'It is silent and it makes the i say its name.' },
@@ -195,19 +195,19 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
              ['Back cover', 'a short description of what is inside']] }
   ],
   steps: [
-    'Hold the book so the front cover faces you and the words are the right way up.',
+    'Hold the book with the front cover facing you. Make sure the words are the right way up.',
     'Read the title out loud.',
     'Open to the first page of the story.',
     'Point at the first word at the top left.',
     'Move your finger left to right as you read.',
-    'At the end of a line, drop down and slide all the way back to the left.',
+    'At the end of a line, drop down one line. Then slide all the way back to the left.',
     'Use the spaces to tell where each word ends.'
   ],
   example: { prompt: 'You finish reading the last word on a line. Where does your finger go?',
     work: ['Not further right. The line is over.', 'Down one line.', 'All the way back to the left edge.'],
     answer: 'Down one line and back to the far left.' },
   traps: [
-    'Reading the second line right to left because your finger is already on the right.',
+    'Reading the second line right to left. Your finger is already on the right, so it feels natural.',
     'Pointing at letters instead of whole words when you read.',
     'Skipping the title. The title tells you what the book is about.',
     'Ignoring the spaces, so two words run together.'
@@ -595,7 +595,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Count the corners. Most shapes have the same number of sides and corners.',
     'Name it from the number of sides.',
     'For a solid shape, look at the flat faces and name those.',
-    'When sorting, pick one rule first, like "3 sides or not 3 sides," and stick to it.'
+    'When sorting, pick one rule and stick to it. Something like "3 sides, or not 3 sides".'
   ],
   example: { prompt: 'How is a square different from a cube?',
     work: ['A square is flat. It has 4 sides and 4 corners.', 'A cube is solid. You can hold it.', 'A cube has 6 faces, and every face is a square.'],
@@ -647,8 +647,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read the problem and picture what is happening.',
     'Ask: is something being taken away, or are two groups being compared?',
     'Draw it. Circles, sticks, or a bar. Any drawing helps.',
-    'For take away, start with the whole group and cross out the ones that go.',
-    'For comparing, line the two groups up side by side and look at the extra part.',
+    'For take away, cross out the ones that go. Start with the whole group, then remove.',
+    'For comparing, line the two groups up side by side. The extra part sticking out is the answer.',
     'Count what is left, and write the number sentence to match.'
   ],
   example: { prompt: 'Ana has 8 stickers. Ben has 5. How many more does Ana have?',
@@ -699,9 +699,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Say the numbers out loud. Your ears catch the pattern before your eyes do.',
     'Look at the last digit each time. That is where the pattern lives.',
     'Use your fingers to keep track of how many hops you have made.',
-    'If you lose your place, go back to the last number you are sure about.',
+    'Lost your place? Go back to the last number you are sure about.',
     'Practice starting from somewhere other than zero: 35, 40, 45.',
-    'Connect it to real things: nickels are 5s, dimes are 10s, pairs of shoes are 2s.'
+    'Connect it to real things. Nickels are 5s, dimes are 10s, pairs of shoes are 2s.'
   ],
   example: { prompt: 'Count by 5s to find how much 7 nickels are worth.',
     work: ['One hop for each nickel.', '5, 10, 15, 20, 25, 30, 35.', 'That is 7 hops.'],
@@ -784,7 +784,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Do I start at the end of the ruler or at the 1?', 'I got a different answer than my partner'],
   teks: ['1.7.A', '1.7.B', '1.7.D', '2.9.A', '2.9.B', '2.9.D'],
   apps: ['Zearn', 'Math Cakes', 'AlphaMath'],
-  plain: 'Measuring means finding out how many same-size units fit along something, with no gaps and no overlaps. The units must all be the same size, and you must start at zero.',
+  plain: 'Measuring means counting how many same-size units fit along something. No gaps, no overlaps. The units must all be the same size, and you must start at zero.',
   why: 'Almost every wrong measurement comes from starting in the wrong place or using units that are not the same size.',
   words: [
     { w: 'unit', d: 'The thing you measure with: an inch, a centimeter, a paper clip.' },
@@ -818,7 +818,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '7 centimeters' },
   traps: [
     'Starting at the 1 instead of the 0. That makes everything one unit too short.',
-    'Starting at the very edge of the ruler when the zero is a little way in.',
+    'Starting at the edge of the ruler. On many rulers the zero sits a little way in.',
     'Leaving gaps between your units when measuring with objects.',
     'Mixing unit sizes, like using two big paper clips and three small ones.',
     'Saying just the number. Always say the unit too.'
@@ -896,7 +896,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['How do I tell if a number is even?', 'Is 0 even or odd?'],
   teks: ['2.7.A', '3.4.C'],
   apps: ['Zearn', 'Math Cakes', 'AlphaMath'],
-  plain: 'A number is even if everything can pair up with a partner and nobody is left over. It is odd if one is left standing alone. You only ever have to look at the last digit.',
+  plain: 'A number is even if everything pairs up and nobody is left over. It is odd if one is left standing alone. You only ever have to look at the last digit.',
   why: 'Even and odd is the first time you meet the idea of splitting a number into equal groups, which becomes division later.',
   words: [
     { w: 'even', d: 'Everything pairs up. No leftovers.' },

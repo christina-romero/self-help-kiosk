@@ -14,7 +14,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['The app says my sentence is incomplete', 'What is a predicate?'],
   teks: ['1.11.D', '2.11.D', '3.11.D', '4.11.D', '5.11.D'],
   apps: ['Lalilo', 'MobyMax', 'Freckle'],
-  plain: 'A complete sentence needs two halves: who or what it is about (the subject), and what they are doing or being (the predicate). It also needs a capital letter at the start and an end mark at the finish.',
+  plain: 'A complete sentence needs two halves: a subject and a predicate. The subject is who or what it is about; the predicate is what they do or are. It also needs a capital letter and an end mark.',
   why: 'Every grammar app checks this first. Fragments and run-ons both come from not seeing these two halves.',
   words: [
     { w: 'subject', d: 'Who or what the sentence is about.' },
@@ -89,8 +89,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read your sentence out loud and listen for where you naturally pause.',
     'Cover part of the sentence and ask whether what remains could stand alone.',
     'If neither part can stand alone, it is a fragment: add what is missing.',
-    'If BOTH parts can stand alone, you have two sentences and you must join them properly.',
-    'Pick one of the four fixes: period, comma plus FANBOYS, semicolon, or a subordinating word.',
+    'If BOTH parts can stand alone, you have two sentences. They must be joined properly.',
+    'Pick one of the four fixes. Period, comma plus FANBOYS, semicolon, or a subordinating word.',
     'Reread. A comma by itself is never enough to join two complete sentences.'
   ],
   example: { prompt: 'Fix: "The experiment failed, we tried a different method."',
@@ -148,7 +148,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Look at the front of each clause for a subordinating conjunction.',
     'Label each clause independent or dependent.',
     'Count them and name the sentence type.',
-    'Apply the comma rule: dependent clause first means comma after it; dependent clause second usually means no comma.',
+    'Apply the comma rule. Dependent clause first means a comma after it; second usually means none.',
     'To improve your writing, deliberately vary the types instead of writing all simple sentences.'
   ],
   example: { prompt: 'Label this sentence: "Although the museum was crowded, we found the exhibit, and it was worth the wait."',
@@ -180,7 +180,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Is "running" a verb or a noun here?', 'How do I tell an adjective from an adverb?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D', '6.10.D'],
   apps: ['Lalilo', 'MobyMax', 'Freckle'],
-  plain: 'A word\'s part of speech depends on the job it is doing in that sentence, not on the word itself. The same word can be a noun in one sentence and a verb in another.',
+  plain: 'A word’s part of speech depends on the job it does in that sentence. The same word can be a noun in one sentence and a verb in another.',
   why: 'Grammar apps ask you to identify parts of speech in context, and memorizing lists does not work when the same word can play several roles.',
   words: [
     { w: 'noun', d: 'A person, place, thing, or idea.' },
@@ -267,7 +267,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Decide whether the noun is common or proper. Proper nouns always take a capital.',
     'For plurals, look at the final letters.',
     'Add -es after s, x, z, ch, or sh.',
-    'Change y to i and add -es only when a consonant comes before the y.',
+    'Change y to i and add -es. Only when a consonant comes before the y.',
     'Check whether the word is irregular before you add anything.',
     'For collective nouns, treat the group as one thing and use a singular verb.'
   ],
@@ -331,7 +331,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     work: ['The time marker "yesterday" sets past tense.', '"walk" should be "walked."', '"bought" is already past: correct.', '"see" should be "saw."'],
     answer: '"Yesterday I walked to the store and bought milk. Then I saw my neighbor."' },
   traps: [
-    'Starting a story in past tense and drifting into present when the action gets exciting.',
+    'Starting a story in past tense and drifting into present. It usually happens when the action gets exciting.',
     'Saying "have went," "have saw," or "have did." Use gone, seen, done.',
     'Adding -ed to an irregular verb: "runned," "goed," "bringed."',
     'Writing about a text in past tense. Literary analysis is normally written in present: "The author argues," not "argued."'
@@ -380,20 +380,20 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Locate the verb.',
     'Find the subject by asking who or what performs that verb.',
-    'Cross out every phrase that starts with a preposition (of, in, with, between, along with).',
+    'Cross out every prepositional phrase. Those start with of, in, with, between, along with.',
     'Look at what is left. Is it one thing or more than one?',
     'Match the verb: singular subject, singular verb.',
-    'For "either/or" and "neither/nor," match the subject that is closest to the verb.',
+    'For either/or and neither/nor, match the closest subject. The one nearest the verb wins.',
     'Remember most indefinite pronouns (each, every, everyone, nobody, somebody) are singular.'
   ],
   example: { prompt: 'Choose the verb: "The list of required supplies (was / were) posted online."',
     work: ['Verb: was/were posted.', 'Who or what was posted? The list.', 'Cross out "of required supplies". It is a prepositional phrase.', 'Left with "The list … posted." One list → singular.'],
     answer: 'was' },
   traps: [
-    'Matching the verb to the noun closest to it instead of to the real subject.',
+    'Matching the verb to the nearest noun. Match it to the real subject instead.',
     'Treating "each," "every," and "everyone" as plural. They are singular.',
-    'Getting confused by "along with" and "as well as." They do not make a singular subject plural: "The teacher, along with the students, is going."',
-    'In sentences starting with "there," matching the verb to "there." The real subject comes after the verb.'
+    'Getting confused by "along with" and "as well as". They do not make a singular subject plural: "The teacher, along with the students, is going."',
+    'Matching the verb to "there". In sentences starting with there, the real subject comes after the verb.'
   ],
   check: [
     { q: '"The bunch of grapes (is/are) on the table."', a: 'is. The subject is "bunch."' },
@@ -439,15 +439,15 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Check case: subject pronouns do the action, object pronouns receive it.',
     'For compound subjects, test by removing the other person.',
     'Check agreement: singular antecedent, singular pronoun.',
-    'Check reference: if a reader could plausibly think the pronoun points to a different noun, rewrite it with the noun itself.',
-    'Watch "this" and "it" at the start of a sentence: those are the most commonly unclear.'
+    'Check the reference is clear. If a reader could think the pronoun points elsewhere, use the noun.',
+    'Watch "this" and "it" at the start of a sentence. Those are the most commonly unclear.'
   ],
   example: { prompt: 'Fix: "Maria told Jordan that she had won."',
     work: ['"She" could mean Maria or Jordan.', 'That is an unclear antecedent.', 'Rewrite with the actual name.'],
     answer: '"Maria told Jordan that Jordan had won." (Or restructure: "Maria said, \'You won,\' to Jordan.")' },
   traps: [
-    'Saying "me and him went." Remove the other person: "me went" is wrong, so it is "he and I went."',
-    'Saying "between you and I." After a preposition you need the object form: "between you and me."',
+    'Saying "me and him went". Remove the other person: "me went" is wrong, so it is "he and I went".',
+    'Saying "between you and I". After a preposition you need the object form: "between you and me".',
     'Starting a sentence with "This" and never saying what "this" is.',
     'Using "they" for a clearly singular antecedent when the sentence can easily be rewritten.'
   ],
@@ -491,7 +491,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Ask what the word is describing. A noun means adjective; a verb means adverb.',
-    'Watch for linking verbs (is, seems, feels, looks, tastes, sounds): they take adjectives, not adverbs.',
+    'Watch for linking verbs. Is, seems, feels, looks, tastes and sounds take adjectives, not adverbs.',
     'To compare two things, use the comparative form.',
     'To compare three or more, use the superlative.',
     'Count the syllables to decide between -er/-est and more/most.',
@@ -503,7 +503,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   traps: [
     'Doubling up: "more faster," "most fastest."',
     'Using the superlative for two things. With two, use the comparative: "the taller of the two."',
-    'Saying "I did good" when you mean "I did well." Good is an adjective; well is the adverb.',
+    'Saying "I did good" when you mean "I did well". Good is an adjective; well is the adverb.',
     'Forgetting the irregulars: good/better/best and bad/worse/worst.'
   ],
   check: [
@@ -524,7 +524,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['What counts as a prepositional phrase?', 'My sentence sounds funny but I do not know why'],
   teks: ['4.11.D', '5.11.D', '6.10.D', '7.10.D', '8.10.D'],
   apps: ['MobyMax', 'eGumpp', 'Freckle'],
-  plain: 'A prepositional phrase starts with a preposition and ends with a noun: "under the old bridge." It adds information, but it can never contain the subject of the sentence: and if you put it in the wrong place, the sentence says something you did not mean.',
+  plain: 'A prepositional phrase starts with a preposition and ends with a noun. Something like "under the old bridge". It adds information, but it can never hold the subject, and putting it in the wrong place changes what the sentence says.',
   why: 'Crossing out prepositional phrases is the fastest way to solve subject-verb agreement, and misplaced modifiers are a common revision note.',
   words: [
     { w: 'preposition', d: 'A word showing position or relationship: in, on, under, before, with, between, of.' },
@@ -561,8 +561,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '"The teacher handed out the tests in yellow folders to the students."' },
   traps: [
     'Thinking the subject can be inside a prepositional phrase. It never is.',
-    'Leaving a modifier at the end of a sentence where it attaches to the wrong noun.',
-    'Starting a sentence with an -ing phrase that has nothing to attach to: "Walking home, the rain started."',
+    'Leaving a modifier stranded at the end. It attaches to the wrong noun.',
+    'Starting with an -ing phrase that has nothing to attach to. "Walking home, the rain started."',
     'Stacking too many prepositional phrases so the sentence loses its shape.'
   ],
   check: [
@@ -612,9 +612,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Look at each comma you wrote and name which rule it follows.',
     'If you cannot name a rule, delete it.',
-    'For a compound sentence, check that BOTH sides are complete sentences before you use comma + FANBOYS.',
-    'For a leading dependent clause or phrase, put the comma at the end of it.',
-    'For extra information, test it: can you delete the phrase and still have a working sentence? If yes, use commas around it.',
+    'For a compound sentence, check both sides are complete. Only then use comma plus FANBOYS.',
+    'For a leading clause or phrase, the comma goes at the end of it.',
+    'For extra information, test it. Can you delete the phrase and still have a working sentence? Then use commas around it.',
     'Reread the sentence with the commas as written, not as you meant them.'
   ],
   example: { prompt: 'Add commas: "After the storm passed we walked outside and my neighbor a retired teacher was already cleaning up."',
@@ -645,7 +645,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Is it "its" or "it\'s"?', 'Where does the apostrophe go for plural possessives?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D'],
   apps: ['Lalilo', 'MobyMax', 'Freckle'],
-  plain: 'Apostrophes do exactly two jobs: they show ownership, and they mark where letters were removed in a contraction. They never make a word plural.',
+  plain: 'Apostrophes do exactly two jobs. They show ownership, and they mark missing letters in a contraction. They never make a word plural.',
   why: 'The its/it\'s error is one of the most-flagged mistakes in writing apps, and it is a two-second check once you know the trick.',
   words: [
     { w: 'possessive', d: 'Showing ownership: the dog\'s bowl.' },
@@ -729,7 +729,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'If the quote is a question or exclamation, keep the ? or ! inside and do not add a comma.',
     'Start the dialogue tag in lowercase unless it begins with a name.',
     'Start a new paragraph every time the speaker changes.',
-    'When quoting a text as evidence, introduce it with a lead-in and a comma.'
+    'Quoting a text as evidence? Introduce it with a lead-in and a comma.'
   ],
   example: { prompt: 'Punctuate: I do not think that is right said Marcus but I could be wrong',
     work: ['The spoken words split around the tag.', 'First part ends with a comma inside the quote.', 'Tag is lowercase: said Marcus.', 'Second part reopens quotes and ends the sentence.'],
@@ -758,7 +758,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Do I capitalize seasons?', 'Which words in a title get capitals?'],
   teks: ['1.11.D', '2.11.D', '3.11.D', '4.11.D', '5.11.D', '8.10.D'],
   apps: ['Lalilo', 'MobyMax', 'eGumpp', 'Freckle'],
-  plain: 'Capitalize the first word of a sentence, the word I, and any proper noun: a specific name. Categories get lowercase; specific names get capitals.',
+  plain: 'Capitalize the first word of a sentence, the word I, and every proper noun. A proper noun is a specific name. Categories stay lowercase.',
   why: 'Correct capitalization is named directly in the grade 8 conventions expectation and is scored on every writing task.',
   words: [
     { w: 'proper noun', d: 'The specific name of a person, place, or thing.' },
@@ -788,7 +788,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'For each noun, ask whether it names something specific or describes a category.',
     'Capitalize days, months, holidays, languages, and nationalities.',
     'Do not capitalize seasons or school subjects (except languages).',
-    'For titles, capitalize the first and last words plus all the important words in between.'
+    'In titles, capitalize the first and last words. Plus every important word in between.'
   ],
   example: { prompt: 'Fix: "last friday, my Mom and i visited the museum of fine arts in houston during Spring."',
     work: ['"last" starts the sentence → Last.', 'Friday is a day → capital.', '"my mom" is not being used as a name → lowercase mom.', '"i" → I.', 'Museum of Fine Arts is a specific name → capitals, but "of" stays lowercase.', 'Houston is a city name → capital.', 'spring is a season → lowercase.'],
@@ -957,7 +957,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Read your draft out loud and listen for a choppy stretch.',
-    'Mark short sentences that sit next to each other and share a subject or topic.',
+    'Mark short sentences sitting next to each other. Especially ones sharing a subject or topic.',
     'Decide the relationship between the ideas.',
     'Choose the matching combining move.',
     'Rewrite, then check that you have not created a run-on.',

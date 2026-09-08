@@ -15,7 +15,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I say the sounds but I cannot hear the word', 'I get stuck at the first letter'],
   teks: ['K.2.A', 'K.2.B', '1.2.A', '1.2.B'],
   apps: ['Alpha Reading Fluency', 'Anton'],
-  plain: 'Blending means saying each sound in a word and then squishing them together fast enough that they turn into the whole word. The trick is to say them smoothly, without stopping between the sounds.',
+  plain: 'Blending means saying each sound and squishing them together into a word. The trick is to say them smoothly, without stopping between the sounds.',
   why: 'Blending is the exact moment reading starts working. Every reading app in the stack drills it for a reason.',
   words: [
     { w: 'sound', d: 'One noise a letter or letter team makes. Also called a phoneme.' },
@@ -34,8 +34,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Look at the whole word first so your eyes know how far you are going.',
-    'Find the letter teams (sh, ch, th, ai, ee, oa) and treat each team as ONE sound.',
+    'Look at the whole word first. Then your eyes know how far you are going.',
+    'Find the letter teams and treat each one as ONE sound. Teams like sh, ch, th, ai, ee, oa.',
     'Say the first sound and stretch it instead of stopping.',
     'Slide into the next sound without a break between them.',
     'Say the whole thing fast.',
@@ -48,7 +48,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Stopping between the sounds: "c... a... t" never becomes "cat." Keep sliding.',
     'Adding an "uh" to the end of consonants. It is "t," not "tuh."',
     'Sounding out each letter of a letter team separately. "sh" is not "s" then "h."',
-    'Guessing from the first letter and the picture instead of reading all the way through the word.'
+    'Guessing from the first letter and the picture. Read all the way through the word.'
   ],
   check: [
     { q: 'How many sounds are in "shop"?', a: 'Three: sh - o - p.' },
@@ -94,7 +94,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'In what remains, count the vowels. That tells you roughly how many chunks there are.',
     'Split between double consonants, and between two consonants that sit between vowels.',
     'Read chunk by chunk, then blend the chunks together.',
-    'Flex the vowel: if the first try does not sound like a word, try the other vowel sound.'
+    'Flex the vowel. If the first try is not a word, try the other vowel sound.'
   ],
   example: { prompt: 'Read "independently."',
     work: ['Prefix: in-.', 'Suffix: -ly. And before that, -ent.', 'Middle: depend.', 'Chunks: in / de / pend / ent / ly.', 'Blend: independently.'],
@@ -123,7 +123,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['My fluency score is low', 'I read fast but I do not remember any of it'],
   teks: ['1.4', '2.4', '3.4', '4.4', '5.4'],
   apps: ['Alpha Reading Fluency', 'Anton', 'AlphaRead', 'MobyMax Primer'],
-  plain: 'Fluency is three things at once: reading the words correctly, at a comfortable speed, and with expression that shows you understand. Racing is not fluency. Neither is reading every word perfectly but sounding like a robot.',
+  plain: 'Fluency is three things at once: the right words, a comfortable speed, and expression. Racing is not fluency. Neither is reading every word perfectly but sounding like a robot.',
   why: 'ClearFluency and Alpha Reading Fluency score you on a recording. If you push only speed, accuracy drops and you score worse.',
   words: [
     { w: 'accuracy', d: 'Reading the words correctly.' },
@@ -209,7 +209,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Build a stopping habit: pause at the end of each paragraph.',
     'Try to say what that paragraph was about in one sentence.',
     'If you cannot, that is the signal. Do not read on.',
-    'Decide what kind of stuck you are: one word, one sentence, or the whole idea.',
+    'Decide what kind of stuck you are. One word, one sentence, or the whole idea?',
     'Use the matching fix-up.',
     'Check yourself again before you continue.'
   ],
@@ -296,7 +296,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['The answer is not in the text anywhere', 'How am I supposed to know that?'],
   teks: ['3.6.F', '4.6.F', '5.6.F', '6.5.F', '7.5.F', '8.5.F'],
   apps: ['AlphaRead', 'MobyMax Primer'],
-  plain: 'An inference is a conclusion you build from two things: clues in the text plus what you already know. It is not a guess and it is not a feeling. You have to be able to point at the clue that supports it.',
+  plain: 'An inference is a conclusion you build yourself. You use a clue in the text plus what you already know. It is not a guess and it is not a feeling, because you have to be able to point at the clue.',
   why: 'Inference questions are the ones students most often miss, because the answer genuinely is not written down. It is built.',
   words: [
     { w: 'infer', d: 'To work out something the author implied but did not state.' },
@@ -319,7 +319,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Reread the part of the text the question points to.',
-    'Look for what characters DO and SAY rather than what the author tells you outright.',
+    'Look for what characters DO and SAY. Not just what the author tells you outright.',
     'Underline the specific clue.',
     'Add what you know from your own life or from earlier in the text.',
     'State your conclusion.',
@@ -329,7 +329,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     work: ['Clues: checking the clock repeatedly, tapping, bag already packed.', 'What I know: people check clocks when they are waiting for something and want it to hurry.', 'Conclusion: he is impatient for class to end.'],
     answer: 'Marcus is impatient and eager to leave, because the text says he checked the clock four times and had already packed his bag.' },
   traps: [
-    'Answering with something you personally believe that has no clue behind it in the text.',
+    'Answering with something you believe. If no clue in the text backs it, it is not an inference.',
     'Copying a sentence straight from the text. If the answer is written down, it is not an inference question.',
     'Ignoring what characters do and only reading what the author states.',
     'Picking the most dramatic possible explanation instead of the one the clues actually support.'
@@ -351,7 +351,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['My summary is as long as the story', 'I do not know what to leave out'],
   teks: ['3.7.D', '4.7.D', '5.7.D', '6.6.D', '7.6.D', '8.6.D'],
   apps: ['AlphaRead', 'MobyMax Primer'],
-  plain: 'A summary keeps only what a reader would need to understand the text, in your own words, in the right order. If your summary is longer than a few sentences, you are retelling, not summarizing.',
+  plain: 'A summary keeps only what a reader needs, in your own words, in order. If your summary runs longer than a few sentences, you are retelling.',
   why: 'Summarizing is how you prove you understood, and it is the fastest way to find out that you did not.',
   words: [
     { w: 'summarize', d: 'Give the important parts, briefly, in your own words.' },
@@ -377,8 +377,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Go paragraph by paragraph and pick the one sentence that matters most.',
     'Delete examples, lists, and repeated ideas.',
     'Rewrite each kept idea in your own words. Copying is not summarizing.',
-    'Use a frame: "Somebody wanted but so then" for stories, or a topic-plus-key-points sentence for nonfiction.',
-    'Check your summary is much shorter than the original and still makes sense on its own.'
+    'Use a frame. "Somebody wanted but so then" for stories, or topic plus key points for nonfiction.',
+    'Check it is much shorter than the original. It should still make sense on its own.'
   ],
   example: { prompt: 'Summarize a story where Ana wants to join the school band, cannot afford an instrument, saves money by walking dogs, and finally buys a used clarinet.',
     work: ['Somebody: Ana.', 'Wanted: to join the band.', 'But: she could not afford an instrument.', 'So: she walked dogs to earn money.', 'Then: she bought a used clarinet and joined.'],
@@ -432,7 +432,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Restate the question as a statement to start your answer.',
     'Go back into the text: do not answer from memory.',
     'Find the words that directly support your claim.',
-    'Quote them exactly, with quotation marks, and use a lead-in like "The text states…" or "According to paragraph 3…".',
+    'Quote it exactly, inside quotation marks. Use a lead-in like "The text states" or "According to paragraph 3".',
     'Explain the connection in your own words: "This shows that…".',
     'Check that your evidence proves the point you actually made.'
   ],
@@ -463,7 +463,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['My prediction was wrong', 'I just guess randomly'],
   teks: ['K.5.C', '1.6.C', '2.6.C', '3.6.C'],
   apps: ['Alpha Reading Fluency', 'Anton', 'AlphaRead', 'MobyMax Primer'],
-  plain: 'A prediction is a smart guess about what happens next, based on clues the author already gave you. Then you keep reading and either confirm it or correct it. Being wrong is fine: not checking is the problem.',
+  plain: 'A prediction is a smart guess about what happens next, built from clues. Then you read on and either confirm it or correct it. Being wrong is fine; not checking is the problem.',
   why: 'Predicting keeps you thinking ahead, which is exactly what keeps you paying attention while you read.',
   words: [
     { w: 'predict', d: 'Say what you think will happen, using clues.' },
@@ -519,7 +519,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['What is the problem in this story?', 'I mixed up setting and plot'],
   teks: ['2.8.A', '3.8.A', '3.8.C', '4.8.A', '4.8.C', '5.8.C'],
   apps: ['Alpha Reading Fluency', 'Anton', 'AlphaRead', 'MobyMax Primer'],
-  plain: 'Every story has the same skeleton: who it is about, where and when it happens, what goes wrong, and how it gets fixed. Once you can find those four things, you can understand any story.',
+  plain: 'Every story has the same skeleton. Who it is about, where it happens, what goes wrong, and how it gets fixed. Find those four and you can understand any story.',
   why: 'Almost every fiction question is really asking about one of these four elements, even when it does not use the word.',
   words: [
     { w: 'character', d: 'Who the story is about.' },
@@ -540,7 +540,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read the story all the way through once.',
     'List the characters. The main character is the one whose problem it is.',
     'Find the setting: where and when. Look at the first page.',
-    'Find the problem by asking what the main character wants and what is stopping them.',
+    'Find the problem. Ask what the main character wants and what is stopping them.',
     'Find the solution by looking at how the story ends.',
     'Fill in a story map so you can see all four at once.'
   ],
@@ -591,9 +591,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Name the conflict first. Everything else is measured against it.',
-    'Find the exposition: where the author sets up who, where, and what the situation is.',
-    'Track the rising action: each event that makes the conflict harder or the stakes higher.',
-    'Find the climax by asking: after which moment was the outcome no longer in doubt?',
+    'Find the exposition. That is where the author sets up who, where, and the situation.',
+    'Track the rising action. Every event that makes the conflict harder or the stakes higher.',
+    'Find the climax. Ask: after which moment was the outcome no longer in doubt?',
     'Note the falling action: the consequences that follow.',
     'Find the resolution: the new normal at the end.'
   ],
@@ -792,7 +792,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Is this a simile or a metaphor?', 'What does the author mean literally?'],
   teks: ['3.10.D', '4.10.D', '5.10.D', '6.9.D', '7.9.D', '8.9.D'],
   apps: ['AlphaRead', 'MobyMax Primer'],
-  plain: 'Figurative language means the words are not literally true, but they create a picture or a feeling. Your job is to work out what the author is really saying and why they chose that image.',
+  plain: 'Figurative language means the words are not literally true. They create a picture or a feeling instead. Your job is to work out what the author really means and why they chose that image.',
   why: 'Grade 6-8 questions rarely ask you to just name the device. They ask what effect it creates, which means you need the literal meaning first.',
   words: [
     { w: 'simile', d: 'A comparison using LIKE or AS. "Quiet as a library."' },
@@ -832,7 +832,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Naming the device and stopping. The question usually wants the meaning and the effect too.',
     'Confusing simile and metaphor. Look for "like" or "as."',
     'Reading figurative language literally and getting confused by an impossible image.',
-    'Saying the effect is "to make it more interesting." Be specific about what feeling it creates.'
+    'Saying the effect is "to make it more interesting". Be specific about the feeling it creates.'
   ],
   check: [
     { q: '"He is a rock." Simile or metaphor?', a: 'Metaphor: no "like" or "as."' },
@@ -881,9 +881,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Read it again out loud. Sound is doing work that silent reading misses.',
     'Look at the stanza breaks: what changes from one to the next?',
     'Find the turn: the line where the poem shifts in tone or idea.',
-    'For drama, read the character list and setting first so you can picture the stage.',
-    'Treat stage directions as what you would see, and dialogue as what you would hear.',
-    'Remember there is no narrator: everything you learn comes from what characters say and do.'
+    'For drama, read the character list and setting first. Then you can picture the stage.',
+    'Stage directions are what you would see. Dialogue is what you would hear.',
+    'Remember there is no narrator. Everything you learn comes from what characters say and do.'
   ],
   example: { prompt: 'A poem has three stanzas: winter, thaw, spring. What is the structure doing?',
     work: ['Three stanzas, each a season stage.', 'Stanza 1 is cold and still. Stanza 2 introduces movement. Stanza 3 is full of growth.', 'The stanza breaks mark the passage of time.', 'The structure mirrors the change the poem is describing.'],
@@ -940,7 +940,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Preview the headings and any bold text.',
     'Look for signal words in the opening sentences of paragraphs.',
     'Name the structure using the signal words as your evidence.',
-    'Draw the organizer that fits: Venn for compare, arrows for cause and effect, timeline for sequence.',
+    'Draw the organizer that fits. Venn for compare, arrows for cause and effect, timeline for sequence.',
     'Fill in the organizer as you read.',
     'Explain how the structure helps the author make their point.'
   ],
@@ -948,7 +948,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     work: ['Signal words: unlike, however, both.', 'Those all signal comparison.', 'Structure: compare and contrast.', 'Purpose: the author wants you to see how the two parks are alike and different so you can choose or understand each better.'],
     answer: 'Compare and contrast. The author uses it so the reader can weigh the two parks side by side.' },
   traps: [
-    'Confusing "sequence" with "cause and effect." Sequence just means things happened in order; cause and effect means one made the other happen.',
+    'Confusing sequence with cause and effect. Sequence means things happened in order; cause and effect means one made the other happen.',
     'Naming the structure but not explaining why the author used it.',
     'Assuming the whole text uses one structure. Long texts often switch between paragraphs.',
     'Ignoring headings, which usually give the structure away.'
@@ -972,7 +972,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I skipped the diagram and missed the answer', 'What am I supposed to do with a caption?'],
   teks: ['3.9.D', '4.9.D', '5.9.D', '6.8.D', '3.10.C', '4.10.C', '5.10.C'],
   apps: ['Alpha Reading Fluency', 'AlphaRead', 'MobyMax Primer'],
-  plain: 'Text features are everything that is not the main paragraphs: headings, bold words, captions, diagrams, charts, sidebars. They are not decoration. They carry information that is often not repeated in the text.',
+  plain: 'Text features are everything that is not the main paragraphs. Headings, bold words, captions, diagrams, charts, sidebars. They are not decoration: they carry information that is often nowhere else.',
   why: 'Test questions deliberately place answers inside captions and diagrams because they know students skip them.',
   words: [
     { w: 'caption', d: 'The text underneath a picture that explains it.' },
@@ -1000,8 +1000,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Preview all the features before you read a single paragraph.',
     'Read every heading. They are an outline of the text.',
     'Read every caption. Captions carry information that is often nowhere else.',
-    'For a diagram, read the title, then every label, then work out what it is showing.',
-    'For a chart, read the title, the axis labels, and the scale before the numbers.',
+    'For a diagram, read the title, then every label. Then work out what it is showing.',
+    'For a chart, read the title, axis labels, and scale first. Numbers come after.',
     'When answering, scan the features as well as the paragraphs.'
   ],
   example: { prompt: 'A question asks how deep the roots go, but the paragraphs never say. Where should you look?',
@@ -1118,7 +1118,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Check for facts with sources (informing) or opinions with calls to action (persuading).',
     'Name the broad purpose.',
     'Then state the specific message in a sentence.',
-    'Support it by naming one thing the author did: a structure, a word, an example: that achieves it.'
+    'Name one thing the author did to achieve it. A structure, a word, or an example.'
   ],
   example: { prompt: 'An article gives statistics about plastic in the ocean, then ends with "It is time we stopped using single-use plastics."',
     work: ['Facts and statistics point to informing.', 'But the closing line says "it is time we stopped": a call to action.', 'The facts are all on one side.', 'The purpose is to persuade, using information as the tool.'],
@@ -1146,7 +1146,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I summarized both but did not compare them', 'What am I supposed to compare?'],
   teks: ['3.6.E', '4.6.E', '5.6.E', '6.5.E', '7.5.H', '8.5.H'],
   apps: ['AlphaRead', 'MobyMax Primer'],
-  plain: 'Paired passages ask you to notice how two texts on the same topic differ: in what they claim, what evidence they use, what they leave out, and how they are organized. Summarizing each one separately is not comparing.',
+  plain: 'Paired passages ask how two texts on the same topic differ. What they claim, what evidence they use, what they leave out, and how they are organized. Summarizing each one separately is not comparing.',
   why: 'Paired-passage questions are worth the most points on most assessments, and they are the questions students most often answer as two separate summaries.',
   words: [
     { w: 'synthesize', d: 'Combine information from several sources into one new understanding.' },
@@ -1197,7 +1197,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I read it but I cannot find anything again', 'What am I supposed to write down?'],
   teks: ['4.7.E', '5.7.E', '6.6.E', '7.6.E', '8.6.E'],
   apps: ['AlphaRead', 'MobyMax Primer'],
-  plain: 'Annotating means leaving a trail so you can find things again and so your brain stays active. The point is not to highlight a lot. It is to write short notes in your own words.',
+  plain: 'Annotating means leaving a trail so you can find things again. It also keeps your brain awake. The point is not to highlight a lot, but to write short notes in your own words.',
   why: 'The TEKS name notetaking and annotating directly as a response skill, and it is the single habit that most improves comprehension on long texts.',
   words: [
     { w: 'annotate', d: 'Mark up a text with notes, questions, and symbols.' },
@@ -1221,8 +1221,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Decide on your marks before you start. Four is plenty.',
     'Read one paragraph at a time.',
-    'After each paragraph, write a short gist note in the margin in your own words.',
-    'Circle unknown words as you go, but do not stop to look them all up.',
+    'After each paragraph, write a short gist note. Use your own words, in the margin.',
+    'Circle unknown words as you go. Do not stop to look them all up.',
     'Mark confusion with a question mark so you can come back.',
     'When you are finished, reread only your notes. If they do not make sense, reread the text.'
   ],
@@ -1278,10 +1278,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Write your research question first. Everything else is judged against it.',
     'Search using the specific words from your question, not a whole sentence.',
-    'For each source, run the five questions: who, when, why, where from, and who else agrees.',
+    'Run the five questions on every source. Who, when, why, where from, and who else agrees.',
     'Decide whether it is primary or secondary and note that down.',
     'Take notes in YOUR OWN WORDS. Only copy exact words when you intend to quote them.',
-    'Record the title, author, and web address of everything you use so you can build a bibliography.'
+    'Record the title, author, and web address as you go. That becomes your bibliography.'
   ],
   example: { prompt: 'You need a source about the 1900 Galveston hurricane. You find a survivor\'s letter and an encyclopedia article. Which is which?',
     work: ['The survivor\'s letter was written by someone who was there → primary.', 'The encyclopedia article was written later, about the event → secondary.', 'Both are useful: the letter gives experience, the article gives context.'],

@@ -44,40 +44,49 @@ viewed guides.
 | `#/` | Three ways in: search, pick a grade, pick a subject, or pick the app you were stuck in |
 | `#/how` | The Unstuck Steps: the six moves to try before asking for help. Printable |
 | `#/g/<grade>/<subject>` | All guides for that grade and subject, grouped by unit |
-| `#/c/<id>` | A skill guide (the Unstuck Path, below) |
+| `#/c/<id>` | A skill guide, laid out as an anchor chart (below) |
 | `#/app/<appId>` | What a Timeback app teaches and which guides map to it |
 | `#/search/<query>` | Kiosk results first, then kid-safe web search options |
 | `#/library` | Resource Shelf: dictionaries, manipulatives, organizers, passages |
 | `#/safesearch` | Where searches go and how to search well |
 
-### The Unstuck Path
+### Each guide is an anchor chart
 
-Every guide has the same seven sections, in the same order, so students learn the shape
-once:
+A guide is a reference page a student pulls information *from*, not an article
+they read. The picture comes first, every line is short, and anything longer sits
+behind a tap.
 
-1. **What it means** &mdash; plain language, plus the vocabulary needed to read the rest
-2. **See it** &mdash; the diagram, before any prose
-3. **Do it** &mdash; numbered steps, the same steps as an auto-generated flow chart, and a worked example
-4. **Watch out** &mdash; the specific errors students actually make on that skill
-5. **Check yourself** &mdash; questions with hidden answers
-6. **Write this on your paper** &mdash; note-taking coaching, not a form
-7. **More help** &mdash; vetted external links, plus the official TEKS text and related skills
+1. **One line** &mdash; what this is, in a sentence a 9-year-old can read
+2. **Look at this** &mdash; the diagram, before any prose
+3. **Words to know** &mdash; each term as a colored card with a symbol
+4. **The moves** &mdash; numbered short lines. Tap `+` for the detail
+5. **Careful** &mdash; the specific mistakes students make, one short line each
+6. **Put this on your paper** &mdash; five note prompts
+7. Worked example, test yourself, more help, related skills &mdash; all folded shut
 
-Every guide that introduces new vocabulary renders those words as **colored word cards**
-rather than a list, so a term cannot be skimmed past.
+Long sentences are stored as `"Short line. The detail."` The renderer splits at the
+first sentence: the headline shows on the chart, the rest folds. Nothing is thrown
+away, and the chart stays scannable.
+
+Two numbers keep this honest, both enforced by the tests:
+
+* **Visible prose is capped at 210 words** per guide, counted with diagrams excluded
+  and collapsed sections closed. Roughly 60 words of structure, 13 for the one line,
+  20 for the paper prompts, and ~100 of actual content.
+* **Chart lines median 8 words.** `validate.py` also scores every guide with
+  Flesch-Kincaid against the youngest grade it is offered to.
 
 ### Step 6 teaches note-taking, it does not collect notes
 
-There is no notebook and nothing is saved. Step 6 exists to build the habit, so each
-prompt names the move *and* the reason a strong note-taker does it that way: write in
-your own words, cut to the shortest version that still works, show the line you usually
-do in your head, record *your* error rather than a general warning, and leave a margin
-question you can self-quiz from later. A standing "what makes a note worth keeping" panel
-covers heading the page, the margin, and drawing the diagram, and closes with a
-self-test: cover the page and say the skill from memory.
+There is no notebook and nothing is saved. Step 6 exists to build the habit, so the
+chart shows five short prompts and the folded panel carries the full coaching: write
+in your own words, cut to the shortest version that still works, show the line you
+usually do in your head, record *your* error rather than a general warning, and leave
+a margin question you can self-quiz from later.
 
-The prompt set varies by the guide's `note` type (`steps`, `frayer`, `strategy`, `word`)
-so a vocabulary guide coaches word study and a procedure guide coaches worked examples.
+The prompt set varies by the guide's `note` type (`steps`, `frayer`, `strategy`,
+`word`) so a vocabulary guide coaches word study and a procedure guide coaches worked
+examples.
 
 ---
 

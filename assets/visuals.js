@@ -183,18 +183,30 @@
     [/reverse|flip|reflect|rotate|translate|transform/i, 'swap']
   ];
 
-  function pickIcon(term, def) {
-    // Match the TERM first. Matching the definition too early picks up stray
-    // words: "infer", "evidence" and "schema" are all defined using the word
-    // "text", which made all three come out as a book.
-    var i;
+  // `taken` lets one card set avoid repeats: four division terms all matching
+  // the divide glyph tells a student nothing, so later terms fall through to
+  // their next-best match.
+  function pickIcon(term, def, taken) {
+    // Match the TERM first. Matching definitions too early picks up stray
+    // words: infer, evidence and schema are all defined using "text", which
+    // made all three come out as a book.
+    var fromTerm = [], fromDef = [], i;
     for (i = 0; i < ICON_RULES.length; i++) {
-      if (ICON_RULES[i][0].test(String(term || ''))) return ICON_RULES[i][1];
+      if (ICON_RULES[i][0].test(String(term || ''))) fromTerm.push(ICON_RULES[i][1]);
     }
     for (i = 0; i < ICON_RULES.length; i++) {
-      if (ICON_RULES[i][0].test(String(def || ''))) return ICON_RULES[i][1];
+      if (ICON_RULES[i][0].test(String(def || ''))) fromDef.push(ICON_RULES[i][1]);
     }
-    return 'dot';
+    var best = fromTerm[0] || fromDef[0] || 'dot';
+    if (!taken) return best;
+    // Prefer a different icon ONLY when the alternative still describes the
+    // term. Four division words sharing the divide glyph is honest; giving
+    // "divisor" an angle symbol just to look different is not.
+    for (i = 0; i < fromTerm.length; i++) {
+      if (!taken[fromTerm[i]]) { taken[fromTerm[i]] = 1; return fromTerm[i]; }
+    }
+    taken[best] = 1;
+    return best;
   }
 
   // An <svg> group placed at x,y and scaled to `size` px.
@@ -790,6 +802,7 @@
       rowH.push(Math.max.apply(null, heights.slice(r * perRow, (r + 1) * perRow).concat([148])));
     }
     var H = 34 + rowH.reduce(function (a, b) { return a + b + gap; }, 0);
+    var used = {};
     var body = t(W / 2, 22, p.title || 'The words in this guide', { size: 13, weight: 700, fill: SUB });
     var yTop = 34;
     words.forEach(function (w, i) {
@@ -802,7 +815,7 @@
       body += rect(x, y + 18, cw, 12, { fill: col, stroke: col, sw: 0, r: 0 });
       body += tblock(x + cw / 2, y + 15, w.w, Math.floor(cw / 7.5), { size: 13.5, weight: 800, fill: PANEL, lh: 14 });
       // a symbol for the term, so the meaning starts before the words do
-      var ic = w.icon || pickIcon(w.w, w.d);
+      var ic = w.icon || pickIcon(w.w, w.d, used);
       body += '<circle cx="' + (x + cw / 2) + '" cy="' + (y + 54) + '" r="19" fill="' + PANEL +
         '" stroke="' + col + '" stroke-width="2"/>';
       body += icon(ic, x + cw / 2 - 12, y + 42, 24, col);

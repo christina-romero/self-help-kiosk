@@ -33,7 +33,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Draw or picture a number line with zero in the middle.',
     'To compare, place both numbers. Whichever is further right is greater.',
-    'For negatives, remember the bigger the digit, the further LEFT it sits, so the smaller it is.',
+    'On the negative side, bigger digits mean smaller numbers. The bigger the digit, the further left it sits.',
     'For absolute value, count the distance from zero and ignore which side.',
     'For opposites, keep the distance and flip the side.'
   ],
@@ -43,7 +43,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   traps: [
     'Treating −8 as bigger than −3 because 8 is bigger than 3. On the negative side, bigger digits mean smaller values.',
     'Writing |−5| = −5. Absolute value output is never negative.',
-    'Thinking absolute value means "delete the minus sign." It means distance: that just happens to look the same for a single number.',
+    'Thinking absolute value means "delete the minus sign". It means distance, which just happens to look the same for a single number.',
     'Forgetting that zero is neither positive nor negative, and that its opposite is itself.'
   ],
   check: [
@@ -87,7 +87,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'That is why minus a negative becomes plus: you are taking away a debt.',
     'MULTIPLYING or DIVIDING: work out the digits first and ignore signs.',
     'Then count how many negative signs there were. Even count → positive. Odd count → negative.',
-    'Write the sign on your answer as a separate deliberate step, not as an afterthought.'
+    'Write the sign as its own deliberate step. Not as an afterthought.'
   ],
   example: { prompt: '−6 − (−10)',
     work: ['Subtracting a negative is adding the opposite: −6 + 10.', 'Start at −6, move 10 to the right.', 'You pass zero at step 6 and go 4 further.'],
@@ -116,7 +116,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['The problem has a fraction AND a negative and I freeze', 'Do I convert to decimals or keep fractions?'],
   teks: ['7.3.A', '7.3.B'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'A rational number is anything you can write as a fraction: that includes negatives, decimals, and whole numbers. The operation rules you already know all still apply; you just have to apply two of them at once.',
+  plain: 'A rational number is anything you can write as a fraction, including negatives and decimals. The rules you know still apply; you just apply two of them at once.',
   why: 'Grade 7 stops separating fraction problems from negative-number problems. Handling both at the same time is the whole skill.',
   words: [
     { w: 'rational number', d: 'Any number that can be written as a fraction of two integers.' }
@@ -149,8 +149,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '−7/12' },
   traps: [
     'Converting a repeating decimal and rounding, then getting marked wrong. 1/3 is not 0.33.',
-    'Applying the negative sign to only the numerator or only the denominator: it belongs to the whole fraction.',
-    'Switching forms mid-problem so you end up adding 0.5 to 1/3 without converting.',
+    'Putting the negative on only the top or only the bottom. It belongs to the whole fraction.',
+    'Switching forms mid-problem. Then you add 0.5 to 1/3 without converting.',
     'Forgetting to simplify the final answer.'
   ],
   check: [
@@ -190,12 +190,12 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       note: 'Every row is the same ratio. Multiply both columns by the same number.' }
   ],
   steps: [
-    'Read the sentence carefully and decide: is this comparing two parts, or a part to the whole?',
+    'Read the sentence and decide. Is it comparing two parts, or a part to the whole?',
     'Write the ratio in the order the words give it. "3 boys to 5 girls" is 3:5, not 5:3.',
-    'To find the whole from a part-to-part ratio, add the parts: 3 + 5 = 8 units total.',
+    'To find the whole, add the parts. 3 + 5 = 8 units in total.',
     'Build a ratio table. Multiply both quantities by the same number to scale up.',
-    'To find a missing value, figure out the scale factor between the rows and apply it to the other column.',
-    'Check your answer against the original ratio: does it still simplify back to 3:5?'
+    'Find the scale factor between the rows. Then apply it to the other column.',
+    'Check it against the original ratio. Does it still simplify back to 3:5?'
   ],
   example: { prompt: 'A recipe uses 2 cups of flour to 3 cups of milk. How much flour for 12 cups of milk?',
     work: ['Ratio flour : milk = 2 : 3.', 'Milk goes from 3 to 12. That is × 4.', 'Do the same to flour: 2 × 4 = 8.'],
@@ -224,7 +224,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Which one do I divide by?', 'How do I know which package is the better deal?'],
   teks: ['6.4.D', '7.4.B'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'A unit rate tells you how much of one thing there is for exactly ONE of the other. You get it by dividing so that the second quantity becomes 1.',
+  plain: 'A unit rate tells you how much there is for exactly ONE of the other thing. You get it by dividing so that the second quantity becomes 1.',
   why: 'Unit rate is the same idea as constant of proportionality in grade 7 and slope in grade 8. Learning it once pays off three times.',
   words: [
     { w: 'rate', d: 'A ratio comparing two quantities with different units, like miles per hour.' },
@@ -248,7 +248,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Ask what the question wants "one" of. Price per ounce means one ounce, so ounces goes on the bottom.',
     'Divide the numerator by the denominator.',
     'Attach the units: dollars per ounce.',
-    'If you are comparing, compute the same unit rate for every option: never compare price per ounce against ounces per dollar.',
+    'Comparing? Use the same unit rate for every option. Never compare price per ounce against ounces per dollar.',
     'For "better buy," the lower price per unit wins. For "better value," the higher units per dollar wins.'
   ],
   example: { prompt: 'A car travels 245 miles on 7 gallons. What is the unit rate?',
@@ -311,7 +311,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Checking only one pair. One matching quotient proves nothing.',
     'Calling any straight line proportional. A line with a y-intercept other than zero is linear but not proportional.',
     'Dividing x by y instead of y by x. Be consistent: k is always y ÷ x.',
-    'Missing a hidden starting fee in a word problem: "a $5 membership plus $2 per visit" is not proportional.'
+    'Missing a hidden starting fee. "A $5 membership plus $2 per visit" is not proportional.'
   ],
   check: [
     { q: 'y = 4x + 1. Proportional?', a: 'No. The + 1 means it does not pass through the origin.' },
@@ -362,7 +362,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     answer: '$60' },
   traps: [
     'Using the sale price as the whole. The whole is always the ORIGINAL amount.',
-    'Finding the discount and calling it the answer when the question asked for the sale price. Subtract it.',
+    'Stopping at the discount. If the question asked for the sale price, subtract it.',
     'For "30% off," multiplying by 0.30. That gives the discount. Multiply by 0.70 to get the sale price directly.',
     'Percent change: dividing by the new value instead of the original. Always divide by the original.'
   ],
@@ -404,8 +404,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Match up corresponding sides. Redraw both figures in the same orientation if you need to.',
     'Divide one image side by its matching original side. That is the scale factor.',
     'Check it with a second pair of sides. If they disagree, the figures are not similar.',
-    'To find a missing side on the image, multiply the original by the scale factor.',
-    'To find a missing side on the original, divide the image by the scale factor.',
+    'Missing side on the image? Multiply the original by the scale factor.',
+    'Missing side on the original? Divide the image by the scale factor.',
     'Remember: angles stay exactly the same. Only lengths change.'
   ],
   example: { prompt: 'Two similar rectangles. The small one is 3 by 5. The large one has a width of 12. Find its length.',
@@ -459,12 +459,12 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'If there are parentheses with a number outside, distribute: multiply that number by EVERY term inside.',
-    'Underline each set of like terms with a different mark so you can see them.',
+    'Parentheses with a number outside? Distribute it to EVERY term inside.',
+    'Mark each set of like terms differently. Then you can see them.',
     'Add or subtract only the coefficients. Keep the variable part exactly as it was.',
     'Combine the constants separately.',
     'Write the simplified expression, usually with the variable term first.',
-    'Check by substituting a number for the variable into both the original and your simplified version. They should give the same value.'
+    'Check by substituting a number for the variable. The original and your simplified version should give the same value.'
   ],
   example: { prompt: 'Simplify 4(x + 3) − 2x + 5',
     work: ['Distribute the 4: 4x + 12 − 2x + 5.', 'Like terms with x: 4x and −2x → 2x.', 'Constants: 12 and 5 → 17.'],
@@ -512,7 +512,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Apply that inverse to BOTH sides of the equation. Write it out under both sides; do not do it in your head.',
     'Simplify each side.',
     'The variable should now be alone. That is your solution.',
-    'CHECK: put your answer back into the original equation and confirm both sides are equal.'
+    'CHECK: put your answer back into the original. Confirm both sides are equal.'
   ],
   example: { prompt: 'Solve 6x = 42',
     work: ['x is being multiplied by 6.', 'The inverse of multiplying by 6 is dividing by 6.', '6x ÷ 6 = 42 ÷ 6.', 'x = 7.', 'Check: 6 × 7 = 42. ✓'],
@@ -540,7 +540,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Which step do I undo first?', 'There is an x on both sides and I do not know what to do'],
   teks: ['7.10.A', '7.11.A', '8.8.A', '8.8.C'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'Undo the operations in the reverse order they were applied: the opposite of the order of operations. Deal with addition and subtraction first, then multiplication and division. If there are variables on both sides, collect them onto one side first.',
+  plain: 'Undo the operations in reverse order, the opposite of the order of operations. Deal with addition and subtraction first, then multiplication and division. If there are variables on both sides, collect them onto one side first.',
   why: 'This is the last purely procedural equation skill before high school algebra, and it is the one most 8th graders lose points on.',
   words: [
     { w: 'collect terms', d: 'Move all the variable terms to one side of the equation.' },
@@ -561,7 +561,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Distribute if there are parentheses.',
     'Combine like terms on each side.',
-    'If there are variable terms on both sides, subtract the smaller one from both sides so it disappears from one side.',
+    'Variables on both sides? Subtract the smaller one from both sides so it disappears from one side.',
     'Undo the addition or subtraction that is attached to the variable term.',
     'Undo the multiplication or division on the variable.',
     'Substitute your answer into the ORIGINAL equation to check.'
@@ -593,7 +593,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['When do I flip the inequality sign?', 'Open circle or closed circle?'],
   teks: ['6.9.B', '6.10.A', '7.11.A'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'You solve an inequality exactly like an equation, with one extra rule: if you multiply or divide both sides by a NEGATIVE number, the inequality sign flips direction.',
+  plain: 'Solve an inequality exactly like an equation, with one extra rule. If you multiply or divide both sides by a NEGATIVE number, the sign flips direction.',
   why: 'The flip rule is a single line of the lesson that costs students a whole unit of accuracy when they miss it.',
   words: [
     { w: 'inequality', d: 'A statement using <, >, ≤, or ≥ instead of =.' },
@@ -612,9 +612,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   steps: [
     'Solve it exactly the way you would solve an equation.',
-    'Watch for the one exception: if you multiply or divide both sides by a negative number, flip the inequality sign.',
+    'Watch for the one exception. Multiplying or dividing both sides by a negative flips the sign.',
     'Adding or subtracting a negative does NOT flip anything.',
-    'To graph, put a circle on the boundary number: open if it is < or >, closed if it is ≤ or ≥.',
+    'To graph, put a circle on the boundary. Open for < or >, closed for less-or-equal and greater-or-equal.',
     'Shade toward the numbers that make the statement true. Test one number from your shaded side to be sure.'
   ],
   example: { prompt: 'Solve and graph −3x ≥ 12',
@@ -667,7 +667,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Identify the base and the exponent.',
     'Write out the multiplication in full the first few times you practice.',
     'Multiply step by step. Do not try to do it all at once.',
-    'Check whether a negative sign is inside or outside the parentheses: it changes the answer.',
+    'Check whether the negative sign is inside or outside the parentheses. It changes the answer.',
     'Remember exponents come before multiplication and division in the order of operations.'
   ],
   example: { prompt: 'Evaluate 2 × 3³',
@@ -696,7 +696,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Which way do I move the decimal point?', 'What does a negative exponent mean here?'],
   teks: ['8.2.C'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'Scientific notation writes any number as a value between 1 and 10, multiplied by a power of ten. The exponent counts how many places the decimal point moved.',
+  plain: 'Scientific notation writes a number as a value between 1 and 10, times a power of ten. The exponent counts how many places the decimal point moved.',
   why: 'Science classes and calculators both use it constantly, and it makes very large and very small numbers comparable at a glance.',
   words: [
     { w: 'standard form', d: 'The ordinary way of writing a number: 45,000.' },
@@ -717,11 +717,11 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Place the decimal point so exactly one non-zero digit sits in front of it. That gives you the "a" part.',
+    'Put the point after the first non-zero digit. That gives you the "a" part.',
     'Count how many places you moved the point.',
     'If the original number was large, the exponent is positive. If it was less than 1, the exponent is negative.',
     'Write it as a × 10ⁿ.',
-    'To reverse it, move the point the other way the same number of places, filling with zeros.',
+    'To reverse it, move the point back the other way. Same number of places, filling with zeros.',
     'Sanity check: a negative exponent must produce a number smaller than 1.'
   ],
   example: { prompt: 'Write 0.000305 in scientific notation.',
@@ -772,7 +772,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'If no, find the two perfect squares it falls between.',
     'The root is between those two whole numbers.',
     'Judge how close it is to each end to estimate the decimal.',
-    'Classify: perfect square roots are rational; all other square roots of whole numbers are irrational.'
+    'Classify it. Perfect square roots are rational; every other square root of a whole number is irrational.'
   ],
   example: { prompt: 'Estimate √72 and classify it.',
     work: ['64 and 81 are the perfect squares around 72.', 'So √72 is between 8 and 9.', '72 is closer to 64 than to 81, so the answer is a bit past 8.', '8.5² = 72.25, which is just over, so √72 is about 8.49.', '72 is not a perfect square, so √72 is irrational.'],
@@ -781,7 +781,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Dividing by 2 instead of taking the root. √16 is 4, not 8.',
     'Calling 0.333… irrational. It repeats, so it is rational (it equals 1/3).',
     'Assuming every square root is irrational. √25 is exactly 5.',
-    'Rounding to a whole number when the question asks for an estimate to the nearest tenth.'
+    'Rounding to a whole number. The question may want the nearest tenth.'
   ],
   check: [
     { q: 'What is √81?', a: '9.' },
@@ -821,7 +821,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Count how far RIGHT to get to the second point. That is the run.',
     'Slope = rise ÷ run.',
     'From a table: pick two rows. Slope = (change in y) ÷ (change in x).',
-    'Check the sign against the picture: a line going up left-to-right has a positive slope; going down means negative.'
+    'Check the sign against the picture. Uphill left-to-right is positive; downhill is negative.'
   ],
   example: { prompt: 'A line passes through (2, 3) and (6, 11). Find the slope.',
     work: ['Change in y: 11 − 3 = 8.', 'Change in x: 6 − 2 = 4.', 'Slope = 8 ÷ 4 = 2.'],
@@ -850,7 +850,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Which letter is the slope again?', 'How do I graph a line from an equation?'],
   teks: ['8.4.C', '8.5.B', '8.5.I'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'In y = mx + b, m is the slope and b is where the line crosses the y-axis. Once you know those two numbers you can draw the line in about ten seconds.',
+  plain: 'In y = mx + b, m is the slope and b is the y-intercept. Know those two numbers and you can draw the line in about ten seconds.',
   why: 'This one form connects tables, graphs, equations, and real situations. Grade 8 asks you to move between all four.',
   words: [
     { w: 'y-intercept', d: 'The y-value where the line crosses the y-axis. It happens when x = 0.' },
@@ -868,12 +868,12 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] }
   ],
   steps: [
-    'Rearrange the equation so y is alone on the left, if it is not already.',
+    'Get y alone on the left, if it is not already.',
     'Read off b (the constant) and m (the coefficient of x).',
     'Plot (0, b) first.',
-    'Write m as rise over run and step from that point to plot a second one.',
+    'Write m as rise over run. Step from your first point to plot a second one.',
     'Draw the line through both.',
-    'Going backwards from a graph: read b where the line crosses the y-axis, then count rise over run between two clean points to get m.'
+    'From a graph, work backwards. Read b where the line crosses the y-axis, then count rise over run between two clean points to get m.'
   ],
   example: { prompt: 'Graph y = −3/4 x + 5.',
     work: ['b = 5, so plot (0, 5).', 'm = −3/4, so from (0, 5) go DOWN 3 and RIGHT 4.', 'That lands on (4, 2).', 'Draw the line through (0, 5) and (4, 2).'],
@@ -980,7 +980,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Locate the intersection point.',
     'Write it as an ordered pair.',
     'Substitute into both original equations to verify it works in each one.',
-    'In a word problem, say what the point MEANS: "after 5 months, both plans cost $60."'
+    'Say what the point MEANS. "After 5 months, both plans cost $60."'
   ],
   example: { prompt: 'Plan A costs $20 plus $5 per month. Plan B costs $35 plus $2 per month. When do they cost the same?',
     work: ['Plan A: y = 5x + 20. Plan B: y = 2x + 35.', 'Set them equal: 5x + 20 = 2x + 35.', 'Subtract 2x: 3x + 20 = 35.', 'Subtract 20: 3x = 15. So x = 5.', 'Substitute: y = 5(5) + 20 = 45.', 'Check in Plan B: 2(5) + 35 = 45. ✓'],
@@ -1089,7 +1089,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Check whether you were given the radius or the diameter. If it is the diameter, halve it.',
     'Circumference: C = 2πr. Area: A = πr².',
     'For area, square the radius FIRST, then multiply by π.',
-    'Use 3.14 for π unless the question says to leave your answer in terms of π.',
+    'Use 3.14 for pi. Unless the question says to leave your answer in terms of pi.',
     'Label with units, squared for area.'
   ],
   example: { prompt: 'A circle has a diameter of 10 cm. Find the circumference and the area. Use 3.14 for π.',
@@ -1139,16 +1139,16 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Decide: inside (volume) or outside (surface area)?',
     'Name the solid so you pick the right formula.',
-    'For volume of a prism or cylinder, find the base area first, then multiply by the height.',
+    'For a prism or cylinder, find the base area first. Then multiply by the height.',
     'For a cone or pyramid, do the same then multiply by one third.',
-    'For surface area, either use the formula or unfold the solid into a net and add up every face.',
+    'For surface area, use the formula or unfold a net. Then add up every face.',
     'Label the answer: cubic units for volume, square units for surface area.'
   ],
   example: { prompt: 'A cylinder has radius 3 cm and height 10 cm. Find its volume. Use 3.14 for π.',
     work: ['Base is a circle: area = πr² = 3.14 × 9 = 28.26 cm².', 'Multiply by the height: 28.26 × 10 = 282.6.'],
     answer: '282.6 cm³' },
   traps: [
-    'Using the slant height of a cone where the vertical height is needed, or vice versa. Volume needs the vertical height; lateral surface area needs the slant.',
+    'Mixing up slant height and vertical height. Volume needs the vertical height; lateral surface area needs the slant.',
     'Forgetting the one third for cones and pyramids, giving triple the correct volume.',
     'Forgetting one of the faces when counting a net. A rectangular prism has six.',
     'Writing cm² for a volume answer.'
@@ -1249,7 +1249,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Write down the coordinate rule before you touch the graph.',
     'Apply the rule to every vertex of the shape, one point at a time. Make a table.',
     'Plot the new points and connect them in the same order.',
-    'Check: for a translation, reflection, or rotation, the new shape must be the same size. If it is not, you made an arithmetic slip.',
+    'Check the size. A translation, reflection, or rotation must keep the shape the same size, so a change means an arithmetic slip.',
     'Name the result: congruent for the first three, similar for a dilation.'
   ],
   example: { prompt: 'Triangle with vertices (1, 2), (4, 2), (4, 6) is reflected over the y-axis. Find the image.',
@@ -1311,7 +1311,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Scan for crossing lines: opposite (vertical) angles are equal.',
     'Scan for parallel line markings: that unlocks corresponding and alternate interior angles.',
     'If it is a triangle, use the 180° sum.',
-    'Turn the relationship into an equation, solve for the variable, then answer the actual question.'
+    'Turn the relationship into an equation and solve. Then answer the actual question.'
   ],
   example: { prompt: 'Two angles are supplementary. One is (3x + 10)° and the other is (2x − 5)°. Find both.',
     work: ['Supplementary means they add to 180.', '(3x + 10) + (2x − 5) = 180', '5x + 5 = 180', '5x = 175, so x = 35.', 'First angle: 3(35) + 10 = 115°.', 'Second angle: 2(35) − 5 = 65°.', 'Check: 115 + 65 = 180. ✓'],
@@ -1369,10 +1369,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Identify which display you are looking at.',
     'Read the title, labels, and scale before anything else.',
-    'For a box plot, name the five numbers left to right: minimum, Q1, median, Q3, maximum.',
+    'On a box plot, name the five numbers left to right. Minimum, Q1, median, Q3, maximum.',
     'The box holds the middle 50% of the data. A wide box means a spread-out middle.',
     'For a histogram, note that each bar is an interval, not a single value.',
-    'Describe center, spread, and shape in words when the question asks you to compare two sets.'
+    'Describe center, spread, and shape in words. That is what a comparison question wants.'
   ],
   example: { prompt: 'A box plot shows min 12, Q1 18, median 25, Q3 32, max 45. What is the IQR and what does it mean?',
     work: ['IQR = Q3 − Q1 = 32 − 18 = 14.', 'That is the width of the box.', 'It means the middle half of the data is spread across 14 units.'],
@@ -1402,7 +1402,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Do I use the mean or the median here?', 'An outlier is messing up my average'],
   teks: ['6.12.C', '6.13.A', '8.11.B'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'Mean, median and mode are three different ways to say "the typical value." They usually give different answers, and which one is honest depends on whether the data has outliers.',
+  plain: 'Mean, median and mode are three ways to say "the typical value". They usually give different answers, and which one is honest depends on whether the data has outliers.',
   why: 'The exam question is almost never "calculate the mean." It is "which measure best describes this data, and why?"',
   words: [
     { w: 'mean', d: 'Add everything, divide by how many. The ordinary average.' },
@@ -1427,14 +1427,14 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Median: find the middle. With an even count, average the two middle values.',
     'Mode: find the value that appears most. There can be none, one, or several.',
     'Scan for outliers. If one exists, the median describes the data more honestly.',
-    'When asked to justify, say WHY: "the median, because the $200 value is an outlier that pulls the mean up."'
+    'Say WHY when you justify. "The median, because the $200 value is an outlier that pulls the mean up."'
   ],
   example: { prompt: 'Find the mean and median of 4, 7, 7, 9, 38. Which better describes the data?',
     work: ['Already in order.', 'Mean: (4 + 7 + 7 + 9 + 38) ÷ 5 = 65 ÷ 5 = 13.', 'Median: the middle of five values is the third → 7.', '38 is far from the others, so it is an outlier.', 'The mean of 13 is higher than four of the five values.'],
     answer: 'Mean 13, median 7. The median is a better description because 38 is an outlier.' },
   traps: [
     'Forgetting to order the data before finding the median.',
-    'With an even number of values, picking one middle value instead of averaging the two.',
+    'With an even count, picking one middle value. Average the two.',
     'Dividing by the wrong count. Divide by how many values there are, not by the largest value.',
     'Saying "the median is better" without explaining why. The reason. The outlier: is what earns the credit.'
   ],
@@ -1599,15 +1599,15 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'For a budget, list income and expenses in two columns and subtract. What is left over is savings.',
     'For simple interest, convert the percent to a decimal by dividing by 100.',
     'Multiply principal × rate × time. Time must be in years.',
-    'Add the interest to the principal if the question asks for the total amount owed or saved.',
-    'For credit questions, remember: paying in full and on time avoids interest and builds a positive credit history.',
-    'When comparing ways to pay for college, sort them into "must repay" and "do not repay."'
+    'Add the interest back on to the principal. Do this whenever the question asks for the total owed or saved.',
+    'For credit, remember what builds a good history. Paying in full and on time avoids interest.',
+    'Sort college funding two ways. "Must repay" and "do not repay".'
   ],
   example: { prompt: 'You borrow $1,200 at 6% simple interest for 3 years. How much interest, and how much do you repay in total?',
     work: ['Convert 6% to 0.06.', 'I = P × r × t = 1200 × 0.06 × 3.', '1200 × 0.06 = 72 per year.', '72 × 3 = 216.', 'Total repaid = 1200 + 216 = 1416.'],
     answer: '$216 in interest, $1,416 repaid in total.' },
   traps: [
-    'Using 6 instead of 0.06 for the rate, giving an answer 100 times too big.',
+    'Using 6 instead of 0.06 for the rate. That gives an answer 100 times too big.',
     'Giving the interest when the question asked for the total amount. Add the principal back on.',
     'Using months for time without converting to years. 18 months is 1.5 years.',
     'Thinking a credit card is free money. Unpaid balances accumulate interest quickly.'
