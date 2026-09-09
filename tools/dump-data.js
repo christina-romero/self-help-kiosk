@@ -37,5 +37,11 @@ process.stdout.write(JSON.stringify({
   TEKS: sandbox.window.TEKS,
   APPS: sandbox.window.APPS,
   RESOURCES: sandbox.window.RESOURCES,
+  TOOLS: (sandbox.window.TOOLS || []).map(function (t) {
+    // regexes do not survive JSON, so send the source across as a string
+    return Object.assign({}, t, {
+      when: Object.assign({}, t.when, { units: t.when && t.when.units ? t.when.units.source : null })
+    });
+  }),
   CONCEPTS: sandbox.window.CONCEPTS
 }));

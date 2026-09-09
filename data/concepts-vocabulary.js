@@ -58,8 +58,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How do you test your guess?', a: 'Substitute it into the sentence and check the sentence still makes sense.' }
   ],
   links: [
-    { t: 'Reading Rockets: Vocabulary', u: 'https://www.readingrockets.org/topics/vocabulary', d: 'Context clues and other word-learning strategies.' },
-    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'For when the context is not enough.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'strategy'
 },
@@ -111,8 +110,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What does "misinterpret" mean?', a: 'To interpret wrongly.' }
   ],
   links: [
-    { t: 'Reading Rockets: Root words, suffixes and prefixes', u: 'https://www.readingrockets.org/topics/spelling-and-word-study/articles/root-words-suffixes-and-prefixes', d: 'Reference lists and how to teach them.' },
-    { t: 'PrefixSuffix.com: root chart', u: 'https://www.prefixsuffix.com/rootchart.php', d: 'A searchable chart of affixes and roots.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'word'
 },
@@ -168,9 +166,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What should you do right after learning a new root?', a: 'List three more words that use it.' }
   ],
   links: [
-    { t: 'Membean: word roots', u: 'https://membean.com/rootcasts', d: 'Short explanations of common roots.' },
-    { t: 'Online Etymology Dictionary', u: 'https://www.etymonline.com/', d: 'Where any word came from. Best for grades 6-8.' },
-    { t: 'LearnThat: root words', u: 'https://www.learnthat.org/pages/view/roots.html', d: 'A large searchable root list.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'word'
 },
@@ -226,8 +222,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'A familiar word does not fit. What does that tell you?', a: 'It is probably being used in a different sense.' }
   ],
   links: [
-    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Shows all the meanings in kid language.' },
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Explains how a word is really used.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Shows all the meanings in kid language.' }
   ],
   note: 'word'
 },
@@ -286,8 +281,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Are synonyms always interchangeable?', a: 'No. Shades of meaning and common usage both matter.' }
   ],
   links: [
-    { t: 'Reading Rockets: Semantic Gradients', u: 'https://www.readingrockets.org/classroom/classroom-strategies/semantic-gradients', d: 'Ordering words by strength.' },
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Shows how words differ in real use.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'word'
 },
@@ -346,7 +340,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should you look up the words or the phrase?', a: 'The whole phrase.' }
   ],
   links: [
-    { t: 'Grammar Monster: Sayings and proverbs', u: 'https://www.grammar-monster.com/sayings_proverbs.htm', d: 'Common expressions explained.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
     { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Look up phrases as well as words.' }
   ],
   note: 'word'
@@ -407,7 +401,6 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Definitions written for students.' },
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Plain-English explanations plus real usage.' },
     { t: 'Wordsmyth glossary mode', u: 'https://www.wordsmyth.net/?mode=glossary', d: 'Simplified definitions.' }
   ],
   note: 'steps'
@@ -469,8 +462,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What does "justify" require?', a: 'Reasons supporting your answer.' }
   ],
   links: [
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Look up any academic term.' },
-    { t: 'Reading Rockets: Concept Sort', u: 'https://www.readingrockets.org/classroom/classroom-strategies/concept-sort', d: 'A way to organize academic terms by meaning.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'word'
 },
@@ -529,8 +521,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Why do persuasive writers use loaded language?', a: 'To steer how you feel about the subject, not just what you know about it.' }
   ],
   links: [
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Shows how words feel in real use, not just what they mean.' },
-    { t: 'Grammar Monster: Emotive language', u: 'https://www.grammar-monster.com/glossary/emotive_language.htm', d: 'Loaded language and its effects.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -585,9 +577,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Why does Membean show you the same word repeatedly?', a: 'Spaced repetition. It reappears right before you would forget it.' }
   ],
   links: [
-    { t: 'Reading Rockets: Word Maps', u: 'https://www.readingrockets.org/classroom/classroom-strategies/word-maps', d: 'The four-box word map strategy.' },
-    { t: 'Reading Rockets: Concept Word Games', u: 'https://www.readingrockets.org/classroom/classroom-strategies/concept-word-games', d: 'Ways to practice words actively.' },
-    { t: 'Membean rootcasts', u: 'https://membean.com/rootcasts', d: 'Short root explanations to anchor new words.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'word'
 },
@@ -643,8 +633,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Why does direction matter?', a: 'Part-to-whole and whole-to-part are different relationships.' }
   ],
   links: [
-    { t: 'Grammar Monster: Analogy', u: 'https://www.grammar-monster.com/glossary/analogy.htm', d: 'What analogies are and how they work.' },
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Check the precise meaning of each option.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'strategy'
 }

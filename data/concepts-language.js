@@ -54,8 +54,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What two halves does every sentence need?', a: 'A subject and a predicate.' }
   ],
   links: [
-    { t: 'Grammar Monster: Sentences', u: 'https://www.grammar-monster.com/glossary/sentences.htm', d: 'What a sentence is and the four types.' },
-    { t: 'Grammar Bytes: Subject', u: 'https://chompchomp.com/terms/subject.htm', d: 'How to find the subject of any sentence.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -108,9 +107,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What are the FANBOYS?', a: 'for, and, nor, but, or, yet, so.' }
   ],
   links: [
-    { t: 'Grammar Bytes: Fragment', u: 'https://chompchomp.com/terms/fragment.htm', d: 'What makes a fragment and how to fix it.' },
-    { t: 'Grammar Monster: Run-on error', u: 'https://www.grammar-monster.com/lessons/commas_run-on_error.htm', d: 'Comma splices and run-ons explained.' },
-    { t: 'Grammar Bytes: Exercises', u: 'https://chompchomp.com/exercises.htm', d: 'Free practice on fragments and run-ons.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -166,8 +163,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Where does the comma go in "Because it snowed we stayed home"?', a: 'After "snowed". The dependent clause comes first.' }
   ],
   links: [
-    { t: 'Grammar Monster: Phrases', u: 'https://www.grammar-monster.com/glossary/phrase.htm', d: 'Phrase vs clause, with examples.' },
-    { t: 'Grammar Monster: Conjunctions and commas', u: 'https://www.grammar-monster.com/lessons/conjunctions_and_commas.htm', d: 'Joining clauses correctly.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -228,8 +224,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Is "friendly" an adverb?', a: 'No. Despite the -ly ending, it describes nouns, so it is an adjective.' }
   ],
   links: [
-    { t: 'Grammar Monster: Parts of speech', u: 'https://www.grammar-monster.com/glossary/parts_of_speech.htm', d: 'All eight, with examples of each.' },
-    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Video lessons on every part of speech.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -286,8 +281,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Is "the Team are winning" correct?', a: 'No. A collective noun acting as one takes a singular verb: "the team is winning."' }
   ],
   links: [
-    { t: 'Grammar Monster: Nouns', u: 'https://www.grammar-monster.com/lessons/nouns.htm', d: 'Every kind of noun with examples.' },
-    { t: 'Grammar Monster: Plurals', u: 'https://www.grammar-monster.com/plurals.htm', d: 'All the plural rules including irregulars.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
     { t: 'Khan Academy: The noun', u: 'https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-noun', d: 'Videos and practice.' }
   ],
   note: 'steps'
@@ -342,8 +336,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Which tense do you normally use to write about a story?', a: 'Present tense: "The character realizes…"' }
   ],
   links: [
-    { t: 'Grammar Monster: Verbs', u: 'https://www.grammar-monster.com/lessons/verbs-for-kids.htm', d: 'Verbs and tenses explained simply.' },
-    { t: 'Grammar Monster: Irregular verbs', u: 'https://www.grammar-monster.com/important-irregular-verbs.htm', d: 'The list worth memorizing.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'strategy'
 },
@@ -401,8 +394,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is the first thing to cross out when checking agreement?', a: 'Any prepositional phrase between the subject and the verb.' }
   ],
   links: [
-    { t: 'Grammar Monster: Subject-verb agreement', u: 'https://www.grammar-monster.com/lessons/subject_verb_agreement.htm', d: 'Every tricky case, with examples.' },
-    { t: 'Grammar Bytes: Exercises', u: 'https://chompchomp.com/exercises.htm', d: 'Free agreement practice.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -457,8 +449,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is an antecedent?', a: 'The noun that a pronoun refers back to.' }
   ],
   links: [
-    { t: 'Grammar Monster: Grammar terms', u: 'https://www.grammar-monster.com/grammar_terms_and_definitions.htm', d: 'Look up any pronoun term.' },
-    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Pronoun lessons and practice.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -512,8 +503,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Two dogs. Which one is the "biggest"?', a: 'Neither: with two, say "bigger."' }
   ],
   links: [
-    { t: 'Grammar Monster: Adjectives', u: 'https://www.grammar-monster.com/lessons/adjectives-for-kids.htm', d: 'Adjectives including comparatives.' },
-    { t: 'Grammar Monster: Parts of speech lists', u: 'https://www.grammar-monster.com/parts_of_speech_lists.htm', d: 'Reference lists you can print.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -571,8 +561,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Can the subject be inside a prepositional phrase?', a: 'No, never.' }
   ],
   links: [
-    { t: 'Grammar Monster: Misplaced modifiers', u: 'https://www.grammar-monster.com/glossary/misplaced_modifier.htm', d: 'Examples of modifiers gone wrong.' },
-    { t: 'Grammar Monster: Phrases', u: 'https://www.grammar-monster.com/glossary/phrase.htm', d: 'All phrase types including prepositional.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -632,9 +621,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Where does the comma go in "Before school I run"?', a: 'After "school". It is an introductory phrase.' }
   ],
   links: [
-    { t: 'Grammar Monster: Punctuation lessons', u: 'https://www.grammar-monster.com/punctuation_lessons.htm', d: 'Every comma rule with examples.' },
-    { t: 'Grammar Monster: Commas after an introduction', u: 'https://www.grammar-monster.com/lessons/commas_after_a_sentence_introduction.htm', d: 'The introductory comma rule.' },
-    { t: 'Grammar Bytes: Handouts', u: 'https://chompchomp.com/handouts.htm', d: 'Printable comma rules.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -687,8 +674,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Is "banana\'s $1 each" correct?', a: 'No. That is a plural, not a possessive. It should be "bananas."' }
   ],
   links: [
-    { t: 'Grammar Monster: Punctuation lessons', u: 'https://www.grammar-monster.com/punctuation_lessons.htm', d: 'Apostrophe rules with examples.' },
-    { t: 'Grammar Monster: Easily confused words', u: 'https://www.grammar-monster.com/easily_confused_words.htm', d: 'its/it\'s, your/you\'re, their/there/they\'re.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -746,7 +732,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Fix: "Where are you going." she asked.', a: '"Where are you going?" she asked.' }
   ],
   links: [
-    { t: 'Grammar Monster: Punctuation lessons', u: 'https://www.grammar-monster.com/punctuation_lessons.htm', d: 'Quotation marks and speech punctuation.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
     { t: 'Khan Academy: Punctuation', u: 'https://www.khanacademy.org/humanities/grammar/punctuation', d: 'Video lessons and practice.' }
   ],
   note: 'steps'
@@ -805,7 +791,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Which words in a title stay lowercase?', a: 'Small words in the middle: a, an, the, of, in, and, or.' }
   ],
   links: [
-    { t: 'Grammar Monster: Common grammar errors', u: 'https://www.grammar-monster.com/common_grammar_errors.htm', d: 'Includes the capitalization mistakes people repeat.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'steps'
 },
@@ -863,8 +849,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Add -es to "study."', a: 'studies: consonant before y, so change y to i.' }
   ],
   links: [
-    { t: 'Grammar Monster: Most misspelled words', u: 'https://www.grammar-monster.com/lessons/most-misspelled-words.htm', d: 'The words worth learning on purpose.' },
-    { t: 'Reading Rockets: Word Hunts', u: 'https://www.readingrockets.org/classroom/classroom-strategies/word-hunts', d: 'Finding spelling patterns in real text.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'steps'
 },
@@ -921,8 +907,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: '"The rain will (affect / effect) the game."', a: 'affect. It is an action, a verb.' }
   ],
   links: [
-    { t: 'Grammar Monster: Easily confused words', u: 'https://www.grammar-monster.com/easily_confused_words.htm', d: 'A long list with clear explanations.' },
-    { t: 'Grammar Monster: Confused words test', u: 'https://www.grammar-monster.com/tests/confused_words_test.htm', d: 'Practice quiz.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'word'
 },
@@ -978,8 +963,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How do you find choppy writing?', a: 'Read it out loud. It sounds like a list.' }
   ],
   links: [
-    { t: 'Reading Rockets: Sentence Combining', u: 'https://www.readingrockets.org/classroom/classroom-strategies/sentence-combining', d: 'The strategy with practice examples.' },
-    { t: 'Grammar Monster: Conjunctions and commas', u: 'https://www.grammar-monster.com/lessons/conjunctions_and_commas.htm', d: 'Joining clauses without creating errors.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'strategy'
 }

@@ -52,7 +52,6 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'You read a word and it is not a real word. What should you try?', a: 'The other vowel sound. Try long instead of short.' }
   ],
   links: [
-    { t: 'Reading Rockets: Phonics and Decoding', u: 'https://www.readingrockets.org/topics/phonics-and-decoding', d: 'How letters and sounds work.' },
     { t: 'Starfall', u: 'https://www.starfall.com/h/', d: 'Letter sounds you can hear and play with.' }
   ],
   note: 'strategy'
@@ -100,10 +99,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How many syllables in "computer"?', a: '3: com-pu-ter.' },
     { q: 'What is the first sound in "friend"?', a: '/f/.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Rhyming Games', u: 'https://www.readingrockets.org/classroom/classroom-strategies/rhyming-games', d: 'Games for hearing rhyme.' },
-    { t: 'Reading Rockets: Syllable Games', u: 'https://www.readingrockets.org/classroom/classroom-strategies/syllable-games', d: 'Games for counting beats.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -159,8 +155,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is different about the a in "car"?', a: 'The r changes it. It does not say short a or long a.' }
   ],
   links: [
-    { t: 'Reading Rockets: Matching Books to Phonics Features', u: 'https://www.readingrockets.org/classroom/classroom-strategies/matching-books-phonics-features', d: 'Practicing a pattern in real books.' },
-    { t: 'Reading Rockets: Word Hunts', u: 'https://www.readingrockets.org/classroom/classroom-strategies/word-hunts', d: 'Hunt for a pattern in what you are reading.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'steps'
 },
@@ -218,8 +213,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What shows you where one word ends?', a: 'The space.' }
   ],
   links: [
-    { t: 'Storyline Online', u: 'https://storylineonline.net/', d: 'Watch books being read so you can see how they work.' },
-    { t: 'Reading Rockets: Shared Reading', u: 'https://www.readingrockets.org/classroom/classroom-strategies/shared-reading', d: 'Reading together to learn how print works.' }
+    { t: 'Storyline Online', u: 'https://storylineonline.net/', d: 'Watch books being read so you can see how they work.' }
   ],
   note: 'steps'
 },
@@ -275,8 +269,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What word can start the middle of a retell?', a: '"Then" or "Next" or "After that."' }
   ],
   links: [
-    { t: 'Reading Rockets: Story Sequence', u: 'https://www.readingrockets.org/classroom/classroom-strategies/story-sequence', d: 'Putting events in order.' },
-    { t: 'Reading Rockets: Story Maps', u: 'https://www.readingrockets.org/classroom/classroom-strategies/story-maps', d: 'A picture that holds a whole story.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Story maps and plot diagrams you fill in.' }
   ],
   note: 'strategy'
 },
@@ -328,10 +321,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What do you do after you ask a question?', a: 'Keep reading to look for the answer.' },
     { q: 'Is it okay if the book never answers your question?', a: 'Yes. Some questions stay open, and that is normal.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Think-Alouds', u: 'https://www.readingrockets.org/classroom/classroom-strategies/think-alouds', d: 'What good readers say in their heads.' },
-    { t: 'Reading Rockets: Directed Reading Thinking Activity', u: 'https://www.readingrockets.org/classroom/classroom-strategies/directed-reading-thinking-activity-drta', d: 'A predict-and-check routine.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -384,8 +374,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should your picture stay the same the whole book?', a: 'No. It should change as the story changes.' }
   ],
   links: [
-    { t: 'Reading Rockets: Visual Imagery', u: 'https://www.readingrockets.org/classroom/classroom-strategies/visual-imagery', d: 'The visualizing strategy.' },
-    { t: 'Reading Rockets: Descriptive Writing', u: 'https://www.readingrockets.org/classroom/classroom-strategies/descriptive-writing', d: 'The words that make pictures.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'strategy'
 },
@@ -442,7 +431,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Fix: "my name is sam"', a: '"My name is Sam."' }
   ],
   links: [
-    { t: 'Grammar Monster: Sentences', u: 'https://www.grammar-monster.com/glossary/sentences.htm', d: 'What a sentence needs.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' },
     { t: 'Khan Academy: Punctuation', u: 'https://www.khanacademy.org/humanities/grammar/punctuation', d: 'End marks explained.' }
   ],
   note: 'steps'
@@ -499,8 +488,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What should you do before you write each sentence?', a: 'Say it out loud.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Comic Creator', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/comic-creator', d: 'Plan a story in pictures first.' },
-    { t: 'ReadWriteThink: Printouts', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Draw-and-write pages you can print.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/comic-creator', d: 'Plan a story in pictures first.' },
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Draw-and-write pages you can print.' }
   ],
   note: 'strategy'
 },
@@ -555,8 +544,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What if the picture does not help?', a: 'Use the rest of the sentence, then ask a Guide.' }
   ],
   links: [
-    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Definitions written for kids.' },
-    { t: 'Reading Rockets: Vocabulary', u: 'https://www.readingrockets.org/topics/vocabulary', d: 'Ways to learn new words.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'Definitions written for kids.' }
   ],
   note: 'word'
 },

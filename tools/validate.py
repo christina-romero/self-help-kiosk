@@ -19,12 +19,30 @@ data = json.load(open(os.path.join(ROOT, 'tools', '_data.json'), encoding='utf-8
 
 TEKS = data['TEKS']
 APPS = {a['name'] for a in data['APPS']}
+TOOLS = data.get('TOOLS', [])
+
+
+def tools_for(c):
+    out = []
+    for tool in TOOLS:
+        w = tool.get('when') or {}
+        if w.get('subjects') and c['subject'] not in w['subjects']:
+            continue
+        if w.get('units') and not re.search(w['units'], c.get('unit', '')):
+            continue
+        if w.get('grades') and not set(c['grades']) & set(w['grades']):
+            continue
+        out.append(tool)
+    return out[:2]
 CONCEPTS = data['CONCEPTS']
 
 SUBJECTS = {'math', 'reading', 'language', 'writing', 'vocabulary'}
 GRADES = {'K', '1', '2', '3', '4', '5', '6', '7', '8'}
 REQUIRED = ['id', 'subject', 'unit', 'grades', 'title', 'stuck', 'teks',
-            'plain', 'steps', 'traps', 'check', 'links', 'note']
+            'plain', 'steps', 'traps', 'check', 'note']
+# `links` may be empty: some reading guides have no kid-facing site worth
+# sending a student to. What must never be empty is BOTH links and tools,
+# checked below.
 # `apps` may legitimately be empty: the continuum assigns no writing or
 # vocabulary app before grade 3, so a K-2 guide in those subjects has none.
 
@@ -52,6 +70,10 @@ for c in CONCEPTS:
     for g in c.get('grades', []):
         if g not in GRADES:
             errors.append(f'{cid}: bad grade "{g}"')
+
+    # every guide must offer the student somewhere to go
+    if not c.get('links') and not tools_for(c):
+        errors.append(f'{cid}: no external link and no hands-on tool')
 
     if 'apps' not in c:
         errors.append(f'{cid}: missing field "apps" (use [] if no app is assigned)')

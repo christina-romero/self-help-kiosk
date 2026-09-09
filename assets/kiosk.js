@@ -81,16 +81,14 @@
   var UNSAFE = ['porn', 'nude', 'naked', 'sex', 'xxx', 'kill myself', 'suicide', 'self harm', 'selfharm',
     'how to hurt', 'drugs to', 'buy weed', 'gore', 'behead', 'weapon to make', 'make a bomb', 'bomb'];
 
+  // Deliberately five, not nine. A wall of choices is its own barrier, and
+  // every one of these answers a different kind of question.
   var SEARCH_ENGINES = [
-    { id: 'kiddle', n: 'Kiddle', d: 'A search engine just for kids. Results are filtered by editors.', ic: '🧒', u: 'https://www.kiddle.co/s.php?q=' },
-    { id: 'simplewiki', n: 'Simple Wikipedia', d: 'Real encyclopedia articles written in easier English.', ic: '📘', u: 'https://simple.wikipedia.org/w/index.php?search=' },
-    { id: 'khan', n: 'Khan Academy', d: 'Video lessons and practice for math, grammar, and reading.', ic: '🎥', u: 'https://www.khanacademy.org/search?page_search_query=' },
-    { id: 'mathsisfun', n: 'Math is Fun', d: 'Short math explanations with pictures and examples.', ic: '🔢', u: 'https://www.mathsisfun.com/search/search.html?query=' },
-    { id: 'ducksters', n: 'Ducksters', d: 'Articles on history, science, and biographies, written for students.', ic: '🦆', u: 'https://www.ducksters.com/searchducksters.php?q=' },
-    { id: 'wordsmyth', n: 'Wordsmyth Kids Dictionary', d: 'Look up what a word means, in kid language.', ic: '📗', u: 'https://kids.wordsmyth.net/we/?ent=' },
-    { id: 'kidtopia', n: 'Kidtopia', d: 'A search engine that only returns pages teachers have approved.', ic: '🧭', u: 'https://www.kidtopia.info/searchresults.html?q=' },
-    { id: 'natgeokids', n: 'National Geographic Kids', d: 'Science, animals, and geography from a source you can trust.', ic: '🌍', u: 'https://kids.nationalgeographic.com/search?q=' },
-    { id: 'pbslearning', n: 'PBS LearningMedia', d: 'Short videos and interactives from PBS.', ic: '📺', u: 'https://www.pbslearningmedia.org/search/?q=' }
+    { id: 'kiddle', n: 'Kiddle', d: 'A search engine just for kids. Editors check the results.', ic: '🧒', u: 'https://www.kiddle.co/s.php?q=' },
+    { id: 'simplewiki', n: 'Simple Wikipedia', d: 'Encyclopedia articles in easier English.', ic: '📘', u: 'https://simple.wikipedia.org/w/index.php?search=' },
+    { id: 'mathsisfun', n: 'Math is Fun', d: 'Math explained with pictures and examples.', ic: '🔢', u: 'https://www.mathsisfun.com/search/search.html?query=' },
+    { id: 'wordsmyth', n: 'Wordsmyth Kids Dictionary', d: 'What a word means, in kid language.', ic: '📗', u: 'https://kids.wordsmyth.net/we/?ent=' },
+    { id: 'ducksters', n: 'Ducksters', d: 'Short articles on history, science and people.', ic: '🦆', u: 'https://www.ducksters.com/searchducksters.php?q=' }
   ];
 
   /* ---------------- storage ---------------- */
@@ -319,6 +317,18 @@
   }
   function firstLine(s) { return headline(s).head; }
 
+  // Which hands-on tools belong on this guide. Capped at two: a row of eight
+  // links is the same as no recommendation at all.
+  function toolsFor(c) {
+    return (window.TOOLS || []).filter(function (tool) {
+      var w = tool.when || {};
+      if (w.subjects && w.subjects.indexOf(c.subject) < 0) return false;
+      if (w.units && !w.units.test(c.unit || '')) return false;
+      if (w.grades && !c.grades.some(function (g) { return w.grades.indexOf(g) > -1; })) return false;
+      return true;
+    }).slice(0, 2);
+  }
+
   // A line that can open to show more. Used for every step and every trap.
   function openable(headHtml, rest, cls) {
     if (!rest) return '<div class="' + cls + '-line">' + headHtml + '</div>';
@@ -361,7 +371,19 @@
 
     /* ---- the chart itself: picture first, before any prose ---- */
     h += '<section class="step hero" id="sec-see"><h2>' + window.Viz.icon('eye', 20) + 'Look at this</h2>' +
-      (vizHtml || flowHtml) + '</section>';
+      (vizHtml || flowHtml);
+    var tools = toolsFor(c);
+    if (tools.length) {
+      h += '<div class="tools"><p class="toolhead">' + window.Viz.icon('parts', 18) +
+        'Move the pieces yourself</p><div class="toolrow">' +
+        tools.map(function (tl) {
+          return '<a class="tool" href="' + esc(tl.u) + '" target="_blank" rel="noopener noreferrer">' +
+            '<span class="tico">' + window.Viz.icon(tl.icon || 'grid', 22) + '</span>' +
+            '<span class="tt"><b>' + esc(tl.t) + '</b><span>' + esc(tl.d) + '</span></span>' +
+            '<span class="ext">↗</span></a>';
+        }).join('') + '</div></div>';
+    }
+    h += '</section>';
 
     /* ---- words, as icon cards ---- */
     if (c.words && c.words.length) {

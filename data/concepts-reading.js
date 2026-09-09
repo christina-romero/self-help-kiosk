@@ -55,10 +55,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Why should you not say "buh" for the letter b?', a: 'Because the extra "uh" gets stuck inside the word and makes it hard to blend.' },
     { q: 'You blended a word and it is not real. What now?', a: 'Check your letter teams and vowel sounds, then try again.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Blending and Segmenting Games', u: 'https://www.readingrockets.org/classroom/classroom-strategies/blending-and-segmenting-games', d: 'Games that build blending.' },
-    { t: 'Reading Rockets: Elkonin Boxes', u: 'https://www.readingrockets.org/classroom/classroom-strategies/elkonin-boxes', d: 'The sound-box strategy explained.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -110,10 +107,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What tells you how many syllables a word has?', a: 'The number of vowel SOUNDS, not the number of vowel letters.' },
     { q: 'Where would you split "napkin"?', a: 'nap / kin: between the two consonants in the middle.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Phonics and Decoding', u: 'https://www.readingrockets.org/topics/phonics-and-decoding', d: 'Strategies for longer words.' },
-    { t: 'Reading Rockets: Syllable Games', u: 'https://www.readingrockets.org/classroom/classroom-strategies/syllable-games', d: 'Practice hearing syllable breaks.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -168,9 +162,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'You read quickly but cannot say what happened. What is that called?', a: 'Word-calling. You said the words without reading for meaning.' }
   ],
   links: [
-    { t: 'Reading Rockets: Fluency', u: 'https://www.readingrockets.org/topics/fluency', d: 'What fluency is and how to build it.' },
-    { t: 'Reading Rockets: Timed Repeated Readings', u: 'https://www.readingrockets.org/classroom/classroom-strategies/timed-repeated-readings', d: 'The repeated reading routine.' },
-    { t: 'Storyline Online', u: 'https://storylineonline.net/', d: 'Hear actors read books aloud so you know what expression sounds like.' }
+    { t: 'Storyline Online', u: 'https://storylineonline.net/', d: 'Hear actors read books out loud.' }
   ],
   note: 'strategy'
 },
@@ -227,10 +219,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'When should you check yourself?', a: 'At the end of every paragraph, not the end of the page.' },
     { q: 'You are lost because of one unknown word. What is the fix-up?', a: 'Use context clues in the surrounding sentences, or look the word up.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Think-Alouds', u: 'https://www.readingrockets.org/classroom/classroom-strategies/think-alouds', d: 'What good readers say inside their heads.' },
-    { t: 'Reading Rockets: Comprehension', u: 'https://www.readingrockets.org/topics/comprehension', d: 'The full set of comprehension strategies.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -284,8 +273,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Where do main ideas often appear?', a: 'In the title, the first sentence, or the last sentence.' }
   ],
   links: [
-    { t: 'Reading Rockets: Summarizing', u: 'https://www.readingrockets.org/classroom/classroom-strategies/summarizing', d: 'Finding and stating the central idea.' },
-    { t: 'Reading Rockets: Paragraph Shrinking', u: 'https://www.readingrockets.org/classroom/classroom-strategies/paragraph-shrinking', d: 'A routine for boiling a paragraph down to its main idea.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'strategy'
 },
@@ -339,9 +327,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How do you check that your inference is not a guess?', a: 'Finish the sentence "because the text says ___" with an actual quote.' },
     { q: 'The text says a character "wiped her eyes and turned away." What can you infer?', a: 'She is upset or crying. The actions are the clue.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Inferencing', u: 'https://www.readingrockets.org/classroom/classroom-strategies/inferencing', d: 'The strategy with examples and practice.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -395,8 +381,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should a summary include your opinion?', a: 'No. Only what the text says.' }
   ],
   links: [
-    { t: 'Reading Rockets: Summarizing', u: 'https://www.readingrockets.org/classroom/classroom-strategies/summarizing', d: 'How to teach and use summarizing.' },
-    { t: 'Reading Rockets: Paragraph Shrinking', u: 'https://www.readingrockets.org/classroom/classroom-strategies/paragraph-shrinking', d: 'Boiling paragraphs down.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'strategy'
 },
@@ -451,8 +436,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Can you use evidence from memory?', a: 'No. Go back and find the exact words.' }
   ],
   links: [
-    { t: 'Reading Rockets: Question-Answer Relationship (QAR)', u: 'https://www.readingrockets.org/classroom/classroom-strategies/question-answer-relationship-qar', d: 'How to tell where an answer lives in the text.' },
-    { t: 'CommonLit', u: 'https://www.commonlit.org/', d: 'Passages with evidence-based questions to practice on.' }
+    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Short articles you can actually read.' }
   ],
   note: 'strategy'
 },
@@ -505,9 +489,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What do you do after you predict?', a: 'Read on and check whether you were right.' },
     { q: 'Your prediction was wrong. What now?', a: 'Correct it using the new information and predict again.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Directed Reading Thinking Activity', u: 'https://www.readingrockets.org/classroom/classroom-strategies/directed-reading-thinking-activity-drta', d: 'The predict-read-check routine.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 
@@ -559,8 +541,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Where does the solution usually appear?', a: 'Near the end.' }
   ],
   links: [
-    { t: 'Reading Rockets: Story Maps', u: 'https://www.readingrockets.org/classroom/classroom-strategies/story-maps', d: 'Graphic organizers for story elements.' },
-    { t: 'ReadWriteThink: Story map interactive', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/story', d: 'Fill in a story map online.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Story maps and plot diagrams you fill in.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/story', d: 'Fill in a story map online.' }
   ],
   note: 'frayer'
 },
@@ -612,7 +594,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Can the climax be the last sentence of a story?', a: 'Rarely. Some falling action or resolution usually follows.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Plot Diagram', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/plot-diagram', d: 'Build a plot diagram online.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/plot-diagram', d: 'Build a plot diagram online.' }
   ],
   note: 'frayer'
 },
@@ -668,9 +650,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should a theme include character names?', a: 'No. It should be true beyond this story.' },
     { q: 'How do you find a theme?', a: 'Look at how the main character changes and what they learned.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Comprehension', u: 'https://www.readingrockets.org/topics/comprehension', d: 'Strategies including theme and message.' }
-  ],
+  links: [],
   note: 'frayer'
 },
 {
@@ -727,7 +707,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is a dynamic character?', a: 'One who changes over the course of the story.' }
   ],
   links: [
-    { t: 'Reading Rockets: Story Maps', u: 'https://www.readingrockets.org/classroom/classroom-strategies/story-maps', d: 'Organizers that include character analysis.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Story maps and plot diagrams you fill in.' }
   ],
   note: 'strategy'
 },
@@ -781,7 +761,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Is the narrator the same as the author?', a: 'No. The narrator is the voice telling the story, which the author created.' }
   ],
   links: [
-    { t: 'Grammar Monster: Point of View', u: 'https://www.grammar-monster.com/glossary/point_of_view.htm', d: 'First, second, and third person explained.' }
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -840,8 +820,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What should you always add after naming the device?', a: 'The literal meaning and the effect it creates.' }
   ],
   links: [
-    { t: 'Reading Rockets: Vocabulary', u: 'https://www.readingrockets.org/topics/vocabulary', d: 'Includes figurative language strategies.' },
-    { t: 'Grammar Monster: Analogy', u: 'https://www.grammar-monster.com/glossary/analogy.htm', d: 'Comparisons and how they work.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' },
+    { t: 'Khan Academy: Grammar', u: 'https://www.khanacademy.org/humanities/grammar', d: 'Short videos and practice on each rule.' }
   ],
   note: 'frayer'
 },
@@ -900,8 +880,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What should you do on the second reading of a poem?', a: 'Read it out loud.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Acrostic Poems', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/acrostic-poems', d: 'Write a poem to understand how poems are built.' },
-    { t: 'ReadWriteThink: Diamante Poems', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/diamante-poems', d: 'Structured poem builder.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/acrostic-poems', d: 'Write a poem to understand how poems are built.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/diamante-poems', d: 'Structured poem builder.' }
   ],
   note: 'strategy'
 },
@@ -959,9 +939,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Does a text have to use only one structure?', a: 'No. Different sections can use different structures.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Compare and Contrast', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'Build a comparison organizer online.' },
-    { t: 'ReadWriteThink: Timeline', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/timeline', d: 'For chronological texts.' },
-    { t: 'Reading Rockets: Transition Words', u: 'https://www.readingrockets.org/classroom/classroom-strategies/transition-words', d: 'Signal words by structure.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'Build a comparison organizer online.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/timeline', d: 'For chronological texts.' }
   ],
   note: 'frayer'
 },
@@ -1018,9 +997,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What should you do before reading the paragraphs?', a: 'Preview the headings, images, and captions.' },
     { q: 'A question\'s answer is not in any paragraph. What next?', a: 'Check the captions, diagrams, charts, and sidebars.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Reading Guides', u: 'https://www.readingrockets.org/classroom/classroom-strategies/reading-guides', d: 'Guided routines for navigating nonfiction.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -1077,8 +1054,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Why does addressing a counterargument make an argument stronger?', a: 'It shows the author considered the other side and still has a case.' }
   ],
   links: [
-    { t: 'CommonLit', u: 'https://www.commonlit.org/', d: 'Argumentative passages with analysis questions.' },
-    { t: 'Newsela', u: 'https://newsela.com/', d: 'News articles at adjustable reading levels.' }
+    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Short articles you can actually read.' }
   ],
   note: 'frayer'
 },
@@ -1134,9 +1110,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What word choices signal persuasion?', a: 'Should, must, need to, and other opinion or action words.' },
     { q: 'Can a text have facts and still be persuasive?', a: 'Yes. Selecting only one side\'s facts is a persuasive technique.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Anticipation Guide', u: 'https://www.readingrockets.org/classroom/classroom-strategies/anticipation-guide', d: 'Getting at what a text is trying to do.' }
-  ],
+  links: [],
   note: 'frayer'
 },
 {
@@ -1185,8 +1159,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Which texts should your evidence come from?', a: 'Both of them.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Compare and Contrast', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'A comparison organizer you can fill in online.' },
-    { t: 'ReadWriteThink: Venn Diagram', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/venn-diagram', d: 'Classic Venn organizer.' }
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'A comparison organizer you can fill in online.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/venn-diagram', d: 'Classic Venn organizer.' }
   ],
   note: 'strategy'
 },
@@ -1240,10 +1214,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is wrong with highlighting a lot?', a: 'If everything is marked, nothing is marked.' },
     { q: 'How do you use your annotations afterwards?', a: 'Read only the margin notes. They are already a summary.' }
   ],
-  links: [
-    { t: 'Reading Rockets: Think-Alouds', u: 'https://www.readingrockets.org/classroom/classroom-strategies/think-alouds', d: 'What to notice while reading.' },
-    { t: 'Reading Rockets: Exit Slips', u: 'https://www.readingrockets.org/classroom/classroom-strategies/exit-slips', d: 'Quick ways to capture what you understood.' }
-  ],
+  links: [],
   note: 'strategy'
 },
 {
@@ -1299,8 +1270,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Simple Wikipedia', u: 'https://simple.wikipedia.org/wiki/Main_Page', d: 'A starting point: then follow its sources.' },
-    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Student-level articles on history and science.' },
-    { t: 'Reading Rockets: Inquiry Charts', u: 'https://www.readingrockets.org/classroom/classroom-strategies/inquiry-charts', d: 'Organizing information from several sources.' }
+    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Student-level articles on history and science.' }
   ],
   note: 'strategy'
 }

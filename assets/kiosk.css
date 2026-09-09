@@ -380,6 +380,30 @@ ul.howwell{list-style:none;padding-left:0;gap:.5rem}
 ul.howwell b{display:block}
 ul.howwell span{display:block;color:var(--ink-2);font-size:.88rem}
 
+/* hands-on tools, shown with the picture */
+.tools{margin-top:.9rem;border-top:2px dashed var(--line);padding-top:.8rem}
+.toolhead{
+  display:flex;align-items:center;margin:0 0 .55em;font-size:.85rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);
+}
+.toolrow{display:grid;gap:.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+a.tool{
+  display:flex;align-items:center;gap:.6rem;text-decoration:none;color:inherit;
+  background:var(--panel);border:2px solid var(--sc,var(--brand));border-radius:var(--radius-s);
+  padding:.6em .75em;
+}
+a.tool:hover,a.tool:focus-visible{background:var(--scbg,var(--line-2))}
+.tico{
+  flex:0 0 auto;width:2.3em;height:2.3em;border-radius:10px;
+  background:var(--scbg,var(--line-2));color:var(--sc,var(--brand));
+  display:flex;align-items:center;justify-content:center;
+}
+.tico .ic{margin:0}
+.tt{display:flex;flex-direction:column;min-width:0;flex:1}
+.tt b{font-size:.95rem;line-height:1.25}
+.tt span{font-size:.83rem;color:var(--ink-2);line-height:1.3}
+a.tool .ext{flex:0 0 auto;color:var(--ink-2);font-size:.9rem}
+
 /* ---------- "write this on your paper" ---------- */
 .paper{
   background:

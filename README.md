@@ -76,6 +76,42 @@ Two numbers keep this honest, both enforced by the tests:
 * **Chart lines median 8 words.** `validate.py` also scores every guide with
   Flesch-Kincaid against the youngest grade it is offered to.
 
+### Tools sit on the guide, not in a tab
+
+A virtual manipulative is a visual support, so burying it in the Resource Shelf
+wasted it. `data/resources.js` defines `TOOLS` with a `when` rule (subject, unit
+regex, grades); each guide shows **at most two** matched tools directly under its
+picture. 142 of 145 guides get one. The three that do not are K-2 guides outside
+the main audience.
+
+`validate.py` fails if a guide has neither an external link nor a tool, so no guide
+can end up with nowhere to send a student.
+
+### Everything outward-facing is curated for grades 3-6
+
+The test is simple: would a 9-year-old working alone get anywhere on this page? A
+site they bounce off is worse than no link.
+
+| | Before | Now |
+| --- | --- | --- |
+| Resource Shelf | 21 items | **11** |
+| Safe-search engines | 9 | **5** |
+| Per-guide links | 268, max 5 per guide | **201, max 2 per guide** |
+| Adult-level links on guides | 114 | **0** |
+
+Removed and why:
+
+* **Grammar Monster, Grammar Bytes** (36 links) &mdash; adult grammar reference
+* **Purdue OWL** (6) &mdash; a university writing lab
+* **Reading Rockets** (52) &mdash; excellent, but its strategy pages are teacher PD:
+  "Why use it / How to use it / Differentiate instruction"
+* **CommonLit, Newsela, ReadWorks** &mdash; need accounts
+* **Vocabulary.com, Etymonline, Membean** &mdash; pitched well above grade 6
+
+Replaced with Khan Academy, ReadWriteThink, Wordsmyth Kids Dictionary, Ducksters and
+Storyline Online. A side effect worth noting: every remaining link now verifies
+cleanly, because the site that was blocking our checker is no longer linked.
+
 ### Step 6 teaches note-taking, it does not collect notes
 
 There is no notebook and nothing is saved. Step 6 exists to build the habit, so the
@@ -267,4 +303,4 @@ check questions, and a worked example, so a thin guide cannot ship quietly.
 * **Link rot is a maintenance cost.** The Checks workflow runs `check-links.py` on
   every push and every Monday. It fails only on genuinely broken links (404, 410, DNS);
   a 403 or 429 is reported separately because CI runs from a datacenter IP that some
-  publishers block. All 193 links were live at build time.
+  publishers block. All 110 links were live at build time.

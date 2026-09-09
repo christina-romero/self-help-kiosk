@@ -603,8 +603,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Math is Fun: Greatest Common Factor', u: 'https://www.mathsisfun.com/greatest-common-factor.html', d: 'How to find the GCF, with examples.' },
-    { t: 'Math is Fun: Least Common Multiple', u: 'https://www.mathsisfun.com/least-common-multiple.html', d: 'How to find the LCM, with examples.' },
-    { t: 'Math is Fun: Prime and Composite Numbers', u: 'https://www.mathsisfun.com/prime-composite-number.html', d: 'What makes a number prime.' }
+    { t: 'Math is Fun: Least Common Multiple', u: 'https://www.mathsisfun.com/least-common-multiple.html', d: 'How to find the LCM, with examples.' }
   ],
   note: 'steps'
 },
@@ -1085,8 +1084,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Math is Fun: Adding Decimals', u: 'https://www.mathsisfun.com/adding-decimals.html', d: 'Lining up the point.' },
-    { t: 'Math is Fun: Multiplying Decimals', u: 'https://www.mathsisfun.com/multiplying-decimals.html', d: 'Counting the places.' },
-    { t: 'Math is Fun: Dividing Decimals', u: 'https://www.mathsisfun.com/dividing-decimals.html', d: 'Moving the point.' }
+    { t: 'Math is Fun: Multiplying Decimals', u: 'https://www.mathsisfun.com/multiplying-decimals.html', d: 'Counting the places.' }
   ],
   note: 'strategy'
 },
@@ -1613,8 +1611,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Math is Fun: Bar Graphs', u: 'https://www.mathsisfun.com/data/bar-graphs.html', d: 'How to read and make bar graphs.' },
-    { t: 'Math is Fun: Pictographs', u: 'https://www.mathsisfun.com/data/pictographs.html', d: 'Using the key correctly.' },
-    { t: 'Math is Fun: Dot Plots', u: 'https://www.mathsisfun.com/data/dot-plots.html', d: 'Reading dot plots.' }
+    { t: 'Math is Fun: Pictographs', u: 'https://www.mathsisfun.com/data/pictographs.html', d: 'Using the key correctly.' }
   ],
   note: 'strategy'
 }

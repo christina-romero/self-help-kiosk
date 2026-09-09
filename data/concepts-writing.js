@@ -55,8 +55,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Which stage should never overlap with drafting?', a: 'Editing.' }
   ],
   links: [
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Each stage explained. Best for grades 6-8.' },
-    { t: 'ReadWriteThink: Printouts', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'frayer'
 },
@@ -111,8 +110,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How long should an essay outline be?', a: 'A thesis plus one line per body paragraph. That is enough.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Printouts', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Free graphic organizers for every genre.' },
-    { t: 'ReadWriteThink: Compare and Contrast', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'Plan a comparison piece online.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Free graphic organizers for every genre.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/compare-contrast', d: 'Plan a comparison piece online.' }
   ],
   note: 'strategy'
 },
@@ -166,8 +165,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How many main points should one paragraph make?', a: 'One.' }
   ],
   links: [
-    { t: 'Reading Rockets: Paragraph Hamburger', u: 'https://www.readingrockets.org/classroom/classroom-strategies/paragraph-hamburger', d: 'The paragraph structure organizer.' },
-    { t: 'Reading Rockets: Framed Paragraphs', u: 'https://www.readingrockets.org/classroom/classroom-strategies/framed-paragraphs', d: 'Sentence frames to get you started.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'steps'
 },
@@ -220,8 +218,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is wrong with "That is too much" as an explanation?', a: 'It restates the opinion instead of explaining what the evidence shows.' }
   ],
   links: [
-    { t: 'Reading Rockets: Paragraph Hamburger', u: 'https://www.readingrockets.org/classroom/classroom-strategies/paragraph-hamburger', d: 'The classic paragraph organizer.' },
-    { t: 'ReadWriteThink: Printouts', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Printable paragraph frames.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'steps'
 },
@@ -272,7 +269,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What word usually makes a thesis specific?', a: '"Because": it forces you to name your reasons.' }
   ],
   links: [
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Includes thesis development.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'steps'
 },
@@ -327,8 +324,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is wrong with repeating your claim after a quote?', a: 'It is not elaboration. You have to explain what the evidence shows.' }
   ],
   links: [
-    { t: 'CommonLit', u: 'https://www.commonlit.org/', d: 'Passages to practice finding and using evidence.' },
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Integrating sources.' }
+    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Short articles you can actually read.' },
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'steps'
 },
@@ -381,7 +378,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should you write the introduction first?', a: 'Usually not. Write the body first, then introduce it.' }
   ],
   links: [
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Essay structure guidance.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'steps'
 },
@@ -438,7 +435,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What punctuation follows most opening transitions?', a: 'A comma.' }
   ],
   links: [
-    { t: 'Reading Rockets: Transition Words', u: 'https://www.readingrockets.org/classroom/classroom-strategies/transition-words', d: 'Transition words grouped by relationship.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'steps'
 },
@@ -494,7 +491,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How many sources should you use?', a: 'At least two, so you can check facts against each other.' }
   ],
   links: [
-    { t: 'ReadWriteThink: Printouts', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers for informational writing.' },
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers for informational writing.' },
     { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Student-level source material to practice with.' }
   ],
   note: 'strategy'
@@ -550,8 +547,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is a rebuttal?', a: 'Your response explaining why the counterargument does not defeat your claim.' }
   ],
   links: [
-    { t: 'CommonLit', u: 'https://www.commonlit.org/', d: 'Argumentative texts to model and respond to.' },
-    { t: 'Newsela', u: 'https://newsela.com/', d: 'Current-issue articles at your reading level.' }
+    { t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Short articles you can actually read.' }
   ],
   note: 'steps'
 },
@@ -604,8 +600,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Where should a narrative start?', a: 'Close to the action, not at the beginning of the day.' }
   ],
   links: [
-    { t: 'Reading Rockets: Descriptive Writing', u: 'https://www.readingrockets.org/classroom/classroom-strategies/descriptive-writing', d: 'Building sensory detail.' },
-    { t: 'ReadWriteThink: Comic Creator', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/comic-creator', d: 'Plan a narrative visually first.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' },
+    { t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives/comic-creator', d: 'Plan a narrative visually first.' }
   ],
   note: 'strategy'
 },
@@ -662,8 +658,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Name the four revision moves.', a: 'Add, remove, move, substitute.' }
   ],
   links: [
-    { t: 'Reading Rockets: Revising', u: 'https://www.readingrockets.org/classroom/classroom-strategies/revising', d: 'Revision strategies with examples.' },
-    { t: 'Reading Rockets: Writing Conferences', u: 'https://www.readingrockets.org/classroom/classroom-strategies/writing-conferences', d: 'How to talk about a draft.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Organizers to print and plan on.' }
   ],
   note: 'strategy'
 },
@@ -720,8 +715,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What is the risk of using a thesaurus?', a: 'Picking a word that sounds impressive but does not mean what you think.' }
   ],
   links: [
-    { t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Check what a word actually means before you use it.' },
-    { t: 'Reading Rockets: Semantic Gradients', u: 'https://www.readingrockets.org/classroom/classroom-strategies/semantic-gradients', d: 'Shades of meaning between similar words.' }
+    { t: 'Wordsmyth Kids Dictionary', u: 'https://kids.wordsmyth.net/we/', d: 'What a word means, in kid language.' }
   ],
   note: 'strategy'
 },
@@ -776,7 +770,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should you reread while drafting?', a: 'No. Draft straight through and reread in the revision pass.' }
   ],
   links: [
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Process guidance that adapts to timed conditions.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'strategy'
 },
@@ -832,7 +826,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'When should you build your bibliography?', a: 'As you research, not at the end.' }
   ],
   links: [
-    { t: 'Purdue OWL: The Writing Process', u: 'https://owl.purdue.edu/owl/general_writing/the_writing_process/index.html', d: 'Research and source guidance.' }
+    { t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Planning organizers you can print.' }
   ],
   note: 'steps'
 }

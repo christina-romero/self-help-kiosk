@@ -1390,8 +1390,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Math is Fun: Histograms', u: 'https://www.mathsisfun.com/data/histograms.html', d: 'How histograms differ from bar graphs.' },
-    { t: 'Math is Fun: Stem and Leaf Plots', u: 'https://www.mathsisfun.com/data/stem-leaf-plots.html', d: 'Reading and building stem-and-leaf displays.' },
-    { t: 'Math is Fun: Dot Plots', u: 'https://www.mathsisfun.com/data/dot-plots.html', d: 'Dot plots and what they show.' }
+    { t: 'Math is Fun: Stem and Leaf Plots', u: 'https://www.mathsisfun.com/data/stem-leaf-plots.html', d: 'Reading and building stem-and-leaf displays.' }
   ],
   note: 'strategy'
 },
@@ -1445,8 +1444,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   links: [
     { t: 'Math is Fun: Mean', u: 'https://www.mathsisfun.com/mean.html', d: 'Calculating and interpreting the mean.' },
-    { t: 'Math is Fun: Median', u: 'https://www.mathsisfun.com/median.html', d: 'Finding the middle value.' },
-    { t: 'Math is Fun: Mode', u: 'https://www.mathsisfun.com/mode.html', d: 'The most common value.' }
+    { t: 'Math is Fun: Median', u: 'https://www.mathsisfun.com/median.html', d: 'Finding the middle value.' }
   ],
   note: 'frayer'
 },

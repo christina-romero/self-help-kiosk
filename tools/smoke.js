@@ -151,9 +151,10 @@ const ROUTES = [
       };
     });
     // Roughly: ~60 words of structure (headings, nav, tags, fold labels),
-    // ~13 one-liner, ~20 paper labels, and ~100 of actual chart content
-    // (the moves and the traps). Above this the page stops being a chart.
-    if (m.visible > 210) problems.push(`${cid}: ${m.visible} words visible before opening anything (target <=210)`);
+    // ~13 one-liner, ~20 paper labels, ~20 for the two hands-on tool links,
+    // and ~100 of actual chart content (the moves and the traps).
+    // Above this the page stops working as a chart.
+    if (m.visible > 240) problems.push(`${cid}: ${m.visible} words visible before opening anything (target <=240)`);
     if (m.firstSection !== 'sec-see') problems.push(`${cid}: first section is ${m.firstSection}, expected the picture`);
     console.log(`  ${cid.padEnd(20)} ${String(m.visible).padStart(3)} words visible, picture first`);
   }
