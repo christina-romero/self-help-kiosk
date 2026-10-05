@@ -16,7 +16,8 @@ const files = [
   'data/concepts-reading.js',
   'data/concepts-language.js',
   'data/concepts-writing.js',
-  'data/concepts-vocabulary.js'
+  'data/concepts-vocabulary.js',
+  'data/concepts-grade9.js'
 ];
 
 const sandbox = { window: {} };

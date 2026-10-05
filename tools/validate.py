@@ -37,7 +37,7 @@ def tools_for(c):
 CONCEPTS = data['CONCEPTS']
 
 SUBJECTS = {'math', 'reading', 'language', 'writing', 'vocabulary'}
-GRADES = {'K', '1', '2', '3', '4', '5', '6', '7', '8'}
+GRADES = {'K', '1', '2', '3', '4', '5', '6', '7', '8', '9'}
 REQUIRED = ['id', 'subject', 'unit', 'grades', 'title', 'stuck', 'teks',
             'plain', 'steps', 'traps', 'check', 'note']
 # `links` may be empty: some reading guides have no kid-facing site worth

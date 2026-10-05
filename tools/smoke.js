@@ -17,11 +17,15 @@ const ROUTES = [
   ['grade-3', '#/g/3'],
   ['grade-3-math', '#/g/3/math'],
   ['grade-7-reading', '#/g/7/reading'],
+  ['grade-9', '#/g/9'],
+  ['grade-9-math', '#/g/9/math'],
   ['grade-K-math', '#/g/K/math'],
   ['concept-fractions', '#/c/m-equivalent-fractions'],
   ['concept-main-idea', '#/c/r-main-idea'],
   ['concept-commas', '#/c/l-commas'],
   ['concept-slope', '#/c/m-slope'],
+  ['concept-quadratic', '#/c/a1-graph-quadratic'],
+  ['concept-connotation', '#/c/e1-denotation-connotation'],
   ['concept-thesis', '#/c/w-thesis'],
   ['concept-roots', '#/c/v-greek-latin-roots'],
   ['app-alphamath', '#/app/alphamath'],
@@ -139,7 +143,8 @@ const ROUTES = [
 
   // an anchor chart must be scannable: check how much text is visible before
   // the reader opens anything, and that the picture comes before the prose.
-  for (const cid of ['m-long-division', 'r-inference', 'l-commas', 'm-slope']) {
+  for (const cid of ['m-long-division', 'r-inference', 'l-commas', 'm-slope',
+                     'a1-solve-quadratic', 'e1-inference-evidence']) {
     await page.goto(BASE + '#/c/' + cid);
     await page.waitForTimeout(180);
     const m = await page.evaluate(() => {

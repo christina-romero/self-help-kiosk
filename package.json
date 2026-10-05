@@ -9,7 +9,7 @@
     "validate": "npm run data && python tools/validate.py",
     "links": "npm run data && python tools/check-links.py",
     "smoke": "npm run data && node tools/smoke.js",
-    "subpath": "node tools/check-subpath.js",
+    "subpath": "npm run data && node tools/check-subpath.js",
     "check": "npm run validate && npm run links && npm run smoke && npm run subpath"
   },
   "devDependencies": {

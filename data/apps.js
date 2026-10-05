@@ -4,8 +4,10 @@
    SOURCE OF TRUTH: the "App Playbook (K-12)" Alpha App Continuum.
    That document is internal, so its link is not recorded here; ask a
    Guide or the curriculum lead for the current copy.
-   Only the K-8 rows are represented here, and only the subjects
-   this campus assigns.
+   The K-9 rows are represented here, and only the subjects this campus
+   assigns. Grade 9 is the first high school row: the continuum names
+   Math Academy Algebra I with Edia underneath, AlphaRead, Freckle,
+   Membean with VocabLoco, and no writing app at all.
 
    Two things the continuum distinguishes, which matter to a
    student trying to work out why an app looks different today:
@@ -16,7 +18,6 @@
    Deliberately NOT listed, with the reason:
      Happy Numbers, Mentava, AlphaNumbers   pre-K only
      Lalilo                                 no longer used on this campus
-     Edia                                   grades 9-12 only
      AlphaPhonics, Vocabulon, Math Quest    have manuals but no
                                             slot on the K-8 continuum
      AlphaScience, Nice Academy, PhysicsGraph, TimeBack Scroll
@@ -40,9 +41,12 @@ window.APPS = [
   { id: 'alphamath', name: 'AlphaMath', subject: 'Math', grades: 'Grades 3-4 core, K-8 hole-filling', role: 'both', alpha: true,
     what: 'Your grade-level math course in grades 3 and 4, and the hole-filling app underneath every grade from K to 8. When AlphaMath gives you something that looks easy or looks like it is from a younger grade, that is hole-filling: it found a gap and is closing it.',
     stuck: 'Skills from earlier grades resurfacing, and not knowing why an easy-looking topic reappeared.' },
-  { id: 'math-academy', name: 'Math Academy', subject: 'Math', grades: 'Grades 5-8', role: 'core', alpha: false,
-    what: 'Your grade-level math course from grade 5 onward, with a grade supplement alongside it. It gives you a worked example, then makes you do it, and will not move on until the skill sticks.',
+  { id: 'math-academy', name: 'Math Academy', subject: 'Math', grades: 'Grades 5-9', role: 'core', alpha: false,
+    what: 'Your grade-level math course from grade 5 onward, and your Algebra I course in grade 9. It gives you a worked example, then makes you do it, and will not move on until the skill sticks.',
     stuck: 'A new skill lands before you feel ready, and the worked example moves faster than you can follow.' },
+  { id: 'edia', name: 'Edia', subject: 'Math', grades: 'Grade 9', role: 'hole-filling', alpha: false,
+    what: 'Runs underneath Algebra I to close gaps from earlier grades. If Edia hands you something that looks like grade 7 work, it found a gap that Algebra I is about to need.',
+    stuck: 'Algebra I moves fast and assumes fractions, negatives and solving are automatic.' },
 
   /* ---------- Fast Math ---------- */
   { id: 'math-raiders', name: 'Math Raiders', subject: 'Fast Math', grades: 'Grades K-5', role: 'core', alpha: true,
@@ -59,7 +63,7 @@ window.APPS = [
   { id: 'mobymax-primer', name: 'MobyMax Primer', subject: 'Reading', grades: 'Grade 2 hole-filling, grades 3-8 primer', role: 'both', alpha: false,
     what: 'Runs alongside your reading course: hole-filling in grade 2, and the Primer from grade 3 up. It targets the exact gaps your diagnostic found.',
     stuck: 'Comprehension question types nobody has taught you to recognize yet.' },
-  { id: 'alpharead', name: 'AlphaRead', subject: 'Reading', grades: 'Grades 3-8', role: 'core', alpha: true,
+  { id: 'alpharead', name: 'AlphaRead', subject: 'Reading', grades: 'Grades 3-9', role: 'core', alpha: true,
     what: 'Your main reading course from grade 3 up. Short articles matched to your level with comprehension questions after each one, so you get far more practice and feedback than a normal reading class.',
     stuck: 'Main idea, inference, and author\'s purpose questions on nonfiction you only half understood.' },
 
@@ -70,15 +74,15 @@ window.APPS = [
   { id: 'egumpp', name: 'eGumpp', subject: 'Language', grades: 'Grade 8', role: 'core', alpha: false,
     what: 'Your grade 8 language course: grammar, usage, mechanics, and punctuation. Scoring is strict, so small errors cost real credit.',
     stuck: 'Comma rules, subject-verb agreement, and pronoun case.' },
-  { id: 'freckle', name: 'Freckle', subject: 'Language', grades: 'Grades 3-8', role: 'hole-filling', alpha: false,
+  { id: 'freckle', name: 'Freckle', subject: 'Language', grades: 'Grades 3-9', role: 'hole-filling', alpha: false,
     what: 'Adaptive language practice that runs underneath your main course to close gaps. It drops you back a level when accuracy falls.',
     stuck: 'Knowing the rule but not spotting where it applies inside a sentence.' },
 
   /* ---------- Vocabulary ---------- */
-  { id: 'vocabloco', name: 'VocabLoco', subject: 'Vocabulary', grades: 'Grades 3-5 core, 6-8 hole-filling', role: 'both', alpha: false,
+  { id: 'vocabloco', name: 'VocabLoco', subject: 'Vocabulary', grades: 'Grades 3-5 core, 6-9 hole-filling', role: 'both', alpha: false,
     what: 'Your vocabulary course in grades 3 to 5, and the hole-filling app underneath Membean in grades 6 to 8. Built around word meaning in context.',
     stuck: 'Multiple-meaning words, and shades of meaning between words that seem the same.' },
-  { id: 'membean', name: 'Membean', subject: 'Vocabulary', grades: 'Grades 6-8', role: 'core', alpha: false,
+  { id: 'membean', name: 'Membean', subject: 'Vocabulary', grades: 'Grades 6-9', role: 'core', alpha: false,
     what: 'Your vocabulary course from grade 6 up. It builds words through roots and images and shows you a word again right before you would forget it.',
     stuck: 'Words that look alike, and words you can recognize but cannot use in a sentence.' },
 

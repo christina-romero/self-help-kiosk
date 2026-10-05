@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var GRADES = ['K', '1', '2', '3', '4', '5', '6', '7', '8'];
+  var GRADES = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   var SUBJECTS = [
     { id: 'reading', name: 'Reading', cls: 's-reading', icon: '📖', blurb: 'Understanding what you read: main idea, inferences, plot, text structure.' },
     { id: 'language', name: 'Language', cls: 's-language', icon: '🔤', blurb: 'Grammar, punctuation, spelling patterns, and how sentences are built.' },
@@ -26,7 +26,11 @@
   var UNIT_ORDER = {
     math: ['Counting and early number', 'Place value', 'Adding and subtracting',
       'Multiplication and division', 'Fractions', 'Decimals', 'Rational numbers',
-      'Ratios and proportions', 'Expressions and equations', 'Linear relationships',
+      'Ratios and proportions', 'Expressions and equations',
+      // Algebra I units, in the order the course builds them
+      'Functions', 'Linear relationships', 'Solving equations and inequalities',
+      'Systems and modeling', 'Exponents and polynomials', 'Quadratic functions',
+      'Exponential functions and sequences',
       'Geometry and measurement', 'Geometry', 'Data', 'Data and probability',
       'Problem solving', 'Personal financial literacy'],
     reading: ['Sounds and letters', 'How books work', 'Reading smoothly',
@@ -111,6 +115,34 @@
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function gradeLabel(g) { return g === 'K' ? 'Kindergarten' : 'Grade ' + g; }
   function gradeShort(g) { return g === 'K' ? 'K' : g; }
+
+  // Grade 9 is a course year, not a grade-level year. Students do not take
+  // "grade 9 math", they take Algebra I, and reading, writing and vocabulary
+  // are all strands of one course called English I. The picker says so,
+  // because that is the name on the student's schedule.
+  var COURSES = {
+    '9': { math: 'Algebra I', reading: 'English I', writing: 'English I', vocabulary: 'English I' }
+  };
+  function courseOf(g, subjId) { return (COURSES[g] || {})[subjId] || null; }
+  // The K-8 blurbs describe the wrong course at grade 9, so the named courses
+  // get their own.
+  var COURSE_BLURBS = {
+    '9': {
+      math: 'Functions, slope, linear equations, systems, exponents, polynomials, factoring, quadratics and exponential models.',
+      reading: 'Inference with commentary, theme, author’s craft, argument analysis and synthesis across texts.',
+      writing: 'Literary analysis: thesis, evidence and commentary, revising, and researched writing.',
+      vocabulary: 'Denotation and connotation, academic vocabulary, and the command words in exam questions.'
+    }
+  };
+  function blurbFor(g, s) { return ((COURSE_BLURBS[g] || {})[s.id]) || s.blurb; }
+  function subjectHeading(g, s) {
+    var course = courseOf(g, s.id);
+    if (!course) return s.name + ': ' + gradeLabel(g);
+    // Algebra I is only maths, so the course name says everything. English I
+    // spans reading, writing and vocabulary, so it needs the strand after it.
+    var shared = SUBJECTS.filter(function (x) { return courseOf(g, x.id) === course; }).length > 1;
+    return shared ? course + ': ' + s.name : course;
+  }
 
   var CONCEPTS = (window.CONCEPTS || []).slice();
   var BY_ID = {};
@@ -252,15 +284,40 @@
     LS.set(K_GRADE, g);
     var h = '<p class="crumbs"><a href="#/">Home</a> › ' + esc(gradeLabel(g)) + (subjId ? ' › ' + esc(SUBJ_BY_ID[subjId].name) : '') + '</p>';
     h += '<h1>' + esc(gradeLabel(g)) + '</h1>';
+    if (g === '9' && !subjId) {
+      // Grade 9 arrives from a different place than the K-8 grades: the course
+      // is named, the pace is faster, and the hole-filling app underneath is
+      // doing visible work. Say that once, here, rather than in every guide.
+      h += '<section class="hero"><h2 style="margin-top:0">Algebra I and English I</h2>' +
+        '<p>Grade 9 is the first year your courses have names instead of numbers. Algebra I runs in Math Academy with Edia underneath it, and English I runs across AlphaRead, Membean and your own writing. There is no writing app this year, so the writing guides below are the whole support.</p>' +
+        '<p class="muted" style="margin-bottom:0">These guides are built for the two places grade 9 usually breaks: a skill from grade 7 or 8 that Algebra I assumes is automatic, and an English answer that is correct but earns nothing because the commentary is missing.</p>' +
+        '</section>';
+    }
     h += '<div class="panel"><h2 style="font-size:1rem">Change grade</h2>' + gradeBar(g, subjId) + '</div>';
 
     if (!subjId) {
-      h += '<div class="grid g-3">' + SUBJECTS.map(function (s) {
+      // A tile with no guides behind it is a dead end, so it is left out and
+      // named underneath instead. Right now that is only grade 9 Language,
+      // which Texas folds into English I rather than teaching separately.
+      var shown = SUBJECTS.filter(function (s) { return conceptsFor(g, s.id).length; });
+      var missing = SUBJECTS.filter(function (s) { return !conceptsFor(g, s.id).length; });
+      h += '<div class="grid g-3">' + shown.map(function (s) {
         var n = conceptsFor(g, s.id).length;
+        var course = courseOf(g, s.id);
         return '<a class="tile ' + s.cls + '" href="#/g/' + g + '/' + s.id + '">' +
-          '<h3>' + s.icon + ' ' + esc(s.name) + '</h3><p>' + esc(s.blurb) + '</p>' +
+          '<h3>' + s.icon + ' ' + esc(s.name) + '</h3>' +
+          (course ? '<p class="course">' + esc(course) + '</p>' : '') +
+          '<p>' + esc(blurbFor(g, s)) + '</p>' +
           '<span class="cnt">' + n + ' guide' + (n === 1 ? '' : 's') + '</span></a>';
       }).join('') + '</div>';
+      if (missing.length) {
+        h += '<p class="muted" style="margin-top:1rem">No separate ' +
+          missing.map(function (s) { return esc(s.name.toLowerCase()); }).join(' or ') +
+          ' guides for ' + esc(gradeLabel(g)) + '. ' +
+          (g === '9'
+            ? 'English I covers grammar, punctuation and sentence construction inside writing, so look in the <a href="#/g/9/writing">writing guides</a>.'
+            : 'Try the grade below, or search for the skill by name.') + '</p>';
+      }
       return h;
     }
 
@@ -268,9 +325,11 @@
     if (!s) return V.notfound();
     var list = conceptsFor(g, subjId);
     h += '<div class="panel ' + s.cls + '"><div class="spread"><div>' +
-      '<h2 style="color:var(--sc)">' + s.icon + ' ' + esc(s.name) + ': ' + esc(gradeLabel(g)) + '</h2>' +
-      '<p class="muted" style="margin:0">' + esc(s.blurb) + '</p></div>' +
-      '<div class="row">' + SUBJECTS.filter(function (x) { return x.id !== subjId; }).map(function (x) {
+      '<h2 style="color:var(--sc)">' + s.icon + ' ' + esc(subjectHeading(g, s)) + '</h2>' +
+      '<p class="muted" style="margin:0">' + esc(blurbFor(g, s)) + '</p></div>' +
+      '<div class="row">' + SUBJECTS.filter(function (x) {
+        return x.id !== subjId && conceptsFor(g, x.id).length;
+      }).map(function (x) {
         return '<a class="chip" href="#/g/' + g + '/' + x.id + '">' + x.icon + ' ' + esc(x.name) + '</a>';
       }).join('') + '</div></div></div>';
 

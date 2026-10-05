@@ -9,6 +9,10 @@ const ROOT = path.join(__dirname, '..');
 const PREFIX = '/self-help-kiosk';
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png' };
 
+// How many guides SHOULD be there, taken from the same data dump the other
+// checks use, so adding a grade does not silently fail this one.
+const EXPECTED = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', '_data.json'), 'utf8')).CONCEPTS.length;
+
 const server = http.createServer((req, res) => {
   let url = decodeURIComponent(req.url.split('?')[0]);
   if (!url.startsWith(PREFIX)) { res.writeHead(404); return res.end('outside prefix'); }
@@ -39,7 +43,7 @@ server.listen(0, async () => {
       body: document.getElementById('main').innerText.trim().length,
       css: getComputedStyle(document.querySelector('.topbar')).position
     }));
-    if (ok.concepts !== 145) problems.push(`${hash || '/'}: data did not load (${ok.concepts} concepts)`);
+    if (ok.concepts !== EXPECTED) problems.push(`${hash || '/'}: data did not load (${ok.concepts} of ${EXPECTED} concepts)`);
     if (ok.body < 200) problems.push(`${hash || '/'}: page nearly empty`);
     if (ok.css !== 'sticky') problems.push(`${hash || '/'}: stylesheet did not load`);
     console.log(`  ${(hash || '/').padEnd(24)} concepts=${ok.concepts} css=${ok.css} chars=${ok.body}`);

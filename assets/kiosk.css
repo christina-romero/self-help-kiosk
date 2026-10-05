@@ -202,6 +202,8 @@ html[data-theme="hc"] .gradebtn[aria-current="page"] small{color:#000}
 .tile h3{color:var(--sc,var(--brand));margin-bottom:.2em}
 .tile p{font-size:.88rem;color:var(--ink-2);margin:0}
 .tile .cnt{font-size:.76rem;font-weight:700;color:var(--sc);background:var(--scbg);padding:.2em .6em;border-radius:999px;display:inline-block;margin-top:.55em}
+/* course name on a grade 9 tile: Algebra I, English I */
+.tile p.course{font-size:.78rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--sc,var(--brand));margin:0 0 .35em}
 
 .s-math{--sc:var(--s-math);--scbg:var(--s-math-bg)}
 .s-reading{--sc:var(--s-reading);--scbg:var(--s-reading-bg)}

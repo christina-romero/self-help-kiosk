@@ -5,8 +5,9 @@ student's app marks something wrong and they do not know why: find the skill, lo
 the picture, learn the move, dodge the trap, then try it. Every guide prints as the
 same one-page study note Guides already hand out before a test.
 
-**145 study notes** across Reading, Language, Writing, Vocabulary, and Math, every one
+**173 study notes** across Reading, Language, Writing, Vocabulary, and Math, every one
 tagged to the Texas Essential Knowledge and Skills and to the Timeback apps that teach it.
+Kindergarten through grade 8 by grade; grade 9 by course name, Algebra I and English I.
 
 ---
 
@@ -86,7 +87,7 @@ subject it came from. It is redefined for dark mode and high contrast.
 A virtual manipulative is a visual support, so burying it in the Resource Shelf
 wasted it. `data/resources.js` defines `TOOLS` with a `when` rule (subject, unit
 regex, grades); each guide shows **at most two** matched tools directly under its
-picture. 142 of 145 guides get one. The three that do not are K-2 guides outside
+picture. 171 of 173 guides get one. The two that do not are K-2 guides outside
 the main audience.
 
 `validate.py` fails if a guide has neither an external link nor a tool, so no guide
@@ -113,6 +114,12 @@ Removed and why:
 * **CommonLit, Newsela, ReadWorks** &mdash; need accounts
 * **Vocabulary.com, Etymonline, Membean** &mdash; pitched well above grade 6
 
+Grade 9 reverses that last test, because a grade 9 student bounces off a kids'
+dictionary the same way a grade 3 student bounces off an adult one. A small set
+of tools carries a `'9'` in its `grades` rule and appears only on Algebra I and
+English I guides: the Desmos graphing calculator, Polypad algebra tiles, and the
+Vocabulary.com dictionary. Nothing shown to grades 3-6 changed.
+
 Replaced with Khan Academy, ReadWriteThink, Wordsmyth Kids Dictionary, Ducksters and
 Storyline Online. A side effect worth noting: every remaining link now verifies
 cleanly, because the site that was blocking our checker is no longer linked.
@@ -131,9 +138,12 @@ worked examples.
 ## Sources
 
 **The Timeback app stack** (`data/apps.js`) comes from the **App Playbook (K-12) Alpha
-App Continuum**, which is the source of truth. It carries the 16 apps assigned to K-8
+App Continuum**, which is the source of truth. It carries the 16 apps assigned to K-9
 students on this campus across math, fast math, reading, language, vocabulary, and
-writing, with the continuum's own grade bands.
+writing, with the continuum's own grade bands. Grade 9 is the first high school row:
+Math Academy carries Algebra I with Edia underneath, AlphaRead carries reading,
+Membean carries vocabulary with VocabLoco underneath, Freckle hole-fills language,
+and there is no writing app at all.
 
 The continuum distinguishes two roles, and the kiosk shows the difference because it
 answers a real student question ("why did my app just give me third grade work?"):
@@ -153,10 +163,14 @@ that no longer exists, so nothing drifts quietly.
 **The TEKS index** (`data/teks-index.js`) is generated directly from TEA source
 documents, not typed by hand:
 
-* ELAR &mdash; 19 TAC Chapter 110, Subchapters A and B (Adopted 2017)
-* Mathematics &mdash; 19 TAC Chapter 111, Subchapters A and B (Adopted 2012)
+* ELAR &mdash; 19 TAC Chapter 110, Subchapters A, B and C (Adopted 2017)
+* Mathematics &mdash; 19 TAC Chapter 111, Subchapters A, B and C (Adopted 2012)
 
-That produces **1,008 student expectations** for K&ndash;8 with their official wording,
+Subchapter C carries the high school courses. Grade 9 means English I (&sect;110.36) and
+Algebra I (&sect;111.39); the index keys those as grade 9 so they sit beside K&ndash;8 in the
+grade picker, and keeps the official course codes (`A.2(A)`, `E1.2(B)`) alongside.
+
+That produces **1,126 student expectations** for K&ndash;9 with their official wording,
 which is what the kiosk displays at the bottom of each guide. Every TEKS code cited by
 a guide is checked against this index by `tools/validate.py`, so a citation cannot drift.
 
@@ -178,7 +192,7 @@ pure black.
 
 **Why we do not source photographs or third-party diagrams.** This was tested, not
 assumed. Wikimedia Commons is the only pool large enough to matter that is also safe to
-redistribute, and its K-8 coverage is thin and stylistically wrong: the best CC0
+redistribute, and its K-9 coverage is thin and stylistically wrong: the best CC0
 candidates for fractions, angles, and place value turned out to be unlabeled, monochrome
 encyclopedia line art or charts pitched years above grade. Number lines, ten frames,
 protractors, bar graphs, clocks, money, slope, and box plots returned nothing usable at
@@ -194,7 +208,7 @@ This is worth being precise about, because it is a child-safety feature.
 
 The kiosk **does not** filter the internet. It cannot. What it does:
 
-1. Searches its own 145 guides first. Those results are always safe.
+1. Searches its own 173 guides first. Those results are always safe.
 2. Hands the query to search services that do their own filtering for schools:
    Kiddle, Kidtopia, Simple Wikipedia, Khan Academy, Math is Fun, Ducksters,
    Wordsmyth Kids Dictionary, National Geographic Kids, and PBS LearningMedia.
@@ -277,7 +291,7 @@ node tools/check-subpath.js                  # proves it still works hosted unde
 npm run check                                # all of the above in one go
 ```
 
-Current status: **145 concepts, 16 apps, 0 errors, 193/193 links live, smoke test passing.**
+Current status: **173 concepts, 16 apps, 0 errors, 113/113 links live, smoke test passing.**
 
 `validate.py` enforces that every guide has at least three steps, three traps, three
 check questions, and a worked example, so a thin guide cannot ship quietly.

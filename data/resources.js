@@ -13,8 +13,12 @@
 
    Both are curated for grades 3-6 working on their own. That rules
    out anything needing an account, anything written for teachers,
-   and anything pitched at high school or university. A site a
-   9-year-old bounces off is worse than no link at all.
+   and anything pitched at university. A site a 9-year-old bounces
+   off is worse than no link at all.
+
+   Grade 9 is the exception: Algebra I and English I guides need a
+   graphing calculator, algebra tiles and an adult dictionary, so a
+   few tools carry a '9' in `grades` and show only there.
    ============================================================ */
 
 /* ---------- tools shown directly on a guide ----------
@@ -69,7 +73,7 @@ window.TOOLS = [
     when: {
       subjects: ['reading', 'writing'],
       units: /Reading stories|Reading nonfiction|Understanding|Paragraphs|Essays|Genres|Getting started/,
-      grades: ['3', '4', '5', '6', '7', '8']
+      grades: ['3', '4', '5', '6', '7', '8', '9']
     }
   },
   {
@@ -81,7 +85,7 @@ window.TOOLS = [
     when: {
       subjects: ['writing'],
       units: /The writing process|Getting started|Paragraphs|Essays|Genres|Research/,
-      grades: ['3', '4', '5', '6', '7', '8']
+      grades: ['3', '4', '5', '6', '7', '8', '9']
     }
   },
   {
@@ -153,7 +157,7 @@ window.TOOLS = [
     when: {
       subjects: ['writing', 'reading'],
       units: /Craft|Research|Understanding what you read/,
-      grades: ['3', '4', '5', '6', '7', '8']
+      grades: ['3', '4', '5', '6', '7', '8', '9']
     }
   },
   {
@@ -164,8 +168,32 @@ window.TOOLS = [
     icon: 'point',
     when: {
       subjects: ['math'],
-      units: /Linear relationships/,
-      grades: ['7', '8']
+      units: /Linear relationships|Functions|Quadratic functions|Exponential functions|Systems and modeling/,
+      grades: ['7', '8', '9']
+    }
+  },
+  {
+    id: 'polypad-algebra',
+    t: 'Polypad algebra tiles',
+    d: 'Build and factor expressions by hand.',
+    u: 'https://polypad.amplify.com/',
+    icon: 'parts',
+    when: {
+      subjects: ['math'],
+      units: /Exponents and polynomials|Solving equations and inequalities/,
+      grades: ['9']
+    }
+  },
+  {
+    id: 'vocab-dot-com',
+    t: 'Vocabulary.com Dictionary',
+    d: 'Meaning, plus how the word is really used.',
+    u: 'https://www.vocabulary.com/dictionary/',
+    icon: 'search',
+    when: {
+      subjects: ['vocabulary', 'reading'],
+      units: /.*/,
+      grades: ['9']
     }
   }
 ];
