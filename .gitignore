@@ -2,3 +2,6 @@ node_modules/
 tools/_data.json
 tools/_teks/
 tools/shots/
+
+# generated: regenerate with `node tools/fetch-ixl.js` once IXL is licensed
+data/ixl-map.js
