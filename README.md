@@ -2,10 +2,10 @@
 
 A static web app for Timeback learners in grades K&ndash;8. It is for the moment a
 student's app marks something wrong and they do not know why: find the skill, look at
-the diagram, follow the steps, check the traps list, then write it on paper in their
-own words before going back to the app.
+the picture, learn the move, dodge the trap, then try it. Every guide prints as the
+same one-page study note Guides already hand out before a test.
 
-**145 skill guides** across Reading, Language, Writing, Vocabulary, and Math, every one
+**145 study notes** across Reading, Language, Writing, Vocabulary, and Math, every one
 tagged to the Texas Essential Knowledge and Skills and to the Timeback apps that teach it.
 
 ---
@@ -44,37 +44,42 @@ viewed guides.
 | `#/` | Three ways in: search, pick a grade, pick a subject, or pick the app you were stuck in |
 | `#/how` | The Unstuck Steps: the six moves to try before asking for help. Printable |
 | `#/g/<grade>/<subject>` | All guides for that grade and subject, grouped by unit |
-| `#/c/<id>` | A skill guide, laid out as an anchor chart (below) |
+| `#/c/<id>` | A skill guide, rendered as a one-page study note (below) |
 | `#/app/<appId>` | What a Timeback app teaches and which guides map to it |
 | `#/search/<query>` | Kiosk results first, then kid-safe web search options |
 | `#/library` | Resource Shelf: dictionaries, manipulatives, organizers, passages |
 | `#/safesearch` | Where searches go and how to search well |
 
-### Each guide is an anchor chart
+### Every guide IS a study note
 
-A guide is a reference page a student pulls information *from*, not an article
-they read. The picture comes first, every line is short, and anything longer sits
-behind a tap.
+Guides render in the **Alpha School / Future2 one-page study note** format, the same
+sheet Guides already hand students before a test. Same artefact on screen and on
+paper, so a student meets one thing, not two.
 
-1. **One line** &mdash; what this is, in a sentence a 9-year-old can read
-2. **Look at this** &mdash; the diagram, before any prose
-3. **Words to know** &mdash; each term as a colored card with a symbol
-4. **The moves** &mdash; numbered short lines. Tap `+` for the detail
-5. **Careful** &mdash; the specific mistakes students make, one short line each
-6. **Put this on your paper** &mdash; five note prompts
-7. Worked example, test yourself, more help, related skills &mdash; all folded shut
+| Section | Comes from |
+| --- | --- |
+| Masthead: title, `Study note / subject / one page`, focus chip | `title`, `subject` |
+| **You've got it when you can say** (claim in teal, caution in rust) | first two sentences of `plain` |
+| **Practice example** (cream panel) | `example.prompt` |
+| The picture | the first entry in `visual` |
+| Word cards, each with a symbol | `words` |
+| **The trap** / **The move** | `traps[0..1]` / the first two `steps` |
+| **Now you try**, with write-on blanks | `check` questions |
+| **Say it back (cover the sheet first)** | built from `words`, the move and the trap |
+| Terse answer key, monospace | `check` answers, clipped at the first sentence |
 
-Long sentences are stored as `"Short line. The detail."` The renderer splits at the
-first sentence: the headline shows on the chart, the rest folds. Nothing is thrown
-away, and the chart stays scannable.
+"One topic, one page" is enforced rather than decorative: the sheet carries **one**
+diagram and any others move to a screen-only fold. Sheets run 250 to 270 words
+against about 240 for the printed originals, and `smoke.js` fails above 280.
 
-Two numbers keep this honest, both enforced by the tests:
+Everything else (hands-on tools, the worked example, the full step list, extra traps,
+links, related skills) sits below the sheet inside `.noprint` folds, so **Print**
+yields the study note on its own.
 
-* **Visible prose is capped at 210 words** per guide, counted with diagrams excluded
-  and collapsed sections closed. Roughly 60 words of structure, 13 for the one line,
-  20 for the paper prompts, and ~100 of actual content.
-* **Chart lines median 8 words.** `validate.py` also scores every guide with
-  Flesch-Kincaid against the youngest grade it is offered to.
+The study-note palette is deliberately its own (teal, rust, cream, pink and green)
+rather than the kiosk subject colours, so a printed sheet looks the same whatever
+subject it came from. It is redefined for dark mode and high contrast.
+
 
 ### Tools sit on the guide, not in a tab
 
@@ -112,19 +117,16 @@ Replaced with Khan Academy, ReadWriteThink, Wordsmyth Kids Dictionary, Ducksters
 Storyline Online. A side effect worth noting: every remaining link now verifies
 cleanly, because the site that was blocking our checker is no longer linked.
 
-### Step 6 teaches note-taking, it does not collect notes
+### Note-taking coaching, not a notebook
 
-There is no notebook and nothing is saved. Step 6 exists to build the habit, so the
-chart shows five short prompts and the folded panel carries the full coaching: write
-in your own words, cut to the shortest version that still works, show the line you
-usually do in your head, record *your* error rather than a general warning, and leave
-a margin question you can self-quiz from later.
-
+There is no notebook and nothing is saved. The sheet itself carries the write-on
+blanks, and a folded "Taking your own notes on this" panel coaches the habit: own
+words, the shortest version that still works, the line you usually do in your head,
+*your* error rather than a general warning, and a margin question to self-quiz from.
 The prompt set varies by the guide's `note` type (`steps`, `frayer`, `strategy`,
-`word`) so a vocabulary guide coaches word study and a procedure guide coaches worked
-examples.
+`word`), so a vocabulary guide coaches word study and a procedure guide coaches
+worked examples.
 
----
 
 ## Sources
 
@@ -284,6 +286,9 @@ check questions, and a worked example, so a thin guide cannot ship quietly.
 
 ## Known gaps
 
+* **Lalilo is gone.** It is no longer used on this campus, so it is out of the app
+  stack and off the nine guides that referenced it. The reason sits in the
+  `data/apps.js` header next to the other exclusions.
 * **No science or social studies.** Students on this campus do not use those apps, so
   AlphaScience, Nice Academy, PhysicsGraph, and TimeBack Scroll are not in the picker and
   no guide references them. The Playbook does place AlphaScience across grades 3-8 and
