@@ -78,41 +78,57 @@ const ROUTES = [
     }
   }
 
-  // every in-page jump link on a guide must scroll, not route away
+  // a guide must render as the house study-note sheet, in order
   await page.goto(BASE + '#/c/m-equivalent-fractions');
-  await page.waitForTimeout(200);
-  const jumpLinks = await page.evaluate(() =>
-    Array.from(document.querySelectorAll('.steps-nav a')).map(a => a.getAttribute('href')));
-  if (jumpLinks.length < 5) problems.push(`expected the guide jump nav, found ${jumpLinks.length} links`);
-  for (const href of jumpLinks) {
-    await page.click(`.steps-nav a[href="${href}"]`);
-    await page.waitForTimeout(120);
-    const after = await page.evaluate(() => ({
-      h1: (document.querySelector('#main h1') || {}).textContent || '',
-      hasTarget: !!document.querySelector(location.hash.startsWith('#sec') ? location.hash : 'body')
-    }));
-    if (/not here/i.test(after.h1)) problems.push(`jump link ${href} routed away to the not-found page`);
-    if (!after.hasTarget) problems.push(`jump link ${href} has no target section`);
-  }
-  console.log(`  guide jump links     ${jumpLinks.length} anchors scroll, none route away`);
-
-  // the paper prompt replaces the old notebook: nothing may be stored
-  await page.goto(BASE + '#/c/m-long-division');
-  await page.waitForTimeout(150);
-  const paper = await page.evaluate(() => {
-    const s = document.getElementById('sec-note');
+  await page.waitForTimeout(220);
+  const note = await page.evaluate(() => {
+    const n = document.querySelector('article.note');
+    if (!n) return { missing: true };
+    const order = Array.from(n.children).map(el => el.className.split(' ')[0]);
+    const q = sel => !!n.querySelector(sel);
     return {
-      heading: s ? s.querySelector('h2').innerText.trim() : '',
-      prompts: s ? s.querySelectorAll('ol.paper-list li').length : 0,
-      inputs: document.querySelectorAll('#main textarea, #main input').length,
-      keys: Object.keys(localStorage).filter(k => /note/i.test(k))
+      order,
+      head: q('.note-head h1') && q('.focus-chip') && q('.note-sub'),
+      gotit: q('.gotit .gotit-quote .q1'),
+      practice: q('.practice-text'),
+      diagram: q('.note-body svg'),
+      words: n.querySelectorAll('.wcard').length,
+      trap: q('.trap-box h3'), move: q('.move-box h3'),
+      tryit: n.querySelectorAll('.tryit li').length,
+      blanks: n.querySelectorAll('.tryit .blank').length,
+      sayback: n.querySelectorAll('.sayback li').length,
+      answers: (n.querySelector('.answers') || {}).textContent || '',
+      brand: ((n.querySelector('.brand-foot') || {}).textContent || '').includes('Future2')
     };
   });
-  if (!/on your paper/i.test(paper.heading)) problems.push(`paper heading is "${paper.heading}"`);
-  if (paper.prompts < 4) problems.push(`expected 4 paper prompts, found ${paper.prompts}`);
-  if (paper.inputs > 0) problems.push(`concept page still has ${paper.inputs} text input(s); nothing should be typeable`);
-  if (paper.keys.length) problems.push(`localStorage still holds note keys: ${paper.keys.join(', ')}`);
-  console.log(`  paper prompt         ${paper.prompts} prompts, no inputs, no stored notes`);
+  if (note.missing) problems.push('guide did not render as a study note');
+  else {
+    for (const [k, label] of [['head', 'masthead'], ['gotit', 'you-have-got-it quote'],
+                              ['diagram', 'diagram inside the sheet'], ['trap', 'the trap'],
+                              ['move', 'the move'], ['brand', 'Future2 footer']]) {
+      if (!note[k]) problems.push(`study note is missing the ${label}`);
+    }
+    if (note.tryit < 2) problems.push(`Now you try has ${note.tryit} items`);
+    if (note.blanks !== note.tryit) problems.push('every Now you try item needs a write-on blank');
+    if (note.sayback < 2) problems.push(`Say it back has ${note.sayback} prompts`);
+    if (!/Answers:/.test(note.answers)) problems.push('answer key missing');
+    const want = ['note-head', 'gotit', 'note-body', 'tm', 'tryit', 'sayback', 'note-foot'];
+    if (note.order.join(',') !== want.join(',')) {
+      problems.push(`study note sections out of order: ${note.order.join(' > ')}`);
+    }
+    console.log(`  study note          ${note.order.length} sections in order, ${note.words} word cards, ${note.tryit} practice items`);
+  }
+
+  // nothing on a guide may be typeable or stored
+  await page.goto(BASE + '#/c/m-long-division');
+  await page.waitForTimeout(160);
+  const store = await page.evaluate(() => ({
+    inputs: document.querySelectorAll('#main textarea, #main input').length,
+    keys: Object.keys(localStorage).filter(k => /note/i.test(k))
+  }));
+  if (store.inputs > 0) problems.push(`guide has ${store.inputs} text input(s); nothing should be typeable`);
+  if (store.keys.length) problems.push(`localStorage holds note keys: ${store.keys.join(', ')}`);
+  console.log('  no inputs, no storage OK');
 
   // the notebook route must be gone
   await page.goto(BASE + '#/notebook');
@@ -128,35 +144,24 @@ const ROUTES = [
     await page.waitForTimeout(180);
     const m = await page.evaluate(() => {
       const main = document.getElementById('main');
-      // Prose only: labels inside a diagram are the picture, not text to read.
       const clone = main.cloneNode(true);
-      clone.querySelectorAll('svg').forEach(el => el.remove());
-      // A closed <details> is not on screen, so its body does not count.
-      clone.querySelectorAll('details:not([open])').forEach(d => {
-        const s = d.querySelector('summary');
-        d.replaceChildren(...(s ? [s] : []));
-      });
-      document.body.appendChild(clone);
+      // the printed sheet is what matters: drop screen-only extras and diagrams
+      clone.querySelectorAll('.noprint, svg').forEach(el => el.remove());
       clone.style.position = 'absolute'; clone.style.left = '-9999px';
+      document.body.appendChild(clone);
       const words = (clone.innerText || '').split(/\s+/).filter(Boolean).length;
       clone.remove();
-      const secs = Array.from(main.querySelectorAll('section.step, details.step')).map(s => s.id);
-      const firstSvg = main.querySelector('svg');
-      const firstPara = main.querySelector('.oneline');
       return {
         visible: words,
-        firstSection: secs[0] || '',
-        pictureBeforeMoves: !!firstSvg && !!firstPara &&
-          (firstPara.compareDocumentPosition(firstSvg) & Node.DOCUMENT_POSITION_FOLLOWING) > 0
+        firstSection: (main.querySelector('article.note') || {}).tagName ? 'note' : '',
+        pictureBeforeMoves: !!main.querySelector('.note-body svg')
       };
     });
-    // Roughly: ~60 words of structure (headings, nav, tags, fold labels),
-    // ~13 one-liner, ~20 paper labels, ~20 for the two hands-on tool links,
-    // and ~100 of actual chart content (the moves and the traps).
-    // Above this the page stops working as a chart.
-    if (m.visible > 240) problems.push(`${cid}: ${m.visible} words visible before opening anything (target <=240)`);
-    if (m.firstSection !== 'sec-see') problems.push(`${cid}: first section is ${m.firstSection}, expected the picture`);
-    console.log(`  ${cid.padEnd(20)} ${String(m.visible).padStart(3)} words visible, picture first`);
+    // The Alpha study notes we are matching run about 240 words on the sheet.
+    if (m.visible > 280) problems.push(`${cid}: printed sheet is ${m.visible} words (house format runs ~240)`);
+    if (m.firstSection !== 'note') problems.push(`${cid}: did not render as a study note`);
+    if (!m.pictureBeforeMoves) problems.push(`${cid}: no diagram inside the sheet`);
+    console.log(`  ${cid.padEnd(20)} ${String(m.visible).padStart(3)} words on the printed sheet`);
   }
 
   // search from the header

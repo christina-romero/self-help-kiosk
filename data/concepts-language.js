@@ -13,7 +13,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'complete sentence subject predicate fragment capital letter end mark',
   stuck: ['The app says my sentence is incomplete', 'What is a predicate?'],
   teks: ['1.11.D', '2.11.D', '3.11.D', '4.11.D', '5.11.D'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'A complete sentence needs two halves: a subject and a predicate. The subject is who or what it is about; the predicate is what they do or are. It also needs a capital letter and an end mark.',
   why: 'Every grammar app checks this first. Fragments and run-ons both come from not seeing these two halves.',
   words: [
@@ -175,7 +175,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'noun verb adjective adverb pronoun preposition conjunction interjection parts of speech',
   stuck: ['Is "running" a verb or a noun here?', 'How do I tell an adjective from an adverb?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D', '6.10.D'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'A word’s part of speech depends on the job it does in that sentence. The same word can be a noun in one sentence and a verb in another.',
   why: 'Grammar apps ask you to identify parts of speech in context, and memorizing lists does not work when the same word can play several roles.',
   words: [
@@ -234,7 +234,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'nouns common proper plural collective irregular plurals capitalize',
   stuck: ['Why is it "children" and not "childs"?', 'When do I capitalize a noun?'],
   teks: ['1.11.D', '2.11.D', '3.11.D', '4.11.D', '5.11.D'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'A common noun names any member of a group (city). A proper noun names a specific one and gets a capital letter (Houston). Making nouns plural usually means adding -s, but the most common nouns often break the rule.',
   why: 'Capitalization and plural spelling are scored on nearly every writing task.',
   words: [
@@ -292,7 +292,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'verb tense past present future irregular verbs shifting tenses consistency',
   stuck: ['I keep switching between past and present', 'Is it "I have went" or "I have gone"?'],
   teks: ['3.11.D', '4.11.D', '5.11.D', '6.10.D', '7.10.D', '8.10.D'],
-  apps: ['Lalilo', 'MobyMax', 'eGumpp', 'Freckle'],
+  apps: ['MobyMax', 'eGumpp', 'Freckle'],
   plain: 'Tense tells you when something happened. The rule that costs students the most points is not forming a tense. It is switching tenses in the middle of a piece of writing without meaning to.',
   why: 'Grades 6 to 8 explicitly require consistent, appropriate use of verb tenses, and it is one of the most frequently flagged errors in AlphaWrite.',
   words: [
@@ -459,7 +459,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'adjective adverb comparative superlative more most er est good well bad badly',
   stuck: ['Is it "more prettier" or "prettier"?', 'Do I say "he ran good" or "he ran well"?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'Adjectives describe nouns; adverbs describe verbs. When you compare two things you use the comparative form, and for three or more you use the superlative: but you never use both -er and "more" at the same time.',
   why: 'Comparative and superlative forms are named directly in the grades 2 to 5 conventions expectations, and the double-comparative error is extremely common.',
   words: [
@@ -631,7 +631,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'apostrophe possessive contraction its it\'s your you\'re plural',
   stuck: ['Is it "its" or "it\'s"?', 'Where does the apostrophe go for plural possessives?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'Apostrophes do exactly two jobs. They show ownership, and they mark missing letters in a contraction. They never make a word plural.',
   why: 'The its/it\'s error is one of the most-flagged mistakes in writing apps, and it is a two-second check once you know the trick.',
   words: [
@@ -743,7 +743,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'capitalization capital letters proper nouns titles months days',
   stuck: ['Do I capitalize seasons?', 'Which words in a title get capitals?'],
   teks: ['1.11.D', '2.11.D', '3.11.D', '4.11.D', '5.11.D', '8.10.D'],
-  apps: ['Lalilo', 'MobyMax', 'eGumpp', 'Freckle'],
+  apps: ['MobyMax', 'eGumpp', 'Freckle'],
   plain: 'Capitalize the first word of a sentence, the word I, and every proper noun. A proper noun is a specific name. Categories stay lowercase.',
   why: 'Correct capitalization is named directly in the grade 8 conventions expectation and is scored on every writing task.',
   words: [
@@ -803,7 +803,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'spelling patterns doubling rule drop the e change y to i syllable types',
   stuck: ['Do I double the letter before -ing?', 'Is it "hoping" or "hopping"?'],
   teks: ['2.2.B', '3.2.B', '4.2.B', '5.2.B'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'English spelling is more predictable than it looks. Three rules handle most of the words you get wrong when adding an ending: double the final consonant, drop the silent e, or change y to i.',
   why: 'Spelling is a separate TEKS expectation and it is one of the fastest scores to raise, because a small number of rules cover a large number of words.',
   words: [
@@ -860,7 +860,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'homophones there their they\'re your you\'re to too two affect effect',
   stuck: ['I always mix up there, their and they\'re', 'Is it affect or effect?'],
   teks: ['3.2.B', '3.3.D', '4.3.D', '5.3.D', '6.2.B'],
-  apps: ['Lalilo', 'MobyMax', 'Freckle'],
+  apps: ['MobyMax', 'Freckle'],
   plain: 'Homophones sound identical but mean different things and are spelled differently. Spell-check will not catch them, because every version is a real word. You need a memory trick for each pair.',
   why: 'These are the errors that survive spell-check, so they show up in your final score even after you proofread.',
   words: [

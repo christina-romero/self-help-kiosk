@@ -15,6 +15,7 @@
 
    Deliberately NOT listed, with the reason:
      Happy Numbers, Mentava, AlphaNumbers   pre-K only
+     Lalilo                                 no longer used on this campus
      Edia                                   grades 9-12 only
      AlphaPhonics, Vocabulon, Math Quest    have manuals but no
                                             slot on the K-8 continuum
@@ -63,9 +64,6 @@ window.APPS = [
     stuck: 'Main idea, inference, and author\'s purpose questions on nonfiction you only half understood.' },
 
   /* ---------- Language ---------- */
-  { id: 'lalilo', name: 'Lalilo', subject: 'Language', grades: 'Grades K-2', role: 'core', alpha: false,
-    what: 'Your language work in K, 1, and 2: phonics, sight words, and early sentence skills in short game-like tasks.',
-    stuck: 'Sounding out longer words and hearing each sound in order.' },
   { id: 'mobymax', name: 'MobyMax', subject: 'Language', grades: 'Grades 3-7', role: 'core', alpha: false,
     what: 'Your grammar and conventions course in grades 3 through 7, targeted at the gaps your diagnostic found.',
     stuck: 'Sentence structure: fragments, run-ons, and clauses.' },

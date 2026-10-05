@@ -386,7 +386,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   alt: 'capital letter period question mark exclamation sentence beginning end',
   stuck: ['My teacher circled the start of my sentence', 'When do I use a question mark?'],
   teks: ['K.10.D', '1.11.D', '2.11.D'],
-  apps: ['Lalilo'],
+  apps: [],
   plain: 'Every sentence starts with a capital letter and ends with a mark. The mark tells the reader how to say it: a period is plain, a question mark asks, and an exclamation point is loud or excited.',
   why: 'This is the first thing every writing app checks, so it is the easiest place to stop losing points.',
   words: [

@@ -346,32 +346,91 @@
     rec = [id].concat(rec.filter(function (x) { return x !== id; })).slice(0, 8);
     LS.set(K_RECENT, rec);
 
-    var vizHtml = window.Viz.render(c.visual);
+    // "You've got it when you can say": the definition, then the caution.
+    var sent = String(c.plain || '').match(/[^.!?]+[.!?]/g) || [c.plain || ''];
+    var sayA = (sent[0] || '').trim();
+    var sayB = (sent[1] || '').trim();
+
+    // The move: the first two steps, as the procedure a student follows.
+    var moveBits = (c.steps || []).slice(0, 2).map(firstLine).join(' ');
+    var trap = (c.traps || [])[0] || '';
+    var trap2 = (c.traps || [])[1] || '';
+
+    // Short name for the focus chip.
+    var focus = String(c.title || '').split(/[:,(]/)[0].toLowerCase().trim();
+    if (focus.length > 34) focus = focus.slice(0, 34).replace(/\s+\S*$/, '');
+
+    var h = '<div class="' + s.cls + '">';
+    h += '<p class="crumbs noprint"><a href="#/g/' + c.grades[0] + '/' + c.subject + '">\u2039 ' + esc(s.name) + '</a></p>';
+
+    h += '<article class="note">';
+
+    h += '<header class="note-head"><div><h1>' + esc(c.title) + '</h1>' +
+      '<p class="note-sub">Study note \u00b7 ' + esc(s.name) + ' \u00b7 one page</p></div>' +
+      '<span class="focus-chip">Focus skill \u00b7 ' + esc(focus) + '</span></header>';
+
+    h += '<section class="gotit"><p class="gotit-label">You\u2019ve got it when you can say</p>' +
+      '<p class="gotit-quote">\u201c<span class="q1">' + esc(sayA) + '</span>' +
+      (sayB ? ' <span class="q2">' + esc(sayB) + '</span>' : '') + '\u201d</p></section>';
+
+    h += '<section class="note-body">';
+    if (c.example && c.example.prompt) {
+      h += '<div class="practice"><p class="practice-label">Practice example</p>' +
+        '<p class="practice-text">' + esc(c.example.prompt) + '</p></div>';
+    }
+    // One topic, one page: the sheet carries ONE picture. Any further
+    // diagrams move to a screen-only fold below.
+    var vizList = c.visual ? (Array.isArray(c.visual) ? c.visual : [c.visual]) : [];
+    var firstViz = vizList.length ? window.Viz.render(vizList[0]) : '';
+    var restViz = vizList.length > 1 ? window.Viz.render(vizList.slice(1)) : '';
     var flowHtml = window.Viz.render({ type: 'flow', steps: (c.steps || []).map(firstLine) });
+    h += '<div class="note-viz">' + (firstViz || flowHtml) + '</div>';
+    if (c.words && c.words.length) {
+      h += '<div class="wordcards">' + c.words.slice(0, 3).map(function (w) {
+        return '<div class="wcard">' +
+          '<p class="wlabel">Word</p>' +
+          '<p class="wterm">' + window.Viz.icon(window.Viz.iconFor(w.w, w.d), 20) + esc(w.w) + '</p>' +
+          '<p class="wdef">' + esc(w.d) + '</p></div>';
+      }).join('') + '</div>';
+    }
+    h += '</section>';
 
-    var h = '<div class="' + s.cls + ' chart">';
-    h += '<p class="crumbs"><a href="#/g/' + c.grades[0] + '/' + c.subject + '">‹ ' + esc(s.name) + '</a></p>';
+    h += '<div class="tm">' +
+      '<section class="trap-box"><h3>\u2717 The trap</h3><p>' + esc(trap) + '</p>' +
+      (trap2 ? '<p>' + esc(trap2) + '</p>' : '') + '</section>' +
+      '<section class="move-box"><h3>\u2713 The move</h3><p>' + esc(moveBits) + '</p></section>' +
+      '</div>';
 
-    /* ---- masthead: title, one line, nothing else ---- */
-    h += '<header class="chead"><h1>' + esc(c.title) + '</h1>' +
-      '<p class="oneline">' + esc(firstLine(c.plain)) + '</p>' +
-      '<div class="row">' +
-      '<span class="tag tag-grade">' + c.grades.map(function (g) { return gradeShort(g); }).join(' · ') + '</span>' +
-      ((c.apps && c.apps.length)
-        ? c.apps.map(function (a) { return '<span class="tag tag-app">' + esc(a) + '</span>'; }).join('')
-        : '') +
-      '</div></header>';
+    if (c.check && c.check.length) {
+      h += '<section class="tryit"><h3>Now you try</h3><ol>' +
+        c.check.map(function (q) {
+          return '<li><b>' + esc(q.q) + '</b> <span class="blank"></span></li>';
+        }).join('') + '</ol></section>';
+    }
 
-    h += '<nav class="steps-nav" aria-label="Parts of this chart">' +
-      '<a href="#sec-see">Look</a>' +
-      (c.words && c.words.length ? '<a href="#sec-what">Words</a>' : '') +
-      '<a href="#sec-do">The moves</a><a href="#sec-watch">Careful</a>' +
-      '<a href="#sec-note">Your paper</a>' +
-      (c.links && c.links.length ? '<a href="#sec-more">More help</a>' : '') + '</nav>';
+    var backs = [];
+    if (c.words && c.words.length) backs.push('What does \u201c' + c.words[0].w + '\u201d mean?');
+    if (c.words && c.words.length > 1) backs.push('How is \u201c' + c.words[0].w + '\u201d different from \u201c' + c.words[1].w + '\u201d?');
+    backs.push('Say the move in your own words.');
+    backs.push('What is the one mistake to watch for?');
+    h += '<section class="sayback"><h3>Say it back (cover the sheet first)</h3><ul>' +
+      backs.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul></section>';
 
-    /* ---- the chart itself: picture first, before any prose ---- */
-    h += '<section class="step hero" id="sec-see"><h2>' + window.Viz.icon('eye', 20) + 'Look at this</h2>' +
-      (vizHtml || flowHtml);
+    h += '<footer class="note-foot">' +
+      // Terse key, like the printed sheets: the answer, not the explanation.
+      '<p class="answers">Answers: ' + (c.check || []).map(function (q, i) {
+        var a = String(q.a || '').split(/(?<=[.!?])\s/)[0].replace(/[.]$/, '');
+        return (i + 1) + ') ' + a;
+      }).map(esc).join(' · ') + '</p>' +
+      '<p class="brand-foot">Alpha School \u00b7 Future2<br>one topic, one page</p></footer>';
+
+    h += '</article>';
+
+    h += '<div class="noprint">';
+
+    h += '<p class="printrow"><button class="btn btn-brand" id="printNote">Print this study note</button>' +
+      '<span class="muted">Prints on one page. Write your answers straight onto it.</span></p>';
+
     var tools = toolsFor(c);
     if (tools.length) {
       h += '<div class="tools"><p class="toolhead">' + window.Viz.icon('parts', 18) +
@@ -380,67 +439,53 @@
           return '<a class="tool" href="' + esc(tl.u) + '" target="_blank" rel="noopener noreferrer">' +
             '<span class="tico">' + window.Viz.icon(tl.icon || 'grid', 22) + '</span>' +
             '<span class="tt"><b>' + esc(tl.t) + '</b><span>' + esc(tl.d) + '</span></span>' +
-            '<span class="ext">↗</span></a>';
+            '<span class="ext">\u2197</span></a>';
         }).join('') + '</div></div>';
     }
-    h += '</section>';
 
-    /* ---- words, as icon cards ---- */
-    if (c.words && c.words.length) {
-      h += '<section class="step" id="sec-what"><h2>' + window.Viz.icon('letters', 20) + 'Words to know</h2>' +
-        window.Viz.render({ type: 'vocab', words: c.words, title: null }) + '</section>';
+    if (restViz || firstViz) {
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('eye', 20) +
+        'More pictures for this skill</h2></summary>' + (restViz || '') +
+        (firstViz ? flowHtml : '') + '</details>';
     }
 
-    /* ---- the moves: headline per step, detail on tap ---- */
-    h += '<section class="step" id="sec-do"><h2>' + window.Viz.icon('steps', 20) + 'The moves</h2>' +
-      '<ol class="moves">' + (c.steps || []).map(function (st) {
-        var p = headline(st);
-        return '<li>' + openable('<span class="mtext">' + esc(p.head) + '</span>', p.rest, 'move') + '</li>';
-      }).join('') + '</ol>';
-    h += '</section>';
-
-    /* ---- careful: headline per trap, detail on tap ---- */
-    h += '<section class="step" id="sec-watch"><h2>' + window.Viz.icon('warn', 20) + 'Careful</h2>' +
-      '<ul class="traps">' + (c.traps || []).map(function (tr) {
-        var p = headline(tr);
-        return '<li>' + openable('<span class="mtext">' + esc(p.head) + '</span>', p.rest, 'trap') + '</li>';
-      }).join('') + '</ul></section>';
-
-    /* ---- everything below is on demand ---- */
-    if (c.example) {
-      h += '<details class="step fold" id="sec-example"><summary><h2>' + window.Viz.icon('pencil', 20) +
-        'See one worked out</h2></summary><div class="worked">' +
-        '<p class="wq">' + esc(c.example.prompt) + '</p>' +
-        '<ol>' + (c.example.work || []).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ol>' +
-        '<p style="margin:0"><span class="wa">Answer: ' + esc(c.example.answer) + '</span></p></div></details>';
+    if (c.example && (c.example.work || []).length) {
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('pencil', 20) +
+        'See it worked out</h2></summary><div class="worked">' +
+        '<p class="wq">' + esc(c.example.prompt) + '</p><ol>' +
+        c.example.work.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') +
+        '</ol><p style="margin:0"><span class="wa">Answer: ' + esc(c.example.answer) + '</span></p></div></details>';
     }
 
-    h += '<details class="step fold" id="sec-check"><summary><h2>' + window.Viz.icon('check', 20) +
-      'Test yourself</h2></summary>' +
-      (c.check || []).map(function (q) {
-        return '<details class="qa"><summary>' + esc(q.q) + '</summary><div class="ans"><b>Answer:</b> ' + esc(q.a) + '</div></details>';
-      }).join('') + '</details>';
+    h += '<details class="step fold"><summary><h2>' + window.Viz.icon('steps', 20) +
+      'All the moves, step by step</h2></summary><ol class="moves">' +
+      (c.steps || []).map(function (st) {
+        var pr = headline(st);
+        return '<li>' + openable('<span class="mtext">' + esc(pr.head) + '</span>', pr.rest, 'move') + '</li>';
+      }).join('') + '</ol></details>';
 
-    /* ---- take it to paper ---- */
+    if ((c.traps || []).length > 2) {
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('warn', 20) +
+        'More traps on this skill</h2></summary><ul class="traps">' +
+        c.traps.slice(2).map(function (tr) {
+          var pr = headline(tr);
+          return '<li>' + openable('<span class="mtext">' + esc(pr.head) + '</span>', pr.rest, 'trap') + '</li>';
+        }).join('') + '</ul></details>';
+    }
+
     var prompts = PAPER_PROMPTS[c.note || 'steps'] || PAPER_PROMPTS.steps;
-    h += '<section class="step" id="sec-note"><h2>' + window.Viz.icon('pencil', 20) + 'Put this on your paper</h2>' +
-      '<div class="paper"><ol class="paper-list">' +
-      prompts.map(function (f) { return '<li><b>' + esc(f.s || f.l) + '</b></li>'; }).join('') + '</ol></div>' +
-      '<details class="habits fold"><summary>How to write each one well</summary><ul class="howwell">' +
-      prompts.map(function (f) {
+    h += '<details class="habits fold"><summary>Taking your own notes on this</summary>' +
+      '<ul class="howwell">' + prompts.map(function (f) {
         return '<li><b>' + esc(f.l) + '</b>' + (f.h ? '<span>' + esc(f.h) + '</span>' : '') + '</li>';
       }).join('') + '</ul><ul>' +
-      PAPER_HABITS.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-      '<p class="habit-test">Cover the page and say the skill from memory. If you cannot, add what was missing now.</p>' +
-      '</details></section>';
+      PAPER_HABITS.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></details>';
 
     if (c.links && c.links.length) {
-      h += '<details class="step fold" id="sec-more"><summary><h2>' + window.Viz.icon('search', 20) +
-        'More help on the web</h2></summary>' +
-        '<ul class="links">' + c.links.map(function (l) {
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('search', 20) +
+        'More help on the web</h2></summary><ul class="links">' +
+        c.links.map(function (l) {
           return '<li><a href="' + esc(l.u) + '" target="_blank" rel="noopener noreferrer">' +
-            '<span><span class="lt">' + esc(l.t) + '</span></span>' +
-            '<span class="ext">new tab ↗</span></a></li>';
+            '<span><span class="lt">' + esc(l.t) + '</span></span><span class="ext">new tab \u2197</span></a></li>';
         }).join('') + '</ul></details>';
     }
 
@@ -449,13 +494,16 @@
         (x.unit === c.unit || x.grades.some(function (g) { return c.grades.indexOf(g) > -1; }));
     }).slice(0, 4);
     if (related.length) {
-      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('link', 20) + 'Next, you might need…</h2></summary>' +
-        '<div class="clist">' + related.map(function (x) { return conceptCard(x, { grade: c.grades[0] }); }).join('') +
+      h += '<details class="step fold"><summary><h2>' + window.Viz.icon('link', 20) +
+        'Next, you might need\u2026</h2></summary><div class="clist">' +
+        related.map(function (x) { return conceptCard(x, { grade: c.grades[0] }); }).join('') +
         '</div></details>';
     }
 
-    h += '<div class="notice"><p><b>Still stuck?</b> Tell your Guide which move you got stuck on.</p></div>';
+    h += '<div class="notice"><p><b>Still stuck?</b> Tell your Guide: \u201cI am on <i>' +
+      esc(c.title) + '</i>. The part I do not get is ___.\u201d</p></div>';
 
+    h += '</div>';
     return h + '</div>';
   };
 
@@ -619,6 +667,9 @@
   }
 
   function bindView() {
+    var pn = $('#printNote');
+    if (pn) pn.addEventListener('click', function () { window.print(); });
+
     var hero = $('#heroForm');
     if (hero) hero.addEventListener('submit', function (e) { e.preventDefault(); doSearch($('#heroQ').value); });
 

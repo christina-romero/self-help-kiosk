@@ -306,6 +306,136 @@ html[data-theme="hc"] .qa summary::before{color:#000}
 .step h2 .ic{color:var(--sc,var(--brand))}
 html[data-theme="hc"] .step h2 .ic{color:var(--brand)}
 
+/* ============================================================
+   STUDY NOTE
+   The one-page sheet Guides already hand students before a test
+   (Alpha School / Future2 house format). Each guide renders as one,
+   so the kiosk and the printed notes are the same artefact.
+   Palette is the study-note palette, not the kiosk subject colours,
+   so a printed sheet looks identical whatever subject it came from.
+   ============================================================ */
+:root{
+  --n-ink:#273133;
+  --n-teal:#0f6b63;
+  --n-teal-2:#11857a;
+  --n-rust:#c0552a;
+  --n-cream:#f3eee2;
+  --n-card:#e4f0ee;
+  --n-card-line:#a8cdc8;
+  --n-trap:#b03a63;
+  --n-move:#4f8a3d;
+  --n-grey:#edebe7;
+  --n-rule:#d8d4cc;
+}
+html[data-theme="dark"]{
+  --n-ink:#e9eef0; --n-teal:#5cc9bd; --n-teal-2:#7fded3; --n-rust:#f0a070;
+  --n-cream:#262b2c; --n-card:#15302e; --n-card-line:#2f6a63;
+  --n-trap:#f08aae; --n-move:#8fd27a; --n-grey:#232a2b; --n-rule:#34403f;
+}
+html[data-theme="hc"]{
+  --n-ink:#fff; --n-teal:#5cffe0; --n-teal-2:#5cffe0; --n-rust:#ffb35c;
+  --n-cream:#000; --n-card:#000; --n-card-line:#fff;
+  --n-trap:#ff9ecb; --n-move:#7dff9e; --n-grey:#000; --n-rule:#fff;
+}
+
+.note{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:1.6rem 1.8rem 1.2rem;color:var(--n-ink);
+  max-width:860px;margin:0 auto 1.2rem;
+}
+.note h1,.note h3{color:inherit}
+
+.note-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;
+  border-bottom:1px solid var(--n-rule);padding-bottom:.9rem;margin-bottom:1rem}
+.note-head h1{font-size:1.85rem;margin:0 0 .1em;letter-spacing:-.01em}
+.note-sub{margin:0;font-size:.82rem;color:var(--ink-2)}
+.focus-chip{
+  flex:0 0 auto;font-size:.76rem;color:var(--ink-2);background:var(--n-grey);
+  border:1px solid var(--n-rule);border-radius:999px;padding:.35em .85em;white-space:nowrap;
+}
+
+/* the sentence they must be able to say */
+.gotit{background:var(--n-grey);border-left:5px solid var(--n-teal);
+  border-radius:0 var(--radius-s) var(--radius-s) 0;padding:.85rem 1.1rem;margin-bottom:1rem}
+.gotit-label{margin:0 0 .35em;font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2)}
+.gotit-quote{margin:0;font-size:1.12rem;line-height:1.45;font-weight:700}
+.gotit-quote .q1{color:var(--n-teal)}
+.gotit-quote .q2{color:var(--n-rust)}
+
+/* picture block */
+.note-body{border:1px solid var(--n-rule);border-radius:var(--radius-s);
+  padding:1rem;margin-bottom:1rem}
+.practice{background:var(--n-cream);border-radius:var(--radius-s);padding:.8rem 1rem;
+  text-align:center;margin-bottom:.9rem}
+.practice-label{margin:0 0 .3em;font-size:.7rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2)}
+.practice-text{margin:0;font-size:1.12rem;font-weight:700;line-height:1.4}
+.note-viz{text-align:center}
+.note-viz svg{max-width:100%;height:auto}
+
+.wordcards{display:grid;gap:.6rem;margin-top:.9rem;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.wcard{background:var(--n-card);border:1.5px solid var(--n-card-line);
+  border-radius:var(--radius-s);padding:.7rem .8rem;text-align:center}
+.wlabel{margin:0 0 .25em;font-size:.66rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--n-teal)}
+.wterm{margin:0 0 .3em;font-size:1.22rem;font-weight:800;color:var(--n-teal);
+  display:flex;align-items:center;justify-content:center;gap:.3em}
+.wterm .ic{margin:0;color:var(--n-teal)}
+.wdef{margin:0;font-size:.86rem;line-height:1.35}
+
+/* trap and move */
+.tm{display:grid;gap:.7rem;grid-template-columns:1fr 1fr;margin-bottom:1rem}
+.trap-box,.move-box{border:1px solid var(--n-rule);border-radius:var(--radius-s);padding:.8rem .95rem}
+.trap-box{border-left:5px solid var(--n-trap)}
+.move-box{border-left:5px solid var(--n-move)}
+.trap-box h3,.move-box h3{margin:0 0 .35em;font-size:.95rem;font-weight:800}
+.trap-box h3{color:var(--n-trap)}
+.move-box h3{color:var(--n-move)}
+.trap-box p,.move-box p{margin:0 0 .4em;font-size:.9rem;line-height:1.45}
+.trap-box p:last-child,.move-box p:last-child{margin-bottom:0}
+
+/* write-on practice */
+.tryit{border:1px dashed var(--n-rule);border-radius:var(--radius-s);
+  padding:.85rem 1rem;margin-bottom:1rem}
+.tryit h3,.sayback h3{margin:0 0 .5em;font-size:.95rem;font-weight:800}
+.tryit ol{margin:0;padding-left:1.3em;display:grid;gap:.55rem}
+.tryit li{font-size:.92rem;line-height:1.5}
+.blank{display:inline-block;min-width:8em;border-bottom:1px solid var(--n-ink);
+  margin-left:.3em;vertical-align:baseline}
+
+.sayback{background:var(--n-grey);border-radius:var(--radius-s);
+  padding:.85rem 1rem;margin-bottom:1rem}
+.sayback ul{margin:0;padding-left:1.1em;display:grid;gap:.25rem;list-style:none}
+.sayback li{font-size:.9rem;line-height:1.45;position:relative;padding-left:.8em}
+.sayback li::before{content:"\00B7";position:absolute;left:0;font-weight:800}
+
+.note-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;
+  border-top:1px solid var(--n-rule);padding-top:.7rem}
+.answers{margin:0;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;
+  font-size:.72rem;color:var(--ink-2);line-height:1.5;max-width:62%}
+.brand-foot{margin:0;text-align:right;font-size:.72rem;color:var(--ink-2);line-height:1.5}
+
+.printrow{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:0 0 1rem}
+.printrow .muted{font-size:.85rem}
+
+@media (max-width:640px){
+  .note{padding:1.1rem 1rem}
+  .note-head{flex-direction:column;gap:.5rem}
+  .tm{grid-template-columns:1fr}
+  .note-foot{flex-direction:column;align-items:flex-start}
+  .answers{max-width:100%}
+}
+
+/* one page when printed */
+@media print{
+  .note{border:none;box-shadow:none;padding:0;max-width:100%;margin:0}
+  .note-viz svg{max-height:230px}
+  .wcard,.trap-box,.move-box,.tryit,.sayback,.practice,.gotit,.note-body{
+    break-inside:avoid;page-break-inside:avoid}
+}
+
 /* ---------- anchor-chart guide ---------- */
 .chart .chead{margin-bottom:.9rem}
 .chart .chead h1{font-size:2rem;line-height:1.15;margin-bottom:.15em}
