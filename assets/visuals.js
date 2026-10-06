@@ -266,10 +266,14 @@
   /* ---------- 3. Fraction bars ---------- */
   VIZ.fractionbar = function (p) {
     var bars = p.bars || [{ parts: 4, shaded: 3, label: '3/4' }];
-    var W = 660, bh = 46, gap = 30, H = 24 + bars.length * (bh + gap);
+    var subLines = bars.reduce(function (n, b) {
+      return Math.max(n, b.sub ? wrap(b.sub, 24).length : 0);
+    }, 0);
+    var W = 660, bh = 46, gap = 30 + Math.max(0, subLines - 1) * 13;
+    var H = 24 + bars.length * (bh + gap);
     var body = '';
     for (var b = 0; b < bars.length; b++) {
-      var bar = bars[b], y = 18 + b * (bh + gap), bw = W - 190, x0 = 24, pw = bw / bar.parts;
+      var bar = bars[b], y = 18 + b * (bh + gap), bw = W - 212, x0 = 24, pw = bw / bar.parts;
       var c = hue(b), cb = hueB(b);
       for (var i = 0; i < bar.parts; i++) {
         var on = i < bar.shaded;
@@ -277,7 +281,13 @@
         if (bar.tick) body += t(x0 + i * pw + pw / 2, y + bh / 2 + 5, bar.tick[i] || '', { size: 12, fill: on ? PANEL : c });
       }
       body += t(x0 + bw + 16, y + bh / 2 - 2, bar.label || '', { size: 20, weight: 800, anchor: 'start', fill: c });
-      if (bar.sub) body += t(x0 + bw + 16, y + bh / 2 + 16, bar.sub, { size: 11.5, anchor: 'start', fill: SUB });
+      // The caption wraps inside the gutter. Left as one line it runs off the
+      // right edge of the canvas and the end of the sentence is simply lost.
+      if (bar.sub) {
+        wrap(bar.sub, 24).forEach(function (ln, li) {
+          body += t(x0 + bw + 16, y + bh / 2 + 16 + li * 13, ln, { size: 11.5, anchor: 'start', fill: SUB });
+        });
+      }
     }
     return svg(W, H, body, 'Fraction bars');
   };
@@ -361,7 +371,10 @@
 
   /* ---------- 7. Coordinate plane ---------- */
   VIZ.coordplane = function (p) {
-    var n = p.range || 5, S = 30, W = 660, size = n * 2 * S, cx = W / 2, cy = 30 + size / 2, H = size + 76;
+    var n = p.range || 5, S = 30, W = 660, size = n * 2 * S, cx = W / 2;
+    // Headroom for the title, so it never lands on the y-axis label below it.
+    var top = p.title ? 36 : 12;
+    var cy = top + 18 + size / 2, H = cy + size / 2 + 46;
     var body = ARROW;
     for (var i = -n; i <= n; i++) {
       body += line(cx - size / 2, cy + i * S, cx + size / 2, cy + i * S, { stroke: LINE, sw: 1 });
@@ -386,7 +399,12 @@
         body += line(px, cy, px, py, { stroke: hue(1), sw: 2.5, dash: '5 4' });
       }
       body += '<circle cx="' + px + '" cy="' + py + '" r="8" fill="' + hue(i) + '" stroke="' + PANEL + '" stroke-width="2.5" filter="url(#sh)"/>';
-      body += t(px + 4, py - 12, pt.l || ('(' + pt.x + ', ' + pt.y + ')'), { size: 12.5, weight: 800, fill: hue(i), anchor: 'start' });
+      // Label toward the origin, where the plane is empty. Labelling outward
+      // runs a point in the top right straight into the quadrant I marker.
+      var right = px >= cx;
+      var ly = py - 12 < cy - size / 2 + 14 ? py + 22 : py - 12;
+      body += t(px + (right ? -11 : 11), ly, pt.l || ('(' + pt.x + ', ' + pt.y + ')'),
+        { size: 12.5, weight: 800, fill: hue(i), anchor: right ? 'end' : 'start' });
     });
     if (p.title) body += t(W / 2, 20, p.title, { size: 13, weight: 700, fill: SUB });
     return svg(W, H, body, 'Coordinate plane');
@@ -434,7 +452,9 @@
 
   /* ---------- 10. Story plot diagram ---------- */
   VIZ.plotarc = function (p) {
-    var W = 660, H = 260;
+    // Room for two lines of label under the lowest point AND the caption
+    // below them, which at the old height sat on top of each other.
+    var W = 660, H = 286;
     var body = ARROW;
     body += '<path d="M60 210 L200 210 L330 60 L470 150 L600 210 L600 214 L60 214 Z" fill="' + hueB(0) + '" opacity=".55"/>';
     body += '<path d="M60 210 L200 210 L330 60 L470 150 L600 210" fill="none" stroke="' + hue(0) + '" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>';
@@ -453,7 +473,7 @@
       body += t(Math.min(Math.max(pt.x, 60), 600), ty + 15, pt.d, { size: 11, fill: SUB });
     });
     body += line(40, 226, 620, 226, { stroke: LINE, sw: 2 });
-    body += t(W / 2, 246, 'beginning → middle → end', { size: 11.5, fill: SUB, style: 'italic' });
+    body += t(W / 2, 276, 'beginning → middle → end', { size: 11.5, fill: SUB, style: 'italic' });
     return svg(W, H, body, 'Plot diagram');
   };
 
@@ -669,7 +689,11 @@
         return wrap(String(c), ci === 0 ? perFirst : perBody).length;
       })) * 15);
     });
-    var H = 34 + headH + rowHs.reduce(function (a, b) { return a + b; }, 0) + (p.note ? 26 : 0), body = '';
+    // The note wraps to the table width. A long one left on a single line
+    // runs off both ends of the canvas.
+    var noteLines = p.note ? wrap(String(p.note), Math.floor(W / 6.6)) : [];
+    var H = 34 + headH + rowHs.reduce(function (a, b) { return a + b; }, 0) +
+      (noteLines.length ? 12 + noteLines.length * 15 : 0), body = '';
     if (p.title) body += t(W / 2, 22, p.title, { size: 13, weight: 700, fill: SUB });
     head.forEach(function (h, i) {
       body += rect(x0 + i * cw, 32, cw, headH, { fill: hue(i), stroke: hue(i), r: 0 });
@@ -688,7 +712,9 @@
       });
       yy += rh;
     });
-    if (p.note) body += t(W / 2, H - 8, p.note, { size: 12, fill: SUB, style: 'italic' });
+    noteLines.forEach(function (ln, i) {
+      body += t(W / 2, H - 8 - (noteLines.length - 1 - i) * 15, ln, { size: 12, fill: SUB, style: 'italic' });
+    });
     return svg(W, H, body, 'Table');
   };
 
@@ -723,19 +749,37 @@
   /* ---------- 23. Long division cycle (DMSB) ---------- */
   VIZ.cycle = function (p) {
     var steps = p.steps || [{ l: 'Divide' }, { l: 'Multiply' }, { l: 'Subtract' }, { l: 'Bring down' }];
-    var W = 660, H = 280, cx = W / 2, cy = 140, R = 92, body = ARROW;
-    steps.forEach(function (s, i) {
-      var ang = -Math.PI / 2 + (i * 2 * Math.PI / steps.length);
-      var x = cx + R * Math.cos(ang) * 1.75, y = cy + R * Math.sin(ang);
-      var c = hue(i);
-      body += rect(x - 76, y - 26, 152, 52, { fill: hueB(i), stroke: c, sw: 2.5, shadow: 1 });
-      body += t(x, y - 2, s.l, { size: 14, weight: 800, fill: c });
-      if (s.d) body += t(x, y + 15, s.d, { size: 10.5, fill: SUB });
-      var nAng = -Math.PI / 2 + ((i + 1) * 2 * Math.PI / steps.length);
-      var nx = cx + R * Math.cos(nAng) * 1.75, ny = cy + R * Math.sin(nAng);
-      var mx = (x + nx) / 2, my = (y + ny) / 2;
-      body += '<path d="M' + x + ' ' + y + ' Q ' + (mx + (my - cy) * 0.28) + ' ' + (my + (mx - cx) * 0.16) + ' ' + nx + ' ' + ny +
+    var BW = 152, BH = 52, R = 92, W = 660, cx = W / 2;
+    // The title gets its own band above the ring. Without it the top box sits
+    // under the title, which is what the first version of this did.
+    var top = p.title ? 42 : 16;
+    var cy = top + R + BH / 2, H = cy + R + BH / 2 + 16;
+    var pos = steps.map(function (s, i) {
+      var a = -Math.PI / 2 + (i * 2 * Math.PI / steps.length);
+      return { x: cx + R * Math.cos(a) * 1.75, y: cy + R * Math.sin(a) };
+    });
+    // Where a ray leaving a box centre crosses that box's own edge, plus a
+    // gap, so an arrow starts and lands beside a box instead of across its
+    // label and the arrowhead never sits on a word.
+    function edge(c, dx, dy, pad) {
+      var m = Math.max(Math.abs(dx) / (BW / 2 + pad), Math.abs(dy) / (BH / 2 + pad));
+      return { x: c.x + dx / m, y: c.y + dy / m };
+    }
+    var body = ARROW;
+    // Connectors first, so every box paints over them rather than under them.
+    pos.forEach(function (a, i) {
+      var b = pos[(i + 1) % pos.length];
+      var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      var qx = mx + (my - cy) * 0.28, qy = my + (mx - cx) * 0.16;
+      var s = edge(a, qx - a.x, qy - a.y, 7), e = edge(b, qx - b.x, qy - b.y, 12);
+      body += '<path d="M' + s.x + ' ' + s.y + ' Q ' + qx + ' ' + qy + ' ' + e.x + ' ' + e.y +
         '" fill="none" stroke="' + SUB + '" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arwg)" opacity="0.55"/>';
+    });
+    pos.forEach(function (a, i) {
+      var s = steps[i], c = hue(i);
+      body += rect(a.x - BW / 2, a.y - BH / 2, BW, BH, { fill: hueB(i), stroke: c, sw: 2.5, shadow: 1 });
+      body += t(a.x, a.y - 2, s.l, { size: 14, weight: 800, fill: c });
+      if (s.d) body += t(a.x, a.y + 15, s.d, { size: 10.5, fill: SUB });
     });
     body += t(cx, cy - 4, p.center || 'repeat', { size: 13, weight: 800, fill: SUB });
     body += t(cx, cy + 15, p.centerSub || 'until nothing is left', { size: 10.5, fill: SUB });

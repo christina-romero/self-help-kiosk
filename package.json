@@ -10,7 +10,8 @@
     "links": "npm run data && python tools/check-links.py",
     "smoke": "npm run data && node tools/smoke.js",
     "subpath": "npm run data && node tools/check-subpath.js",
-    "check": "npm run validate && npm run links && npm run smoke && npm run subpath"
+    "visuals": "node tools/check-visuals.js",
+    "check": "npm run validate && npm run links && npm run smoke && npm run subpath && npm run visuals"
   },
   "devDependencies": {
     "playwright": "^1.62.1"
