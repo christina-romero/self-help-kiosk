@@ -85,7 +85,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: '9 + 6. What is the partner and what is left over?', a: '9 needs 1. Break 6 into 1 and 5. 9 + 1 = 10, then 10 + 5 = 15.' },
-    { q: '7 + 5', a: '7 needs 3. Break 5 into 3 and 2. 10 + 2 = 12.' },
+    { q: '7 + 5. What is the partner and what is left over?', a: '7 needs 3. Break 5 into 3 and 2. 7 + 3 = 10, then 10 + 2 = 12.' },
     { q: 'Why does nobody use this for 5 + 5?', a: 'Because you already know it instantly. Strategies are for the facts you do not know yet.' }
   ],
   links: [
@@ -495,7 +495,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'You are dividing by 7 and your subtraction leaves 9. What went wrong?', a: 'Your quotient digit was too small. 9 is bigger than 7, so it fits one more time.' },
     { q: 'What comes right after you subtract?', a: 'Bring down the next digit.' },
-    { q: '85 ÷ 4. What is the remainder?', a: '21 remainder 1. (4 × 21 = 84, and 85 − 84 = 1.)' }
+    { q: '85 ÷ 4. Give the whole answer, remainder included.', a: '21 remainder 1. 4 × 21 = 84, and 85 − 84 = 1 is left over.' }
   ],
   links: [
     { t: 'Math is Fun: Long Division', u: 'https://www.mathsisfun.com/long_division.html', d: 'An animated walk-through of the loop.' },
@@ -707,7 +707,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'A shape is cut into 5 equal parts and 2 are shaded. Write the fraction.', a: '2/5' },
     { q: 'Which is bigger, 1/3 or 1/6?', a: '1/3. Thirds are bigger pieces than sixths.' },
-    { q: 'What fraction is one whole, if the denominator is 8?', a: '8/8' }
+    { q: 'A cake is cut into 8 equal pieces and you have every piece. Write that as a fraction.', a: '8/8, which is one whole cake. When the top and bottom match, you have all of it.' }
   ],
   links: [
     { t: 'Math is Fun: Fractions', u: 'https://www.mathsisfun.com/fractions.html', d: 'The basics with pictures you can change.' },

@@ -1612,7 +1612,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: 'Convert 4.5% to a decimal.', a: '0.045.' },
-    { q: 'Which card builds a credit history?', a: 'A credit card, because it records whether you repay borrowed money.' },
+    { q: 'Debit card or credit card: which one builds a credit history?', a: 'The credit card. It records whether you pay back money you borrowed. A debit card spends money you already have, so there is nothing to pay back.' },
     { q: 'Which forms of college funding do NOT have to be repaid?', a: 'Savings, grants and scholarships. Loans must be repaid with interest.' }
   ],
   links: [

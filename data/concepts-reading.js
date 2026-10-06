@@ -158,7 +158,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: 'What are the three parts of fluency?', a: 'Accuracy, rate, and expression (prosody).' },
-    { q: 'Which read is usually your best?', a: 'The third read of the same passage.' },
+    { q: 'You read the same passage three times. Which time usually sounds best?', a: 'The third. By then you are not working out the words any more, so you can read for meaning.' },
     { q: 'You read quickly but cannot say what happened. What is that called?', a: 'Word-calling. You said the words without reading for meaning.' }
   ],
   links: [
@@ -432,7 +432,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: 'What are the three parts of an evidence-based answer?', a: 'Answer, cite the evidence, explain the link.' },
-    { q: 'Which part do students most often skip?', a: 'The explanation.' },
+    { q: 'You have written your answer and the quote. What is still missing?', a: 'The explanation of how the quote proves your answer. That is the part that earns the credit.' },
     { q: 'Can you use evidence from memory?', a: 'No. Go back and find the exact words.' }
   ],
   links: [

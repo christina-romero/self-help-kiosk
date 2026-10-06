@@ -131,7 +131,9 @@
     eye:       'M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z M12 12m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0',
     ear:       'M8 20c0-4-4-4-4-9a7 7 0 1 1 14 0c0 3-3 4-4 6',
     sound:     'M4 9h4l5-4v14l-5-4H4z M17 9c1.5 1.5 1.5 4.5 0 6',
-    letters:   'M4 18L8 6l4 12 M5 14h6 M15 6h5 M17.5 6v12',
+    // A big A beside a small a. The earlier version drew an A beside a T,
+    // which read as the word "AT" rather than as an icon.
+    letters:   'M3 19L7 6l4 13 M4.3 15h5.4 M14.5 19l3-9 3 9 M15.4 16.2h4.2',
     order:     'M4 6h12 M4 12h9 M4 18h6 M20 4v16 M17 17l3 3 3-3',
     swap:      'M4 8h13l-3-3 M20 16H7l3 3',
     dot:       'M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0'

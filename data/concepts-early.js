@@ -427,7 +427,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: 'What goes at the end of "Do you have a pencil"?', a: 'A question mark.' },
-    { q: 'Which letter is always a capital, even in the middle of a sentence?', a: 'I.' },
+    { q: 'What is wrong with this sentence: "Max and i ran to the bus"?', a: 'The i needs to be a capital I. The word I is always a capital, even in the middle.' },
     { q: 'Fix: "my name is sam"', a: '"My name is Sam."' }
   ],
   links: [
@@ -814,7 +814,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'Where should the start of the object line up?', a: 'With the zero on the ruler.' },
     { q: 'You measure with small units and get a big number. Why?', a: 'Smaller units means you need more of them.' },
-    { q: 'What is wrong with the answer "8"?', a: 'It is missing the unit. Eight what?' }
+    { q: 'Someone measured a pencil and wrote "8". What is missing?', a: 'The unit. Eight what: inches? centimetres? A number on its own does not tell you how long.' }
   ],
   links: [
     { t: 'Math is Fun: Measurement', u: 'https://www.mathsisfun.com/measure/index.html', d: 'Units and how to measure.' },

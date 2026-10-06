@@ -213,7 +213,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Ending the paragraph the moment the evidence is on the page.'
   ],
   check: [
-    { q: 'Which part of the paragraph do students most often skip?', a: 'The explanation of the evidence.' },
+    { q: 'Your paragraph has a topic sentence and a quote. What is still missing?', a: 'The explanation of what the evidence shows. Without it, the quote is just sitting there.' },
     { q: 'How many main points per paragraph?', a: 'One.' },
     { q: 'What is wrong with "That is too much" as an explanation?', a: 'It restates the opinion instead of explaining what the evidence shows.' }
   ],
@@ -430,8 +430,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Forgetting the comma after an introductory transition.'
   ],
   check: [
-    { q: 'Which transition shows contrast?', a: 'However, although, on the other hand, yet.' },
-    { q: 'Which shows cause and effect?', a: 'Because, therefore, as a result, consequently.' },
+    { q: 'Which transitions show contrast?', a: 'However, although, on the other hand, yet.' },
+    { q: 'Which transitions show cause and effect?', a: 'Because, therefore, as a result, consequently.' },
     { q: 'What punctuation follows most opening transitions?', a: 'A comma.' }
   ],
   links: [
