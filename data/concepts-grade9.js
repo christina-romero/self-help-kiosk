@@ -273,7 +273,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   id: 'a1-solve-linear', subject: 'math', unit: 'Solving equations and inequalities', grades: ['9'],
   title: 'Solving linear equations with variables on both sides',
   alt: 'solve linear equation distributive property variables both sides no solution infinite',
-  stuck: ['The variable cancelled out completely', 'There are fractions everywhere'],
+  stuck: ['The variable canceled out completely', 'There are fractions everywhere'],
   teks: ['9.5.A'],
   apps: ['Math Academy', 'Edia'],
   plain: 'Clear the parentheses, clear the fractions, collect the variable on one side, then undo the arithmetic. If the variable vanishes you still have an answer, just an unusual one.',
@@ -377,7 +377,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   id: 'a1-systems', subject: 'math', unit: 'Systems and modeling', grades: ['9'],
   title: 'Systems of equations: graphing, substitution, elimination',
   alt: 'system of equations substitution elimination graphing break even point no solution',
-  stuck: ['Which method should I pick?', 'Both variables cancelled'],
+  stuck: ['Which method should I pick?', 'Both variables canceled'],
   teks: ['9.5.C', '9.3.F', '9.3.G', '9.2.I'],
   apps: ['Math Academy', 'Edia'],
   plain: 'A system asks for the one pair that makes both equations true. Graphing shows you where the lines meet, substitution works when a variable is already alone, and elimination works when the equations line up.',
@@ -430,7 +430,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['What does r actually mean?', 'Does a strong correlation prove it caused it?'],
   teks: ['9.4.A', '9.4.B', '9.4.C'],
   apps: ['Math Academy', 'Edia'],
-  plain: 'A line of best fit summarises a cloud of data. The correlation coefficient r measures how tightly the points hug that line, from -1 to 1. A strong r never proves one thing caused the other.',
+  plain: 'A line of best fit summarizes a cloud of data. The correlation coefficient r measures how tightly the points hug that line, from -1 to 1. A strong r never proves one thing caused the other.',
   why: 'The correlation-causation distinction is tested directly and is the single most misused idea in statistics.',
   words: [
     { w: 'correlation coefficient (r)', d: 'A number from -1 to 1 measuring how linear the data is.' },
@@ -483,7 +483,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Do I add or multiply the exponents?', 'What does a negative exponent do?'],
   teks: ['9.11.B', '9.11.A'],
   apps: ['Math Academy', 'Edia'],
-  plain: 'Every exponent law comes from writing the powers out long. Multiplying the same base adds exponents because you are just counting factors. Nothing here needs memorising if you can expand one example.',
+  plain: 'Every exponent law comes from writing the powers out long. Multiplying the same base adds exponents because you are just counting factors. Nothing here needs memorizing if you can expand one example.',
   why: 'Exponent errors quietly wreck polynomial and exponential work later, and they all trace back to three or four rules.',
   words: [
     { w: 'base', d: 'The number being multiplied repeatedly.' },
@@ -834,7 +834,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['9.12.E'],
   apps: ['Math Academy', 'Edia'],
   plain: 'Solving a formula for a different variable uses exactly the same moves as solving for x. The only difference is that your answer is an expression in letters rather than a number.',
-  why: 'Science and later maths constantly hand you a formula written for the wrong variable. This is the skill that fixes it.',
+  why: 'Science and later math constantly hand you a formula written for the wrong variable. This is the skill that fixes it.',
   words: [
     { w: 'literal equation', d: 'An equation made mostly of letters, like a formula.' },
     { w: 'isolate', d: 'Get the target variable alone on one side.' }
@@ -884,10 +884,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   id: 'e1-inference-evidence', subject: 'reading', unit: 'Understanding what you read', grades: ['9'],
   title: 'Inference and textual evidence at high school level',
   alt: 'inference textual evidence commentary close reading implicit explicit meaning',
-  stuck: ['My answer is right but I lose marks', 'What counts as commentary?'],
+  stuck: ['My answer is right but I still lose points', 'What counts as commentary?'],
   teks: ['9.4.F', '9.5.C', '9.5.G'],
   apps: ['AlphaRead'],
-  plain: 'An inference is a conclusion built from evidence in the text plus what you already know. In English I the inference alone earns little: the marks are in the commentary that explains how the evidence supports it.',
+  plain: 'An inference is a conclusion built from evidence in the text plus what you already know. In English I the inference alone earns little. The points are in the commentary that explains how the evidence supports it.',
   why: 'Students routinely quote well and explain nothing. Commentary is the part that is actually assessed.',
   words: [
     { w: 'explicit', d: 'Stated outright in the text.' },
@@ -918,9 +918,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     work: ['Evidence: repeated clock-checking, and the letter folded away unopened.', 'Reading on: avoidance, not impatience.', 'The word unopened matters: the choice is deliberate.', 'Inference: he is delaying something he already dreads knowing.'],
     answer: 'He is avoiding the letter’s contents; the repetition and "unopened" show deliberate avoidance rather than simple impatience.' },
   traps: [
-    'Summarising the plot instead of making a claim about meaning.',
+    'Summarizing the plot instead of making a claim about meaning.',
     'Quoting a whole sentence when four words carry the point.',
-    'Stopping after the quotation. The commentary is where the marks are.',
+    'Stopping after the quotation. The commentary is where the points are.',
     'Restating the quotation in different words and calling it analysis.'
   ],
   check: [
@@ -928,7 +928,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'How much commentary should follow a quotation?', a: 'About twice as much as the quotation itself.' },
     { q: 'Is restating the quote in your own words commentary?', a: 'No. Commentary explains how the language creates the meaning.' }
   ],
-  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Organisers for evidence and commentary.' }],
+  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Organizers for evidence and commentary.' }],
   note: 'strategy'
 },
 {
@@ -939,7 +939,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['9.6.A', '9.6.B', '9.6.D'],
   apps: ['AlphaRead'],
   plain: 'Theme is not a topic. It is a claim the whole text makes about life, and it is built gradually through what characters choose, what those choices cost, and what the setting makes possible.',
-  why: 'English I moves past identifying theme to analysing how it is constructed. That shift is where marks are won or lost.',
+  why: 'English I moves past identifying theme to analyzing how it is constructed. That shift is where points are won or lost.',
   words: [
     { w: 'theme', d: 'A complete claim about life that the text develops.' },
     { w: 'characterization', d: 'How an author builds a character: action, speech, thought, others.' },
@@ -974,7 +974,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   traps: [
     'Giving a one-word topic instead of a claim.',
     'Naming characters in the theme, which ties it to one story.',
-    'Summarising the plot and calling it theme analysis.',
+    'Summarizing the plot and calling it theme analysis.',
     'Choosing a theme the text does not actually support.'
   ],
   check: [
@@ -982,7 +982,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'Should a theme statement name characters?', a: 'No. It should hold true beyond this one text.' },
     { q: 'What makes a character complex?', a: 'Competing motives and believable change.' }
   ],
-  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Plot and character organisers.' }],
+  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Plot and character organizers.' }],
   note: 'frayer'
 },
 {
@@ -1044,12 +1044,12 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
 },
 {
   id: 'e1-argument-analysis', subject: 'reading', unit: 'Reading nonfiction', grades: ['9'],
-  title: 'Analysing and evaluating an argument',
+  title: 'Analyzing and evaluating an argument',
   alt: 'argumentative text claim counterargument evidence faulty reasoning logical fallacy bias',
-  stuck: ['How do I evaluate rather than summarise?', 'What counts as faulty reasoning?'],
+  stuck: ['How do I evaluate rather than summarize?', 'What counts as faulty reasoning?'],
   teks: ['9.7.E', '9.5.J', '9.11.G'],
   apps: ['AlphaRead'],
-  plain: 'Analysing an argument means naming its parts: the claim, the evidence, the reasoning, and how it handles the other side. Evaluating means judging whether the reasoning actually holds.',
+  plain: 'Analyzing an argument means naming its parts: the claim, the evidence, the reasoning, and how it handles the other side. Evaluating means judging whether the reasoning actually holds.',
   why: 'English I asks you to defend or challenge an author’s claim with evidence, which you cannot do until you can see the argument’s structure.',
   words: [
     { w: 'claim', d: 'The arguable position the writer wants accepted.' },
@@ -1059,7 +1059,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   visual: [
     { type: 'table', title: 'Common faulty reasoning', head: ['Name', 'What it looks like'],
-      rows: [['Hasty generalisation', 'a sweeping claim from one or two cases'],
+      rows: [['Hasty generalization', 'a sweeping claim from one or two cases'],
              ['False cause', 'because B followed A, A caused B'],
              ['False dilemma', 'presenting two options when more exist'],
              ['Circular reasoning', 'the evidence restates the claim'],
@@ -1079,17 +1079,17 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Ask what is missing. Omission is the hardest weakness to spot and the most common.'
   ],
   example: { prompt: 'An article argues phones should be banned in schools, citing one district whose test scores rose after a ban.',
-    work: ['Claim: phones should be banned in schools.', 'Evidence: one district, scores rose.', 'Reasoning: the ban caused the rise.', 'Problems: one district is a hasty generalisation, and the causal link is unproven.', 'The article never mentions other changes in that district.'],
+    work: ['Claim: phones should be banned in schools.', 'Evidence: one district, scores rose.', 'Reasoning: the ban caused the rise.', 'Problems: one district is a hasty generalization, and the causal link is unproven.', 'The article never mentions other changes in that district.'],
     answer: 'The claim rests on a single case and assumes causation from sequence; the omission of other changes in that district is the key weakness.' },
   traps: [
-    'Summarising the article instead of judging the reasoning.',
+    'Summarizing the article instead of judging the reasoning.',
     'Saying whether you agree. Evaluation is about how the argument works.',
     'Treating all evidence as equally strong.',
     'Missing omission, which leaves no trace on the page.'
   ],
   check: [
     { q: 'Evidence restates the claim. What is that called?', a: 'Circular reasoning.' },
-    { q: 'What is the difference between analysing and evaluating?', a: 'Analysing names the parts; evaluating judges whether the reasoning holds.' },
+    { q: 'What is the difference between analyzing and evaluating?', a: 'Analyzing names the parts; evaluating judges whether the reasoning holds.' },
     { q: 'Why is omission hard to catch?', a: 'What is left out leaves no trace, so you must ask what a fair treatment would include.' }
   ],
   links: [{ t: 'Ducksters', u: 'https://www.ducksters.com/', d: 'Background when an argument assumes knowledge you lack.' }],
@@ -1097,15 +1097,15 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
 },
 {
   id: 'e1-synthesis', subject: 'reading', unit: 'Understanding what you read', grades: ['9'],
-  title: 'Synthesising two or more texts',
+  title: 'Synthesizing two or more texts',
   alt: 'synthesis compare texts across genres new understanding paired passages',
   stuck: ['I wrote about both texts but did not connect them', 'What does synthesis actually mean?'],
   teks: ['9.4.H', '9.5.B'],
   apps: ['AlphaRead'],
-  plain: 'Comparing lists similarities and differences. Synthesising goes further: it uses two texts together to reach an understanding neither one gives you on its own.',
-  why: 'The TEKS asks specifically for new understanding from two texts. Summarising each in turn does not meet that bar.',
+  plain: 'Comparing lists similarities and differences. Synthesizing goes further: it uses two texts together to reach an understanding neither one gives you on its own.',
+  why: 'The TEKS asks specifically for new understanding from two texts. Summarizing each in turn does not meet that bar.',
   words: [
-    { w: 'synthesise', d: 'Combine sources to produce an insight neither contains alone.' },
+    { w: 'synthesize', d: 'Combine sources to produce an insight neither contains alone.' },
     { w: 'perspective', d: 'The angle a text takes on its subject.' }
   ],
   visual: [
@@ -1140,9 +1140,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'How is synthesis different from comparison?', a: 'Comparison lists similarities and differences; synthesis produces new understanding from both.' },
     { q: 'How many texts must your evidence come from?', a: 'Both.' },
-    { q: 'The texts do not contradict. Can you still synthesise?', a: 'Yes. They may address different parts of the same question.' }
+    { q: 'The texts do not contradict. Can you still synthesize?', a: 'Yes. They may address different parts of the same question.' }
   ],
-  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Comparison and synthesis organisers.' }],
+  links: [{ t: 'ReadWriteThink interactives', u: 'https://www.readwritethink.org/classroom-resources/student-interactives', d: 'Comparison and synthesis organizers.' }],
   note: 'strategy'
 },
 {
@@ -1161,7 +1161,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { w: 'dramatic irony', d: 'The audience knows something a character does not.' }
   ],
   visual: [
-    { type: 'table', title: 'What to analyse', head: ['Poetry', 'Drama'],
+    { type: 'table', title: 'What to analyze', head: ['Poetry', 'Drama'],
       rows: [['where lines break and why', 'asides: private comment to the audience'],
              ['line length and its pace', 'soliloquy: inner thought made audible'],
              ['stanza divisions as movements', 'dramatic irony: audience knows more'],
@@ -1206,7 +1206,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   why: 'This is a named English I expectation, and it is the mechanism behind most tone and bias questions.',
   words: [
     { w: 'denotation', d: 'The literal dictionary meaning.' },
-    { w: 'connotation', d: 'The feeling or judgement a word carries.' },
+    { w: 'connotation', d: 'The feeling or judgment a word carries.' },
     { w: 'loaded language', d: 'Words chosen for emotional effect rather than precision.' }
   ],
   visual: [
@@ -1217,7 +1217,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
              ['confident', 'self-assured', 'arrogant'],
              ['youthful', 'young', 'immature'],
              ['frugal', 'economical', 'cheap']],
-      note: 'Read across a row: the meaning barely moves, but the judgement reverses.' }
+      note: 'Read across a row: the meaning barely moves, but the judgment reverses.' }
   ],
   steps: [
     'Find a word that could have been said more neutrally.',
@@ -1228,8 +1228,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'In persuasive text, treat a cluster of loaded words as evidence of position.'
   ],
   example: { prompt: 'A report describes protestors first as "a crowd" and later as "a mob".',
-    work: ['Both denote a group of people.', '"Crowd" is neutral; "mob" connotes disorder and threat.', 'The shift happens without new evidence.', 'The change manages the reader’s judgement.'],
-    answer: 'The shift from "crowd" to "mob" changes the reader’s judgement without presenting new evidence, revealing the writer’s position.' },
+    work: ['Both denote a group of people.', '"Crowd" is neutral; "mob" connotes disorder and threat.', 'The shift happens without new evidence.', 'The change manages the reader’s judgment.'],
+    answer: 'The shift from "crowd" to "mob" changes the reader’s judgment without presenting new evidence, revealing the writer’s position.' },
   traps: [
     'Treating near-synonyms as interchangeable.',
     'Confusing connotation with denotation. The dictionary gives denotation.',
@@ -1252,7 +1252,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['9.2.A', '9.2.C', '9.5.F'],
   apps: ['Membean', 'VocabLoco'],
   plain: 'High school texts assume a shared academic vocabulary and a handful of borrowed Latin phrases. Most of it is decodable from roots you already know, and the rest is a short list worth learning deliberately.',
-  why: 'English I names foreign phrases explicitly, and command words in questions cost marks when misread.',
+  why: 'English I names foreign phrases explicitly, and command words in questions cost points when misread.',
   words: [
     { w: 'root', d: 'The core meaning part of a word, usually Greek or Latin.' },
     { w: 'academic vocabulary', d: 'Words used across subjects in questions and analysis.' }
@@ -1263,23 +1263,23 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
              ['per se', 'in itself'], ['ad hoc', 'made for this one purpose'],
              ['vice versa', 'the other way round'], ['et cetera', 'and the rest']] },
     { type: 'table', title: 'Command words in questions', head: ['Word', 'What it requires'],
-      rows: [['analyse', 'break into parts and show how they work together'],
+      rows: [['analyze', 'break into parts and show how they work together'],
              ['evaluate', 'judge how well it works, and justify'],
-             ['synthesise', 'combine sources into new understanding'],
+             ['synthesize', 'combine sources into new understanding'],
              ['critique', 'assess strengths and weaknesses'],
              ['infer', 'conclude from evidence, and cite it']] }
   ],
   steps: [
     'Underline the command word in every question before answering.',
     'Name what that word requires: naming, judging, or combining.',
-    'For an unknown word, look for a root you recognise.',
+    'For an unknown word, look for a root you recognize.',
     'Use context to test the meaning the root suggests.',
     'For a borrowed phrase, learn it whole. The parts rarely help.',
     'Use a dictionary to confirm, then write the meaning in your own words.'
   ],
   example: { prompt: 'A question asks you to "evaluate the author’s use of evidence". What must the answer contain?',
-    work: ['Command word: evaluate.', 'Evaluate requires a judgement, not a description.', 'So: is the evidence strong or weak?', 'And: the reasons for that judgement.'],
-    answer: 'A judgement on the strength of the evidence, plus the reasons supporting that judgement.' },
+    work: ['Command word: evaluate.', 'Evaluate requires a judgment, not a description.', 'So: is the evidence strong or weak?', 'And: the reasons for that judgment.'],
+    answer: 'A judgment on the strength of the evidence, plus the reasons supporting that judgment.' },
   traps: [
     'Describing when the question said evaluate.',
     'Decoding a borrowed phrase from its parts. Learn them whole.',
@@ -1288,7 +1288,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   check: [
     { q: 'What does "status quo" mean?', a: 'The existing state of things.' },
-    { q: 'What does "evaluate" require that "describe" does not?', a: 'A judgement, with reasons.' },
+    { q: 'What does "evaluate" require that "describe" does not?', a: 'A judgment, with reasons.' },
     { q: 'What should you do before answering any question?', a: 'Underline the command word.' }
   ],
   links: [{ t: 'Vocabulary.com Dictionary', u: 'https://www.vocabulary.com/dictionary/', d: 'Look up any academic term.' }],
@@ -1346,7 +1346,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { q: 'What makes a thesis arguable?', a: 'A reasonable reader could take the opposite position.' },
     { q: 'Where does the thesis go?', a: 'At the end of the introduction.' }
   ],
-  links: [{ t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Essay planning organisers.' }],
+  links: [{ t: 'ReadWriteThink printables', u: 'https://www.readwritethink.org/classroom-resources/printouts', d: 'Essay planning organizers.' }],
   note: 'steps'
 },
 {
@@ -1368,7 +1368,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       rows: [['Is the claim clear and arguable?', 'subject-verb agreement'],
              ['Is each paragraph developed, not asserted?', 'comma splices and run-ons'],
              ['Does the order build an argument?', 'pronoun-antecedent agreement'],
-             ['Are the sentences varied in length?', 'spelling and capitalisation'],
+             ['Are the sentences varied in length?', 'spelling and capitalization'],
              ['Is the diction precise and consistent in register?', 'punctuation of quotations']],
       note: 'Revise first. There is no point perfecting a sentence you are about to cut.' }
   ],
@@ -1404,7 +1404,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['How do I know a source is credible?', 'When exactly do I have to cite?'],
   teks: ['9.11.E', '9.11.F', '9.11.G', '9.11.H'],
   apps: ['AlphaRead'],
-  plain: 'Research is a loop: ask a question, find sources, test them, synthesise, and cite. The testing step is the one most often skipped, and the one English I names explicitly.',
+  plain: 'Research is a loop: ask a question, find sources, test them, synthesize, and cite. The testing step is the one most often skipped, and the one English I names explicitly.',
   why: 'English I asks you to examine sources for credibility, bias and faulty reasoning, and to cite paraphrased as well as quoted material.',
   words: [
     { w: 'credibility', d: 'Whether a source can be trusted: who wrote it, on what basis.' },
@@ -1423,7 +1423,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       'Locate several sources, not one.',
       'Test each for credibility, bias and faulty reasoning.',
       'Take notes in your own words, marking any exact wording immediately.',
-      'Synthesise across sources rather than reporting them in turn.',
+      'Synthesize across sources rather than reporting them in turn.',
       'Cite paraphrase as well as quotation, and keep the details as you go.'
     ] }
   ],
@@ -1432,7 +1432,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Find several sources covering different perspectives.',
     'Test each one for authorship, basis, purpose, omission and corroboration.',
     'Take notes in your own words; put quotation marks around exact wording at the moment you copy it.',
-    'Synthesise: build an understanding across sources.',
+    'Synthesize: build an understanding across sources.',
     'Cite everything you took, paraphrase included, and record the details as you go.'
   ],
   example: { prompt: 'You find a well-designed site with no author and no sources, arguing one side forcefully.',
@@ -1442,7 +1442,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Judging credibility by how professional a site looks.',
     'Citing quotations but not paraphrases. Both need citation.',
     'Copying into notes without marking what was copied, which becomes accidental plagiarism later.',
-    'Reporting sources one by one instead of synthesising.'
+    'Reporting sources one by one instead of synthesizing.'
   ],
   check: [
     { q: 'Does a paraphrase need a citation?', a: 'Yes. The idea still came from someone else.' },

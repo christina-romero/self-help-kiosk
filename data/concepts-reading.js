@@ -118,7 +118,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['1.4', '2.4', '3.4', '4.4', '5.4'],
   apps: ['Alpha Reading Fluency', 'Anton', 'AlphaRead', 'MobyMax Primer'],
   plain: 'Fluency is three things at once: the right words, a comfortable speed, and expression. Racing is not fluency. Neither is reading every word perfectly but sounding like a robot.',
-  why: 'ClearFluency and Alpha Reading Fluency score you on a recording. If you push only speed, accuracy drops and you score worse.',
+  why: 'Alpha Reading Fluency scores you on a recording. If you push only speed, accuracy drops and you score worse.',
   words: [
     { w: 'accuracy', d: 'Reading the words correctly.' },
     { w: 'rate', d: 'How fast you read: usually words per minute.' },
@@ -192,7 +192,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { type: 'flow', steps: [
       'At the end of every paragraph, stop for two seconds.',
       'Say in your head: "That paragraph was about ___."',
-      'If you cannot finish that sentence, you are lost: and now you know it.',
+      'If you cannot finish that sentence, you are lost, and now you know it.',
       'Pick a fix-up: reread the sentence, reread the paragraph, or look up the word.',
       'Do the fix-up, then check again before moving on.'
     ] }
@@ -256,7 +256,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Look at the first and last sentences of the passage and of each paragraph.',
     'Ask what the author wants you to understand about the topic. That is your candidate main idea.',
     'Write it as a complete sentence, not a phrase.',
-    'Check it against every paragraph. A real main idea covers the whole passage: not just the paragraph you liked best.'
+    'Check it against every paragraph. A real main idea covers the whole passage, not just the paragraph you liked best.'
   ],
   example: { prompt: 'A passage describes how bees pollinate crops, how bee populations are shrinking, and what farmers are doing about it.',
     work: ['Topic: bees and farming.', 'Paragraph 1 supports: bees matter to crops.', 'Paragraph 2 supports: bee numbers are falling.', 'Paragraph 3 supports: people are responding.', 'A sentence that covers all three: bees are essential to food production, so their decline is a problem people are working to solve.'],
@@ -719,7 +719,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['4.10.E', '5.10.E', '6.9.E', '7.9.E', '8.9.E'],
   apps: ['AlphaRead', 'MobyMax Primer'],
   plain: 'Point of view is who is telling the story. Look at the pronouns: "I" and "we" mean first person; "he," "she," and "they" mean third person. The narrator is a role in the story, not the same as the author.',
-  why: 'Point of view controls what information you get. A first-person narrator can only tell you what they personally know: including things they are wrong about.',
+  why: 'Point of view controls what information you get. A first-person narrator can only tell you what they personally know, including things they are wrong about.',
   words: [
     { w: 'first person', d: 'The narrator is a character. Uses I, me, we.' },
     { w: 'third person limited', d: 'Outside narrator who knows one character\'s thoughts.' },
@@ -739,7 +739,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
              ['Third omniscient', 'Maya knew the answer. Across the room, Devon was hoping she would speak.']] }
   ],
   steps: [
-    'Scan the narration: not the dialogue: for pronouns.',
+    'Look at the pronouns in the narration, not the ones inside the dialogue.',
     'If the narration uses "I" or "we," it is first person.',
     'If it uses "he," "she," or "they," it is third person.',
     'For third person, check whose thoughts you are being shown.',
@@ -1040,7 +1040,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Identify the intended audience and note how the language is aimed at them.'
   ],
   example: { prompt: 'An article argues that middle schools should start later, citing a sleep study and a quote from a doctor.',
-    work: ['Claim: middle schools should start later.', 'Evidence 1: a sleep study: verifiable fact.', 'Evidence 2: a doctor\'s quote: expert opinion, which is strong but still an opinion.', 'Counterargument: the article does not mention bus schedules or parent work hours.', 'Audience: likely school boards and parents.'],
+    work: ['Claim: middle schools should start later.', 'Evidence 1 is a sleep study. That is a verifiable fact.', 'Evidence 2 is a doctor\'s quote. Expert opinion is strong, but it is still opinion.', 'Counterargument: the article does not mention bus schedules or parent work hours.', 'Audience: likely school boards and parents.'],
     answer: 'The claim is supported by real research, but the argument is weakened by never addressing the practical objections.' },
   traps: [
     'Confusing the topic with the claim. "School start times" is a topic; "schools should start later" is a claim.',
@@ -1070,7 +1070,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   words: [
     { w: 'purpose', d: 'Why the author wrote it: to inform, persuade, entertain, or explain.' },
     { w: 'message', d: 'The specific thing the author wants you to take away.' },
-    { w: 'craft', d: 'The choices the author made: structure, word choice, examples: to achieve the purpose.' }
+    { w: 'craft', d: 'The choices the author made to achieve the purpose: structure, word choice, examples.' }
   ],
   visual: [
     { type: 'table', title: 'Purpose, and how you can tell', head: ['Purpose', 'Signs'],
@@ -1228,9 +1228,9 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   why: 'The inquiry and research strand is directly assessed, and it is what keeps your research honest rather than accidentally plagiarized.',
   words: [
     { w: 'primary source', d: 'Created by someone directly involved: a diary, a photo, an interview, original data.' },
-    { w: 'secondary source', d: 'Describes or analyses primary sources: a textbook, an encyclopedia article.' },
+    { w: 'secondary source', d: 'Describes or analyzes primary sources: a textbook, an encyclopedia article.' },
     { w: 'plagiarism', d: 'Using someone else\'s words or ideas as if they were yours.' },
-    { w: 'paraphrase', d: 'Restating an idea in your own words: and still crediting the source.' }
+    { w: 'paraphrase', d: 'Restating an idea in your own words, and still crediting the source.' }
   ],
   visual: [
     { type: 'table', title: 'Judging a source: five quick questions', head: ['Ask', 'Good sign', 'Warning sign'],

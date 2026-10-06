@@ -184,7 +184,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { type: 'tape', rows: [
       { label: 'Boys', units: 3, each: '4' },
       { label: 'Girls', units: 5, each: '4', total: '= 20' }
-    ], caption: 'Ratio 3:5. If each unit is worth 4, there are 12 boys and 20 girls: and 32 students in total.' },
+    ], caption: 'Ratio 3:5. If each unit is worth 4, there are 12 boys and 20 girls, and 32 students in total.' },
     { type: 'table', title: 'A ratio table scales both sides together', head: ['Boys', 'Girls', 'Total'],
       rows: [['3', '5', '8'], ['6', '10', '16'], ['9', '15', '24'], ['12', '20', '32']],
       note: 'Every row is the same ratio. Multiply both columns by the same number.' }
@@ -955,7 +955,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['What does "solution to a system" mean?', 'I graphed both lines, now what?'],
   teks: ['8.9'],
   apps: ['Math Academy', 'AlphaMath'],
-  plain: 'A system is two equations at once. The solution is the single (x, y) pair that makes BOTH true: which is exactly where the two lines cross on a graph.',
+  plain: 'A system is two equations at once. The solution is the single (x, y) pair that makes BOTH true, which is exactly where the two lines cross on a graph.',
   why: 'This is where "compare two plans and find the break-even point" problems come from, and it is the last big grade 8 algebra idea.',
   words: [
     { w: 'system', d: 'Two or more equations considered together.' },
@@ -1132,7 +1132,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       note: 'Cones and pyramids are exactly one third of the prism or cylinder that would contain them.' },
     { type: 'decide', question: 'Volume or surface area?', branches: [
       { if: 'Filling, holding, capacity, how much fits inside', then: 'VOLUME: answer in cubic units.' },
-      { if: 'Wrapping, painting, covering, labelling', then: 'SURFACE AREA: answer in square units.' },
+      { if: 'Wrapping, painting, covering, labeling', then: 'SURFACE AREA: answer in square units.' },
       { if: 'You are unsure', then: 'Look at the units the question wants. cm³ means volume; cm² means surface area.' }
     ] }
   ],
@@ -1309,7 +1309,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Label every known angle directly on the diagram.',
     'Scan for a straight line through the vertex. That gives you a pair summing to 180°.',
     'Scan for crossing lines: opposite (vertical) angles are equal.',
-    'Scan for parallel line markings: that unlocks corresponding and alternate interior angles.',
+    'Scan for parallel line markings. Those unlock corresponding and alternate interior angles.',
     'If it is a triangle, use the 180° sum.',
     'Turn the relationship into an equation and solve. Then answer the actual question.'
   ],
@@ -1435,7 +1435,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Forgetting to order the data before finding the median.',
     'With an even count, picking one middle value. Average the two.',
     'Dividing by the wrong count. Divide by how many values there are, not by the largest value.',
-    'Saying "the median is better" without explaining why. The reason. The outlier: is what earns the credit.'
+    'Saying "the median is better" without explaining why. Naming the outlier as the reason is what earns the credit.'
   ],
   check: [
     { q: 'Median of 2, 5, 8, 9?', a: '(5 + 8) ÷ 2 = 6.5.' },
@@ -1459,13 +1459,13 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   why: 'The gap between theoretical and experimental is the whole point of the grade 7 unit, and it is what most students explain incorrectly.',
   words: [
     { w: 'outcome', d: 'One possible result.' },
-    { w: 'theoretical probability', d: 'favourable outcomes ÷ total possible outcomes.' },
+    { w: 'theoretical probability', d: 'favorable outcomes ÷ total possible outcomes.' },
     { w: 'experimental probability', d: 'times it happened ÷ number of trials.' },
     { w: 'compound event', d: 'Two or more things happening together.' }
   ],
   visual: [
     { type: 'table', title: 'The two probabilities', head: ['Type', 'Formula', 'Example: rolling a 3 on a die'],
-      rows: [['Theoretical', 'favourable ÷ total possible', '1 ÷ 6 ≈ 0.167'],
+      rows: [['Theoretical', 'favorable ÷ total possible', '1 ÷ 6 ≈ 0.167'],
              ['Experimental', 'times it happened ÷ trials', 'rolled 30 times, got a 3 seven times → 7 ÷ 30 ≈ 0.233']],
       note: 'More trials pulls the experimental result closer to the theoretical one.' },
     { type: 'flow', steps: [

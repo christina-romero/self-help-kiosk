@@ -66,7 +66,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   teks: ['5.11.D', '6.10.D', '7.10.D', '8.10.D'],
   apps: ['MobyMax', 'eGumpp', 'Freckle'],
   plain: 'A fragment is too little: it is missing a subject or a verb. A run-on is too much: two complete sentences jammed together with nothing between them. A comma splice is the same thing joined with only a comma, which is not strong enough.',
-  why: 'These three are the most commonly flagged errors in eGUMPP and AlphaWrite, and there are only four ways to fix any of them.',
+  why: 'These three are the most commonly flagged errors in eGumpp and AlphaWrite, and there are only four ways to fix any of them.',
   words: [
     { w: 'independent clause', d: 'A group of words that could stand alone as a sentence.' },
     { w: 'comma splice', d: 'Two independent clauses joined by only a comma.' },
@@ -93,7 +93,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Reread. A comma by itself is never enough to join two complete sentences.'
   ],
   example: { prompt: 'Fix: "The experiment failed, we tried a different method."',
-    work: ['Part 1: "The experiment failed": can stand alone.', 'Part 2: "we tried a different method": can stand alone.', 'Two independent clauses joined by only a comma → comma splice.', 'The ideas are connected by cause, so use comma + FANBOYS.'],
+    work: ['Part 1 is "The experiment failed". That can stand alone.', 'Part 2 is "we tried a different method". That can stand alone too.', 'Two independent clauses joined by only a comma → comma splice.', 'The ideas are connected by cause, so use comma + FANBOYS.'],
     answer: '"The experiment failed, so we tried a different method." (Or: "The experiment failed. We tried a different method.")' },
   traps: [
     'Fixing a run-on by adding a comma. That just turns it into a comma splice.',
@@ -149,7 +149,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'To improve your writing, deliberately vary the types instead of writing all simple sentences.'
   ],
   example: { prompt: 'Label this sentence: "Although the museum was crowded, we found the exhibit, and it was worth the wait."',
-    work: ['Clause 1: "Although the museum was crowded": has "although" → dependent.', 'Clause 2: "we found the exhibit" → independent.', 'Clause 3: "it was worth the wait" → independent.', 'One dependent plus two independent.'],
+    work: ['Clause 1 is "Although the museum was crowded". It has "although", so it is dependent.', 'Clause 2: "we found the exhibit" → independent.', 'Clause 3: "it was worth the wait" → independent.', 'One dependent plus two independent.'],
     answer: 'Compound-complex.' },
   traps: [
     'Confusing a phrase with a clause. "In the morning" has no verb, so it is a phrase.',
@@ -197,7 +197,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     { type: 'decide', question: 'Same word, different job', branches: [
       { if: '"The RUN was exhausting."', then: 'NOUN. It is the thing the sentence is about.' },
       { if: '"They RUN every morning."', then: 'VERB. It is the action.' },
-      { if: '"She wore a FAST time."', then: 'ADJECTIVE: it describes the noun "time."' },
+      { if: '"She ran a FAST time."', then: 'ADJECTIVE: it describes the noun "time."' },
       { if: '"She ran FAST."', then: 'ADVERB: it describes how she ran.' }
     ] }
   ],
@@ -460,7 +460,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['Is it "more prettier" or "prettier"?', 'Do I say "he ran good" or "he ran well"?'],
   teks: ['2.11.D', '3.11.D', '4.11.D', '5.11.D'],
   apps: ['MobyMax', 'Freckle'],
-  plain: 'Adjectives describe nouns; adverbs describe verbs. When you compare two things you use the comparative form, and for three or more you use the superlative: but you never use both -er and "more" at the same time.',
+  plain: 'Adjectives describe nouns; adverbs describe verbs. When you compare two things you use the comparative form, and for three or more you use the superlative, but you never use both -er and "more" at the same time.',
   why: 'Comparative and superlative forms are named directly in the grades 2 to 5 conventions expectations, and the double-comparative error is extremely common.',
   words: [
     { w: 'comparative', d: 'Comparing TWO things: taller, more careful.' },
@@ -524,7 +524,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   visual: [
     { type: 'table', title: 'Misplaced modifiers change the meaning', head: ['Sentence', 'What it actually says'],
       rows: [['She served sandwiches to the children on paper plates.', 'the children were on paper plates'],
-             ['On paper plates, she served sandwiches to the children.', 'better: but still awkward'],
+             ['On paper plates, she served sandwiches to the children.', 'better, but still awkward'],
              ['She served the children sandwiches on paper plates.', 'correct. The sandwiches were on the plates'],
              ['Running down the street, the backpack fell off.', 'the backpack was running'],
              ['Running down the street, he dropped his backpack.', 'correct']],
@@ -571,11 +571,11 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   id: 'l-commas', subject: 'language', unit: 'Punctuation', grades: ['3', '4', '5', '6', '7', '8'],
   title: 'Comma rules that actually come up',
   alt: 'commas series introductory clause compound sentence appositive comma rules',
-  stuck: ['I just put commas where I pause', 'eGUMPP marks my commas wrong constantly'],
+  stuck: ['I just put commas where I pause', 'eGumpp marks my commas wrong constantly'],
   teks: ['3.11.D', '4.11.D', '5.11.D', '6.10.D', '7.10.D', '8.10.D'],
   apps: ['MobyMax', 'eGumpp', 'Freckle'],
   plain: 'Commas are not about where you breathe. There are about six rules that cover almost every comma you will ever need, and once you know them you can stop guessing.',
-  why: 'Commas are the single most-scored punctuation item in eGUMPP, and "put one where you pause" is wrong often enough to cost real points.',
+  why: 'Commas are the single most-scored punctuation item in eGumpp, and "put one where you pause" is wrong often enough to cost real points.',
   words: [
     { w: 'series', d: 'A list of three or more items.' },
     { w: 'introductory element', d: 'A word or phrase before the main clause.' },
@@ -946,7 +946,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Decide the relationship between the ideas.',
     'Choose the matching combining move.',
     'Rewrite, then check that you have not created a run-on.',
-    'Vary deliberately: not every sentence should be combined. A short sentence after long ones lands hard.'
+    'Vary deliberately. Not every sentence should be combined, and a short sentence after long ones lands hard.'
   ],
   example: { prompt: 'Combine: "The storm was strong. It knocked down a tree. The tree fell across our driveway."',
     work: ['All three are about the same storm and tree.', 'Relationship: cause, then result.', 'Combine using "which" and a describing phrase.'],

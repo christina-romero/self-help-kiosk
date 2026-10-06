@@ -38,7 +38,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   steps: [
     'Do not stop at the word. Finish the sentence first.',
     'Read the sentence before and the sentence after as well.',
-    'Hunt for a signal word: or, which is, but, unlike, such as.',
+    'Hunt for a signal word. The common ones are "or", "which is", "but", "unlike" and "such as".',
     'Decide what kind of clue it is.',
     'Predict a meaning and swap your prediction into the sentence.',
     'Test it. If the sentence works, you have it close enough to keep reading.'
@@ -177,7 +177,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I know that word but it does not make sense here', 'The dictionary has six definitions'],
   teks: ['3.3.B', '4.3.B', '5.3.B', '6.2.B'],
   apps: ['VocabLoco', 'Membean'],
-  plain: 'Many common words have several meanings. When a familiar word suddenly does not fit, that is your signal that it is being used in a different sense: not that you misread it.',
+  plain: 'Many common words have several meanings. When a familiar word suddenly does not fit, that is your signal that it is being used in a different sense, not that you misread it.',
   why: 'Test questions deliberately use the less common meaning of a familiar word, because that is where careful readers separate themselves.',
   words: [
     { w: 'multiple-meaning word', d: 'A word with more than one definition.' },
@@ -242,12 +242,15 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   visual: [
     { type: 'table', title: 'Shades of meaning, weakest to strongest', head: ['Idea', 'Weak', 'Medium', 'Strong'],
-      rows: [['warm', 'mild', 'hot', 'scorching'],
-             ['happy', 'content', 'glad', 'ecstatic'],
-             ['big', 'large', 'huge', 'enormous'],
-             ['upset', 'annoyed', 'angry', 'furious'],
-             ['ask', 'ask', 'request', 'demand'],
-             ['walk', 'stroll', 'walk', 'march']],
+      // The first column names the IDEA, never a word on the scale. Listing
+      // "ask" as both the idea and the weak word reads as a typo, and putting
+      // "warm" beside "mild" and "hot" invites the wrong comparison.
+      rows: [['heat', 'mild', 'hot', 'scorching'],
+             ['happiness', 'content', 'glad', 'ecstatic'],
+             ['size', 'large', 'huge', 'enormous'],
+             ['anger', 'annoyed', 'angry', 'furious'],
+             ['asking', 'ask', 'request', 'demand'],
+             ['walking', 'stroll', 'walk', 'march']],
       note: 'A synonym that is too strong is as wrong as one that is too weak.' },
     { type: 'flow', steps: [
       'When you want a synonym, first ask WHY the original word is not working.',

@@ -37,7 +37,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   traps: [
     'Counting the same object twice because you never moved it out of the pile.',
     'Saying the numbers faster than you point. Your words get ahead of your finger.',
-    'Forgetting the teen numbers: it goes 12, 13, 14: not 12, 14, 15.',
+    'Skipping a teen number. It goes 12, 13, 14, not 12, 14, 15.',
     'Thinking you must start over at 1. If the screen shows 14 and asks for 3 more, count on from 14.'
   ],
   check: [
@@ -523,8 +523,10 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       'Multiplication AND division together, left to right: whichever comes first.',
       'Addition AND subtraction together, left to right: whichever comes first.'
     ], caption: 'Multiplication does not automatically beat division. They are the same rank; read left to right.' },
-    { type: 'table', title: 'Where students go wrong', head: ['Expression', 'Wrong', 'Right'],
-      rows: [['3 + 4 × 2', '14', '11'], ['20 − 6 ÷ 2', '7', '17'], ['12 ÷ 3 × 2', '2', '8'], ['(3 + 4) × 2', '11', '14']],
+    // Right before Wrong on purpose. A student skimming the table reads the
+    // first number as the answer, so that number has to be the correct one.
+    { type: 'table', title: 'Where students go wrong', head: ['Expression', 'Right', 'Wrong'],
+      rows: [['3 + 4 × 2', '11', '14'], ['20 − 6 ÷ 2', '17', '7'], ['12 ÷ 3 × 2', '8', '2'], ['(3 + 4) × 2', '14', '11']],
       note: 'The last two rows are the ones people miss most.' }
   ],
   steps: [
@@ -1448,7 +1450,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'Convert 3 pounds to ounces.', a: '3 × 16 = 48 ounces.' },
     { q: 'Convert 250 cm to meters.', a: '250 ÷ 100 = 2.5 m.' },
-    { q: 'You convert meters to kilometres and your number gets bigger. What went wrong?', a: 'A kilometre is bigger than a meter, so you should have divided.' }
+    { q: 'You convert meters to kilometers and your number gets bigger. What went wrong?', a: 'A kilometer is bigger than a meter, so you should have divided.' }
   ],
   links: [
     { t: 'Math is Fun: Measurement', u: 'https://www.mathsisfun.com/measure/index.html', d: 'Every unit and conversion in one place.' },
@@ -1595,7 +1597,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Answer only what is asked. "How many more" means subtract; "how many altogether" means add.',
     'Recheck your answer against the graph before you submit.'
   ],
-  example: { prompt: 'Using the bar graph above, how many more books did Cruz read than Ben?',
+  example: { prompt: 'On the bar graph, how many more books did Cruz read than Ben?',
     work: ['Cruz\'s bar reaches 20.', 'Ben\'s bar reaches 5.', '"How many more" means subtract.', '20 − 5 = 15.'],
     answer: '15 more books' },
   traps: [

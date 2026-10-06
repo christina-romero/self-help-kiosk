@@ -346,7 +346,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
       'Add to your picture as you keep reading. The movie should change.'
     ] },
     { type: 'table', title: 'Use all your senses', head: ['Ask', 'Example from a text'],
-      rows: [['What do I SEE?', 'a tall grey door with peeling paint'],
+      rows: [['What do I SEE?', 'a tall gray door with peeling paint'],
              ['What do I HEAR?', 'the wind pushing against the window'],
              ['What do I SMELL?', 'wet leaves'],
              ['What do I FEEL?', 'a cold handle under her hand']] }
@@ -574,7 +574,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     ] },
     { type: 'table', title: 'Flat shape and its solid partner', head: ['Flat (2D)', 'Solid (3D)', 'Real thing'],
       rows: [['circle', 'sphere', 'a ball'], ['circle', 'cylinder', 'a soup can'],
-             ['square', 'cube', 'a dice'], ['triangle', 'cone', 'an ice cream cone'],
+             ['square', 'cube', 'a number cube'], ['triangle', 'cone', 'an ice cream cone'],
              ['rectangle', 'rectangular prism', 'a cereal box']] }
   ],
   steps: [
@@ -814,7 +814,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   check: [
     { q: 'Where should the start of the object line up?', a: 'With the zero on the ruler.' },
     { q: 'You measure with small units and get a big number. Why?', a: 'Smaller units means you need more of them.' },
-    { q: 'Someone measured a pencil and wrote "8". What is missing?', a: 'The unit. Eight what: inches? centimetres? A number on its own does not tell you how long.' }
+    { q: 'Someone measured a pencil and wrote "8". What is missing?', a: 'The unit. Eight what: inches? centimeters? A number on its own does not tell you how long.' }
   ],
   links: [
     { t: 'Math is Fun: Measurement', u: 'https://www.mathsisfun.com/measure/index.html', d: 'Units and how to measure.' },
@@ -857,7 +857,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
     'Write a label under each column and a title on top.',
     'Read the graph: most, fewest, and how many more one has than another.'
   ],
-  example: { prompt: 'Using the graph above, how many more people chose grapes than bananas?',
+  example: { prompt: 'On the fruit graph, how many more people chose grapes than bananas?',
     work: ['Grapes: 8.', 'Bananas: 3.', '"How many more" means subtract.', '8 minus 3 is 5.'],
     answer: '5 more people' },
   traps: [

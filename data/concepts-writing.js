@@ -311,7 +311,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   example: { prompt: 'Improve: "School should start later. "Teens who start after 8:30 report better focus." So school should start later."',
     work: ['The quote is dropped in with no lead-in.', 'The explanation just repeats the claim.', 'Add a lead-in and real elaboration.'],
-    answer: '"School should start later for middle and high schoolers. A recent sleep study found that "teens who start after 8:30 report better focus." That finding matters because focus is the thing every other academic skill depends on: a student who cannot concentrate in first period loses the lesson entirely, no matter how well it is taught."' },
+    answer: 'School should start later for middle and high schoolers. A recent sleep study found that "teens who start after 8:30 report better focus." That finding matters because focus is what every other academic skill depends on. A student who cannot concentrate in first period loses the lesson entirely, no matter how well it is taught.' },
   traps: [
     'Dropping a quote with no introduction. It reads as if it fell out of the sky.',
     'Following a quote with a sentence that just repeats your claim.',
@@ -364,7 +364,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   example: { prompt: 'Write a conclusion for an essay arguing for later school start times.',
     work: ['Restate the thesis in new words.', 'Gather the points: sleep science, focus, and fairness.', 'So what: this is a change schools can actually make.'],
-    answer: '"Moving the first bell back is not about giving teenagers a lie-in. It is about matching the school day to the way teenage brains actually work, so that the hours students spend in class are hours they can use. Districts cannot change how adolescents sleep. They can change when the day begins."' },
+    answer: '"Moving the first bell back is not about letting teenagers sleep in. It is about matching the school day to the way teenage brains actually work, so that the hours students spend in class are hours they can use. Districts cannot change how adolescents sleep. They can change when the day begins."' },
   traps: [
     'Opening with "Have you ever wondered" or "Since the beginning of time". Both are empty.',
     'Opening with a dictionary definition.',
@@ -446,7 +446,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I just listed facts', 'How is this different from an argument?'],
   teks: ['4.12.B', '5.12.B', '6.11.B', '7.11.B', '8.11.B'],
   apps: ['AlphaWrite'],
-  plain: 'Informational writing teaches the reader something. Unlike an argument, you are not taking a side: but you still need a central idea, or you end up with a pile of facts and no shape.',
+  plain: 'Informational writing teaches the reader something. Unlike an argument, you are not taking a side, but you still need a central idea, or you end up with a pile of facts and no shape.',
   why: 'This is the most-assigned writing genre in middle school and the easiest one to accidentally turn into a list.',
   words: [
     { w: 'central idea', d: 'The one thing you want the reader to understand.' },
@@ -645,7 +645,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   example: { prompt: 'Your feedback says "needs more support in paragraph 2." What do you do?',
     work: ['This is feedback about ideas, so it is a revision note.', 'Fixing commas will not address it.', 'Go to paragraph 2, find the claim, and add evidence plus explanation.'],
-    answer: 'Revise paragraph 2 by adding evidence and elaboration: not by proofreading it.' },
+    answer: 'Revise paragraph 2 by adding evidence and elaboration, not by proofreading it.' },
   traps: [
     'Calling proofreading "revising" and wondering why the score does not move.',
     'Refusing to cut a sentence you worked hard on. If it does not serve the piece, it goes.',
@@ -726,8 +726,8 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['I run out of time every time', 'I spend so long planning I never finish'],
   teks: ['6.10.A', '7.10.A', '8.10.A', '6.10.B', '7.10.B', '8.10.B'],
   apps: ['AlphaWrite'],
-  plain: 'Timed writing is a pacing problem, not a writing problem. If you divide the time before you start and hold to it, you will finish: and a finished average essay always beats an unfinished excellent one.',
-  why: 'Standardized Writing Fundamentals is specifically about on-demand writing, and unfinished responses are the most common way points are lost.',
+  plain: 'Timed writing is a pacing problem, not a writing problem. If you divide the time before you start and hold to it, you will finish, and a finished average essay always beats an unfinished excellent one.',
+  why: 'Every state writing test is on-demand writing, and an unfinished response is the most common way points are lost.',
   words: [
     { w: 'on-demand writing', d: 'Writing produced in one sitting, under time pressure, from a prompt.' }
   ],
@@ -781,7 +781,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   stuck: ['How much do I have to change for it to be my own words?', 'What goes in a bibliography?'],
   teks: ['5.13.F', '5.13.G', '6.12.F', '6.12.G', '7.12.G', '8.12.H'],
   apps: ['AlphaWrite'],
-  plain: 'If an idea or a set of words came from somewhere else, you say where. Quoting means using the exact words in quotation marks. Paraphrasing means putting it fully in your own words: and you still credit the source.',
+  plain: 'If an idea or a set of words came from somewhere else, you say where. Quoting means using the exact words in quotation marks. Paraphrasing means putting it fully in your own words, and you still credit the source.',
   why: 'Plagiarism is usually accidental: students paraphrase too lightly or lose track of which notes were copied.',
   words: [
     { w: 'plagiarism', d: 'Presenting someone else\'s words or ideas as your own.' },
@@ -813,7 +813,7 @@ window.CONCEPTS = (window.CONCEPTS || []).concat([
   ],
   example: { prompt: 'You want to use a fact from an article. What are your options?',
     work: ['Option 1: quote it exactly, in quotation marks, with the author named.', 'Option 2: paraphrase it fully in your own words, and still name the author.', 'Either way, add the source to your bibliography.'],
-    answer: 'Quote it or paraphrase it: but credit it either way.' },
+    answer: 'Quote it or paraphrase it, but credit it either way.' },
   traps: [
     'Thinking that changing a few words counts as paraphrasing. The structure must change too.',
     'Copying into your notes and later forgetting which parts were copied.',
