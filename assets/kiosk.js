@@ -254,6 +254,24 @@
     h += '<section class="grid g-2">' +
       '<a class="tile s-math" href="#/how"><h3>🧭 The Unstuck Steps</h3><p>The six moves to try, in order, before you ask anyone for help. Print it and keep it at your desk.</p></a>' +
       '<a class="tile s-vocabulary" href="#/library"><h3>📚 Resource Shelf</h3><p>Dictionaries, virtual manipulatives, printable organizers, and reading passages your school already trusts.</p></a></section>';
+
+    // Last on the page, because it is the escalation: work a guide first,
+    // then book a person. These are the only links on the home page that
+    // leave the kiosk, so they open in a new tab and the page says so.
+    var book = window.COACHING || [];
+    if (book.length) {
+      h += '<section class="panel book"><h2>📅 Book a coaching call</h2>' +
+        '<p class="muted">Still stuck after working through a guide? Book time with a real person. Pick the one that matches what you need help with.</p>' +
+        '<div class="grid g-3">' + book.map(function (b) {
+          return '<a class="tile bookcard ' + b.cls + '" href="' + esc(b.u) + '" target="_blank" rel="noopener noreferrer">' +
+            '<h3>' + b.icon + ' ' + esc(b.subject) + '</h3>' +
+            (b.who ? '<p class="who">' + esc(b.who) + '</p>' : '') +
+            '<p>' + esc(b.d) + '</p>' +
+            '<span class="cnt">Book a time ↗</span></a>';
+        }).join('') + '</div>' +
+        '<p class="muted" style="margin:.9rem 0 0">Each one opens a booking page in a new tab. Bring the skill name and the exact part you did not understand.</p>' +
+        '</section>';
+    }
     return h;
   };
 

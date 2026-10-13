@@ -179,6 +179,30 @@ const ROUTES = [
   if (results < 1) problems.push('header search returned no results for "run on sentence"');
   console.log(`  header search        ${results} results`);
 
+  // booking buttons: every coaching option reaches the home page, points at
+  // the url in the data, and opens in a new tab. A student who taps one and
+  // lands nowhere thinks they have an appointment.
+  await page.goto(BASE);
+  await page.waitForTimeout(150);
+  const booking = await page.evaluate(() => {
+    const want = (window.COACHING || []).map(b => b.u);
+    const got = [...document.querySelectorAll('#main .bookcard')].map(a => ({
+      href: a.getAttribute('href'),
+      blank: a.getAttribute('target') === '_blank',
+      rel: (a.getAttribute('rel') || '').includes('noopener'),
+      label: (a.querySelector('h3') || {}).textContent || ''
+    }));
+    return { want, got };
+  });
+  if (booking.got.length !== booking.want.length) {
+    problems.push(`booking: ${booking.got.length} buttons rendered, ${booking.want.length} in the data`);
+  }
+  for (const b of booking.got) {
+    if (!booking.want.includes(b.href)) problems.push(`booking: "${b.label}" points at an href not in COACHING`);
+    if (!b.blank || !b.rel) problems.push(`booking: "${b.label}" is not a safe new-tab link`);
+  }
+  console.log(`  booking buttons      ${booking.got.length} live, new tab OK`);
+
   // unsafe query guard
   await page.goto(BASE);
   await page.waitForTimeout(120);

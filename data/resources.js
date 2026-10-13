@@ -247,3 +247,39 @@ window.RESOURCES = [
     ]
   }
 ];
+
+/* ---------- booking links for the people behind the kiosk ----------
+   The escalation path. A student works the guides first; when that is not
+   enough, these put them in front of a human. Kept here rather than in
+   kiosk.js so tools/check-links.py verifies them on every run: a dead
+   booking link is worse than a dead reference link, because the student
+   thinks they have an appointment.                                      */
+window.COACHING = [
+  {
+    id: 'math',
+    subject: 'Math',
+    who: 'Mrs. Wendy',
+    cls: 's-math',
+    icon: '🔢',
+    d: 'Stuck on a math skill after you have worked through the guides.',
+    u: 'https://calendly.com/alpha-public-school/30min?month=2026-10'
+  },
+  {
+    id: 'ela',
+    subject: 'ELA',
+    who: 'Mrs. Milli',
+    cls: 's-reading',
+    icon: '📖',
+    d: 'Reading, writing, language or vocabulary. Bring the question that stopped you.',
+    u: 'https://calendly.com/milli-patel-alpha/alpha-public-school-coaching-session?month=2026-10'
+  },
+  {
+    id: 'testing',
+    subject: 'Pre/Post-test Coaching',
+    who: '',
+    cls: 's-vocabulary',
+    icon: '📈',
+    d: 'Getting ready for a pre-test, or going through what a post-test showed.',
+    u: 'https://opencal.alpha.school/book/alpha/timeback-coaching'
+  }
+];

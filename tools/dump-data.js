@@ -44,5 +44,6 @@ process.stdout.write(JSON.stringify({
       when: Object.assign({}, t.when, { units: t.when && t.when.units ? t.when.units.source : null })
     });
   }),
+  COACHING: sandbox.window.COACHING,
   CONCEPTS: sandbox.window.CONCEPTS
 }));

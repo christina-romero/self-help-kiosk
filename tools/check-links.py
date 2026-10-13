@@ -27,6 +27,8 @@ for c in data['CONCEPTS']:
 for g in data['RESOURCES']:
     for i in g['items']:
         add(i['u'], 'resources/' + g['group'])
+for b in data.get('COACHING', []):
+    add(b['u'], 'coaching/' + b['id'])
 
 # search engine templates: probe them with a real query
 kiosk = open(os.path.join(ROOT, 'assets', 'kiosk.js'), encoding='utf-8').read()

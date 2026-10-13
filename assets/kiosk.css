@@ -204,6 +204,17 @@ html[data-theme="hc"] .gradebtn[aria-current="page"] small{color:#000}
 .tile .cnt{font-size:.76rem;font-weight:700;color:var(--sc);background:var(--scbg);padding:.2em .6em;border-radius:999px;display:inline-block;margin-top:.55em}
 /* course name on a grade 9 tile: Algebra I, English I */
 .tile p.course{font-size:.78rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--sc,var(--brand));margin:0 0 .35em}
+/* Book a coaching call: the one place on the home page that leaves the kiosk */
+.tile p.who{font-size:.92rem;font-weight:800;color:var(--sc,var(--brand));margin:0 0 .35em}
+/* Column layout so the Book a time pill sits on the same line across all
+   three cards, even though one of them has no name above its description. */
+.bookcard{display:flex;flex-direction:column}
+/* Text colour follows the panel, not a hardcoded white: in high contrast the
+   accent fills are bright yellow and cyan, and white on those is unreadable. */
+.bookcard .cnt{background:var(--sc,var(--brand));color:var(--panel);align-self:flex-start;margin-top:auto;padding-top:.3em;padding-bottom:.3em}
+.bookcard p:last-of-type{margin-bottom:.6em}
+.panel.book{border-color:var(--brand)}
+@media print{.panel.book{display:none}}
 
 .s-math{--sc:var(--s-math);--scbg:var(--s-math-bg)}
 .s-reading{--sc:var(--s-reading);--scbg:var(--s-reading-bg)}
